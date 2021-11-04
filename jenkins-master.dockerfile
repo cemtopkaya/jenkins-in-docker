@@ -5,12 +5,16 @@
 #              -t cemo                                                                                                                                     #
 #              -f .\jenkins-master.dockerfile .                                                                                                            #
 #                                                                                                                                                          #
-# docker run -it --rm                                                                                                                                      #
-#            -p 8084:8084                                                                                                                                  #
-#            -e JENKINS_OPTS=--httpPort=8084                                                                                                               #
-#            -e DOCKER_HOST=tcp://host.docker.internal:2375                                                                                                #
-#            --dns 176.31.121.197                                                                                                                          #
-#            --name jendock                                                                                                                                #
+# docker run -it --rm                                        `                                                                                             #
+#            -p 8084:8084                                    `                                                                                             #
+#            -e JENKINS_OPTS=--httpPort=8084                 `                                                                                             #
+#            -e DOCKER_HOST=tcp://host.docker.internal:2375  `                                                                                             #
+#            --dns 176.31.121.197                            `                                                                                             #
+#            --add-host archive.ubuntu.com:91.189.88.142     `                                                                                             #
+#            --add-host security.ubuntu.com:91.189.88.142    `                                                                                             #
+#            --add-host updates.jenkins.io:52.202.51.185     `                                                                                             #
+#            --add-host get.jenkins.io:52.167.253.43         `                                                                                             #
+#            --name jendock                                  `                                                                                             #
 #            cemo                                                                                                                                          #
 # KAYNAKLAR:                                                                                                                                               #
 # https://github.com/jenkinsci/docker#preinstalling-plugins                                                                                                #
@@ -146,8 +150,10 @@ ENV JENKINS_INCREMENTALS_REPO_MIRROR=https://repo.jenkins-ci.org/incrementals
 ENV COPY_REFERENCE_FILE_LOG /var/log/copy_reference_file.log
 # referans dosyalarını yalnızca bir kez kopyaladığımızdan emin olmak için bayrak olarak kullanılan işaret dosyası
 ENV COPY_REFERENCE_MARKER ${JENKINS_HOME}/.docker-onrun-complete
+
 # docker host sunucusu olarak kendi hostunu gösteriyoruz ancak değiştirilebilir.
 ENV DOCKER_HOST=tcp://host.docker.internal:2375
+
 
 # `/usr/share/jenkins/ref/` yeni bir kurulumda ayarlamak istediğimiz tüm referans yapılandırmalarını içerir. 
 # Özel jenkins Docker yansınızda yer alacak diğer eklentiler veya ayar dosyasıları için bu dizini kullanın.
@@ -169,6 +175,7 @@ COPY ./jenkins.war /usr/share/jenkins/
 # eklentileri jenkins.war dosyasından ref dizinine çıkartıyoruz, böylece bu eklentileri yeni eklentilerle ezebiliriz
 RUN unzip -j -d /usr/share/jenkins/ref/plugins -n /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/* && \
     zip  -d /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/*
+COPY ./jenkins-plugins/plugins /var/jenkins_home/plugins
 
 RUN chown -R ${user_name} "$JENKINS_HOME" /usr/share/jenkins /usr/share/jenkins/ref
 
@@ -177,6 +184,8 @@ RUN touch $COPY_REFERENCE_FILE_LOG && \
     touch $COPY_REFERENCE_MARKER && \
     chown ${user_name}.${user_group_name} $COPY_REFERENCE_MARKER
 
+ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml
+COPY ./jcasc_plugin_confs/casc.yaml /var/jenkins_home/casc.yaml
 
 # Eski paketleri ve güncelleme listelerini temizliyoruz
 # RUN apt-get -qy autoremove && \

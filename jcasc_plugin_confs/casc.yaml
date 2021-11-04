@@ -1,0 +1,73 @@
+jenkins:
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: admin
+          password: admin
+
+security:
+  globaljobdslsecurityconfiguration:
+    useScriptSecurity: false
+
+unclassified:
+  location:
+    url: http://localhost:8083/
+  globalLibraries:
+    libraries:
+      - name: "ortak-kutuphane"
+        defaultVersion: "main"
+        implicit: true
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                id: "ortak-kutuphane-pipeline-shared-lib"
+                remote: "https://github.com/cemtopkaya/jenkins-paylasilan-kutuphane-ornegi.git"
+  themeManager:
+    disableUserThemes: true
+    theme: "darkSystem" # use "dark" for forcing the dark theme regardless of OS settings
+
+jobs:
+  - script: >
+      pipelineJob("jenkinsfile-ornegi") {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote { url("https://github.com/cemtopkaya/dev-and-devops-in-docker-cpp-main-project.git") }
+                branches("main")
+                scriptPath('Jenkinsfile')
+                extensions { }  // required as otherwise it may try to tag the repo, which you may not want 
+              }
+            }
+            lightweight()
+          }
+        }
+      }
+  - script: >
+      pipelineJob('dizin-jenkinsfile') {
+        definition {
+          cps {
+            script('''\
+            pipeline {
+              agent {
+                dockerfile { 
+                  dir './.devcontainer'
+                  filename 'Dockerfile-dev'
+                  additionalBuildArgs  '--tag jenkins/build-cpp' 
+                }
+              }
+              stages {
+                stage ('Build') {
+                  steps {
+                    sh 'make'
+                  }
+                }
+              }
+            }'''.stripIndent())
+            sandbox()     
+          }
+        }
+      }
+  # - script: queue("jenkinsfile-ornegi")
