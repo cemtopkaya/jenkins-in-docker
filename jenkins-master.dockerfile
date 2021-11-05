@@ -171,7 +171,7 @@ Thread.start {\n\
 
 # RUN curl -L http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
 # ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
-COPY ./jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
+COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -189,7 +189,7 @@ RUN unzip -j -d ${PLUGIN_DIR} -n /usr/share/jenkins/jenkins.war WEB-INF/detached
 
 # RUN curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar -o /opt/
 # ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar /opt/jenkins-plugin-manager-2.11.1.jar
-COPY jenkins-plugin-manager-2.11.1.jar ./jenkins-plugins/plugins.yaml /opt/
+COPY ./bin/jenkins-plugin-manager-2.11.1.jar ./jenkins-plugins/plugins.yaml /opt/
 RUN echo '#!/bin/bash \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.11.1.jar $*"' > /usr/local/bin/jenkins-plugin-cli.sh && \
     chmod +x /usr/local/bin/jenkins-plugin-cli.sh
 # RUN /usr/local/bin/jenkins-plugin-cli.sh -f /opt/plugins.yaml --verbose
