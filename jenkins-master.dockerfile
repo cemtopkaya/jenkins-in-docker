@@ -15,6 +15,12 @@
 #            --add-host updates.jenkins.io:52.202.51.185     `                                                                                             #
 #            --add-host get.jenkins.io:52.167.253.43         `                                                                                             #
 #            --name jendock                                  `                                                                                             #
+# docker run -it --rm                                                                                                                                      #
+#            -p 8084:8084                                                                                                                                  #
+#            -e JENKINS_OPTS=--httpPort=8084                                                                                                               #
+#            -e DOCKER_HOST=tcp://host.docker.internal:2375                                                                                                #
+#            --dns 176.31.121.197                                                                                                                          #
+#            --name jendock                                                                                                                                #
 #            cemo                                                                                                                                          #
 # KAYNAKLAR:                                                                                                                                               #
 # https://github.com/jenkinsci/docker#preinstalling-plugins                                                                                                #
@@ -115,7 +121,14 @@ RUN apt-get install -qy openssh-server && \
     # jenkins Kullanıcısıyla SSH yapılırken açık anahtar ile doğrulama yapılırsa "yetki verilen anahtarlar" dosyasına açık anahtarı ekliyoruz
     # Elbette bu açık anahtarın istemciye eklenmesi ve /home/istemcideki_baglanti_yapacak_kullanicinin/.ssh/config dosyasında ayarların yapılması gerekiyor
     # Bkz. https://github.com/cemtopkaya/dockerfile_jenkinsfile/blob/main/Dockerfile 
-    cat ${JENKINS_HOME}/.ssh/id_rsa.pub > ${JENKINS_HOME}/.ssh/authorized_keys
+    cat ${JENKINS_HOME}/.ssh/id_rsa.pub > ${JENKINS_HOME}/.ssh/authorized_keys && \
+    # curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar -o /opt/ && \
+    echo '#!/bin/bash \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.11.1.jar $*"' > /usr/local/bin/jenkins-plugin-cli.sh && \
+    chmod +x /usr/local/bin/jenkins-plugin-cli.sh
+# ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar /opt/jenkins-plugin-manager-2.11.1.jar
+COPY jenkins-plugin-manager-2.11.1.jar plugins.txt /opt/
+RUN /usr/local/bin/jenkins-plugin-cli.sh --plugins < /opt/plugins.txt
+
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                            SERTİFİKA AYARLARI                                                                               #
@@ -154,7 +167,6 @@ ENV COPY_REFERENCE_MARKER=${JENKINS_HOME}/.docker-onrun-complete
 
 # docker host sunucusu olarak kendi hostunu gösteriyoruz ancak değiştirilebilir.
 ENV DOCKER_HOST=tcp://host.docker.internal:2375
-
 
 # `/usr/share/jenkins/ref/` yeni bir kurulumda ayarlamak istediğimiz tüm referans yapılandırmalarını içerir. 
 # Özel jenkins Docker yansınızda yer alacak diğer eklentiler veya ayar dosyasıları için bu dizini kullanın.
