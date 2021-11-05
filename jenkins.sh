@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 #!/bin/bash
-=======
-#! /bin/bash
->>>>>>> a55a7c060268f73ec11f1e042592e8b1918ff199
- # Copy files from /usr/share/jenkins/ref into ${JENKINS_HOME}
+# Copy files from /usr/share/jenkins/ref into ${JENKINS_HOME}
 # So the initial JENKINS-HOME is set with expected content.
 # It creates and uses a marker file $COPY_REFERENCE_MARKER
 # to ensure that copying of reference files occurs once only to prevent overwriting of
