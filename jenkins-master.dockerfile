@@ -5,6 +5,7 @@
 #              -t cemo                                                                                                                                     #
 #              -f .\jenkins-master.dockerfile .                                                                                                            #
 #                                                                                                                                                          #
+<<<<<<< HEAD
 # docker run -it --rm                                        `                                                                                             #
 #            -p 8084:8084                                    `                                                                                             #
 #            -e JENKINS_OPTS=--httpPort=8084                 `                                                                                             #
@@ -15,6 +16,8 @@
 #            --add-host updates.jenkins.io:52.202.51.185     `                                                                                             #
 #            --add-host get.jenkins.io:52.167.253.43         `                                                                                             #
 #            --name jendock                                  `                                                                                             #
+=======
+>>>>>>> a55a7c060268f73ec11f1e042592e8b1918ff199
 # docker run -it --rm                                                                                                                                      #
 #            -p 8084:8084                                                                                                                                  #
 #            -e JENKINS_OPTS=--httpPort=8084                                                                                                               #
@@ -74,6 +77,7 @@ RUN apt-get update && \
                       zip \
                       git \
                       curl \
+<<<<<<< HEAD
                       gettext-base 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -154,6 +158,7 @@ RUN update-ca-certificates && \
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 # ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk 
 ENV JENKINS_OPTS=--httpPort=8090
+<<<<<<< HEAD
 ENV JENKINS_SLAVE_AGENT_PORT=50000
 
 ENV JENKINS_UC=https://updates.jenkins-ci.org
@@ -165,6 +170,18 @@ ENV COPY_REFERENCE_FILE_LOG=/var/log/copy_reference_file.log
 # referans dosyalarını yalnızca bir kez kopyaladığımızdan emin olmak için bayrak olarak kullanılan işaret dosyası
 ENV COPY_REFERENCE_MARKER=${JENKINS_HOME}/.docker-onrun-complete
 
+=======
+ENV JENKINS_SLAVE_AGENT_PORT 50000
+
+ENV JENKINS_UC https://updates.jenkins.io
+ENV JENKINS_UC_DOWNLOAD ${JENKINS_UC}/download
+ENV JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
+ENV JENKINS_INCREMENTALS_REPO_MIRROR=https://repo.jenkins-ci.org/incrementals
+
+ENV COPY_REFERENCE_FILE_LOG /var/log/copy_reference_file.log
+# referans dosyalarını yalnızca bir kez kopyaladığımızdan emin olmak için bayrak olarak kullanılan işaret dosyası
+ENV COPY_REFERENCE_MARKER ${JENKINS_HOME}/.docker-onrun-complete
+>>>>>>> a55a7c060268f73ec11f1e042592e8b1918ff199
 # docker host sunucusu olarak kendi hostunu gösteriyoruz ancak değiştirilebilir.
 ENV DOCKER_HOST=tcp://host.docker.internal:2375
 
@@ -181,6 +198,7 @@ Thread.start {\n\
       Jenkins.instance.setSlaveAgentPort(50000)\n\
 }' > /usr/share/jenkins/ref/init.groovy.d/init.groovy
 
+<<<<<<< HEAD
 # RUN curl -L http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
 # ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
 COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
@@ -212,6 +230,16 @@ RUN echo '#!/bin/bash \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-pl
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                            DOSYA SAHİPLİĞİ                                                                                  #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+=======
+COPY ./jenkins.war /usr/share/jenkins/
+# RUN curl -L http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
+# ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
+
+# eklentileri jenkins.war dosyasından ref dizinine çıkartıyoruz, böylece bu eklentileri yeni eklentilerle ezebiliriz
+RUN unzip -j -d /usr/share/jenkins/ref/plugins -n /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/* && \
+    zip  -d /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/*
+
+>>>>>>> a55a7c060268f73ec11f1e042592e8b1918ff199
 RUN chown -R ${user_name} "$JENKINS_HOME" /usr/share/jenkins /usr/share/jenkins/ref
 
 RUN touch $COPY_REFERENCE_FILE_LOG && \
@@ -220,6 +248,7 @@ RUN touch $COPY_REFERENCE_FILE_LOG && \
     chown ${user_name}.${user_group_name} $COPY_REFERENCE_MARKER
 
 
+<<<<<<< HEAD
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                            VARSAYILAN JOB AYARLARI                                                                          #
 # Jenkins ayaklandığında yüklü olarak gelmesini istediğimiz job'ları ya config veya Job DSL CASC eklentisine uygun şekilde yükleyebiliriz.                    #
@@ -228,6 +257,8 @@ RUN touch $COPY_REFERENCE_FILE_LOG && \
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml
 COPY ./jcasc_plugin_confs/casc.yaml /var/jenkins_home/casc.yaml
 
+=======
+>>>>>>> a55a7c060268f73ec11f1e042592e8b1918ff199
 # Eski paketleri ve güncelleme listelerini temizliyoruz
 # RUN apt-get -qy autoremove && \
 #     rm -rf /var/lib/apt/lists/*
@@ -248,4 +279,8 @@ EXPOSE 50000
 VOLUME [ "$JENKINS_HOME"]
 
 COPY ./jenkins.sh /usr/local/bin/jenkins.sh
+<<<<<<< HEAD
 ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
+=======
+ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
+>>>>>>> a55a7c060268f73ec11f1e042592e8b1918ff199
