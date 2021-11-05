@@ -1,13 +1,13 @@
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                               KOMUTLAR VE AÇIKLAMALARI                                                                                                   #
 #                                                                                                                                                          #
-# docker build --add-host security.ubuntu.com:91.189.91.39                                                                                                 #
-#              -t cemo                                                                                                                                     #
+# docker build --add-host security.ubuntu.com:91.189.91.39  `                                                                                               #
+#              -t cemo                                      `                                                                                               #
 #              -f .\jenkins-master.dockerfile .                                                                                                            #
 #                                                                                                                                                          #
 # docker run -it --rm                                        `                                                                                             #
-#            -p 8084:8084                                    `                                                                                             #
-#            -e JENKINS_OPTS=--httpPort=8084                 `                                                                                             #
+#            -p 8090:8090                                    `                                                                                             #
+#            -e JENKINS_OPTS=--httpPort=8090                 `                                                                                             #
 #            -e DOCKER_HOST=tcp://host.docker.internal:2375  `                                                                                             #
 #            --dns 176.31.121.197                            `                                                                                             #
 #            --add-host archive.ubuntu.com:91.189.88.142     `                                                                                             #
@@ -15,12 +15,6 @@
 #            --add-host updates.jenkins.io:52.202.51.185     `                                                                                             #
 #            --add-host get.jenkins.io:52.167.253.43         `                                                                                             #
 #            --name jendock                                  `                                                                                             #
-# docker run -it --rm                                                                                                                                      #
-#            -p 8084:8084                                                                                                                                  #
-#            -e JENKINS_OPTS=--httpPort=8084                                                                                                               #
-#            -e DOCKER_HOST=tcp://host.docker.internal:2375                                                                                                #
-#            --dns 176.31.121.197                                                                                                                          #
-#            --name jendock                                                                                                                                #
 #            cemo                                                                                                                                          #
 # KAYNAKLAR:                                                                                                                                               #
 # https://github.com/jenkinsci/docker#preinstalling-plugins                                                                                                #
@@ -121,13 +115,7 @@ RUN apt-get install -qy openssh-server && \
     # jenkins Kullanıcısıyla SSH yapılırken açık anahtar ile doğrulama yapılırsa "yetki verilen anahtarlar" dosyasına açık anahtarı ekliyoruz
     # Elbette bu açık anahtarın istemciye eklenmesi ve /home/istemcideki_baglanti_yapacak_kullanicinin/.ssh/config dosyasında ayarların yapılması gerekiyor
     # Bkz. https://github.com/cemtopkaya/dockerfile_jenkinsfile/blob/main/Dockerfile 
-    cat ${JENKINS_HOME}/.ssh/id_rsa.pub > ${JENKINS_HOME}/.ssh/authorized_keys && \
-    # curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar -o /opt/ && \
-    echo '#!/bin/bash \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.11.1.jar $*"' > /usr/local/bin/jenkins-plugin-cli.sh && \
-    chmod +x /usr/local/bin/jenkins-plugin-cli.sh
-# ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar /opt/jenkins-plugin-manager-2.11.1.jar
-COPY jenkins-plugin-manager-2.11.1.jar plugins.txt /opt/
-RUN /usr/local/bin/jenkins-plugin-cli.sh --plugins < /opt/plugins.txt
+    cat ${JENKINS_HOME}/.ssh/id_rsa.pub > ${JENKINS_HOME}/.ssh/authorized_keys
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -192,19 +180,52 @@ COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
 # Bu yüzden jenkins-plugin-manager.jar dosyası indirilir veya kopyalanır. Betik dosyasına geçirilen parametreler jar'a geçirilir                              #
 #                                                                                                                                                             #
 # Veya eklenti dosyaları, docker yansısı derlenirken kopyalanır.                                                                                              #
+#                                                                                                                                                             #
+# Sistemde yüklü eklentileri ve sürüm bilgilerini öğrenmek için aşağıdaki betiği http://localhost:8090/script adresinde çalıştırabilirsiniz:                  #
+#   Jenkins.instance.pluginManager.plugins.each{                                                                                                              #
+#     plugin ->                                                                                                                                               #
+#       println ("${plugin.getDisplayName()} (${plugin.getShortName()}): ${plugin.getVersion()}")                                                             #
+#   }                                                                                                                                                         #
+#                                                                                                                                                             #
+# Sistemde yüklü eklentileri birinci seviyede bağımlılıklarıyla görebilmek için aşağıdaki betiği localhost:8090/script adresinde çalıştırabilirsiniz:         #
+#   def plugins = jenkins.model.Jenkins.instance.getPluginManager().getPlugins()                                                                              #
+#   println "digraph test {"                                                                                                                                  #
+#   plugins.each {                                                                                                                                            #
+#       def plugin = it.getShortName()                                                                                                                        #
+#       println "\"${plugin}\";"                                                                                                                              #
+#       def deps =  it.getDependencies()                                                                                                                      #
+#       deps.each {                                                                                                                                           #
+#         def s = it.shortName                                                                                                                                #
+#         println "\"${plugin}\" -> \"${s}\";"                                                                                                                #
+#       }                                                                                                                                                     #
+#   }                                                                                                                                                         #
+#   println "}"                                                                                                                                               #
+#                                                                                                                                                             #
+#                                                                                                                                                             #
+# Eklentileri jenkins.war dosyasından JENKINS'in eklentileri tuttuğu dizine çıkartıyoruz, böylece bu eklentileri yeni eklentilerle ezebiliriz                 #
+# Ancak temiz bir kurulum için jenkins.war dosyası içindeki eklentileri açmak yerine doğrudan ilgilendiğimiz paketleri kurdurmayı tercih etmeliyiz.           #
+#   RUN unzip -j -d ${PLUGIN_DIR} -n /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/* && \                                                           #
+#       zip  -d /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/*                                                                                     #
+#                                                                                                                                                             #
+# Eklentileri kurmak için jenkins-plugin-manager{sürüm}.jar dosyasını kullanacağız.                                                                           #
+#    https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar                                 #
+#                                                                                                                                                             #
+# jenkins.jar ile eklenti kurulumu da yapılabiliyor:                                                                                                          #
+#   java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:8080/ install-plugin {{ item }}                                                     #
+#                                                                                                                                                             #
+# Eklentileri yansının derlenmesi aşamasında da kurabiliriz:                                                                                                  #
+#  RUN /usr/local/bin/jenkins-plugin-cli --plugins docker-plugin:1.2.3 job-dsl:1.78.1 workflow-aggregator:2.6 git:4.10.0 configuration-as-code:1.54 --verbose #
+#                                                                                                                                                             #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
-
-# eklentileri jenkins.war dosyasından JENKINS'in eklentileri tuttuğu dizine çıkartıyoruz, böylece bu eklentileri yeni eklentilerle ezebiliriz
-RUN unzip -j -d ${PLUGIN_DIR} -n /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/* && \
-    zip  -d /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/*
 
 # RUN curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar -o /opt/
 # ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar /opt/jenkins-plugin-manager-2.11.1.jar
 COPY ./bin/jenkins-plugin-manager-2.11.1.jar ./jenkins-plugins/plugins.yaml /opt/
-RUN echo '#!/bin/bash \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.11.1.jar $*"' > /usr/local/bin/jenkins-plugin-cli.sh && \
-    chmod +x /usr/local/bin/jenkins-plugin-cli.sh
-# RUN /usr/local/bin/jenkins-plugin-cli.sh -f /opt/plugins.yaml --verbose
+
+RUN echo '#!/bin/bash \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.11.1.jar $*"' > /usr/local/bin/jenkins-plugin-cli && \
+    chmod +x /usr/local/bin/jenkins-plugin-cli
+RUN jenkins-plugin-cli -f /opt/plugins.yaml --verbose
 # Veya eklentiler COPY komutuyla yansıya kopyalanır.
 # COPY ./jenkins-plugins/plugins ${PLUGIN_DIR}
 
@@ -249,3 +270,24 @@ VOLUME [ "$JENKINS_HOME"]
 
 COPY ./jenkins.sh /usr/local/bin/jenkins.sh
 ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
+
+# TODO: jenkins pipeline docker agent içinde çalışacak şekilde casc'a atılacak ve 
+# SCM adresinden uygulama çekilerek 
+# - derlenip (make build),
+# - test edilip (make test),
+# - debian paket oluşturulup (make dist_deb),
+#   - paket havuzuna yüklenecek,
+#       - deb havuzu container olarak ayaklanacak
+# - docker yansısı yaratılıp (make dist_image),
+#   - yansı repoya yüklenecek 
+#       - docker container olarak ayaklanacak
+#
+# - eventler açılacak ve global/projenin kütüphanesi bu olayları dinleyerek kendi işlerini yapacak 
+#
+# - makefile yalınlaştırma
+#   - makefile içinde bağımlı olduğu paketleri (kütüphaneleri) makefile etiketiyle kurmak (make install_prereq)
+#   - makefile içindeki shell betiklerini dosyalara parçalamak (xxx.sh)
+#
+# - kubernetes
+#   - NF'leri k8 içinde POD'larda ayaklandıracak
+#   - k8 içinde bu süreçleri yönetmek (jenkins, repolar vs. POD olacak)

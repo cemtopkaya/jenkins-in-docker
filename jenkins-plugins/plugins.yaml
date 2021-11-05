@@ -8,93 +8,21 @@ tool:
       name: "Default"
 
 plugins:
-  - artifactId: ace-editor
-  - artifactId: allure-jenkins-plugin
-  - artifactId: apache-httpcomponents-client-4-api
-  - artifactId: authentication-tokens
-  - artifactId: bootstrap4-api
-  - artifactId: bootstrap5-api
-  # - artifactId: bouncycastle-api
-  - artifactId: branch-api
-  - artifactId: build-timeout
-  - artifactId: caffeine-api
-  - artifactId: checks-api
-  - artifactId: chromedriver
-  - artifactId: cloudbees-folder
-  - artifactId: command-launcher
-  - artifactId: config-file-provider
-  - artifactId: configuration-as-code
-  - artifactId: credentials-binding
-  - artifactId: credentials
-  - artifactId: dark-theme
-  - artifactId: display-url-api
-  - artifactId: docker-commons
-  - artifactId: docker-java-api
-  - artifactId: docker-plugin
-  - artifactId: docker-workflow
-  - artifactId: durable-task
-  - artifactId: echarts-api
-  - artifactId: font-awesome-api
-  - artifactId: git-client
-  - artifactId: git-server
-  - artifactId: git
-  - artifactId: github-api
-  - artifactId: github-branch-source
-  - artifactId: github
-  - artifactId: gradle
-  - artifactId: handlebars
-  - artifactId: jackson2-api
-  - artifactId: jaxb
-  - artifactId: jdk-tool
-  - artifactId: jjwt-api
-  - artifactId: job-dsl
-  - artifactId: jquery3-api
-  - artifactId: jsch
-  - artifactId: junit
-  - artifactId: lockable-resources
-  - artifactId: mailer
-  - artifactId: matrix-project
-  - artifactId: momentjs
-  - artifactId: nodejs
-  - artifactId: okhttp-api
-  - artifactId: pam-auth
-  - artifactId: pipeline-build-step
-  - artifactId: pipeline-github-lib
-  - artifactId: pipeline-graph-analysis
-  - artifactId: pipeline-input-step
-  - artifactId: pipeline-milestone-step
-  - artifactId: pipeline-model-api
-  - artifactId: pipeline-model-definition
-  - artifactId: pipeline-model-extensions
-  - artifactId: pipeline-rest-api
-  - artifactId: pipeline-stage-step
-  - artifactId: pipeline-stage-tags-metadata
-  - artifactId: pipeline-stage-view
-  - artifactId: plain-credentials
-  - artifactId: plugin-util-api
-  - artifactId: popper-api
-  - artifactId: popper2-api
-  - artifactId: resource-disposer
-  - artifactId: scm-api
-  - artifactId: script-security
-  - artifactId: snakeyaml-api
-  - artifactId: ssh-credentials
-  - artifactId: ssh-slaves
-  - artifactId: sshd
-  - artifactId: structs
-  - artifactId: theme-manager
-  - artifactId: timestamper
-  - artifactId: token-macro
-  - artifactId: trilead-api
-  - artifactId: workflow-aggregator
-  - artifactId: workflow-api
-  - artifactId: workflow-basic-steps
-  - artifactId: workflow-cps-global-lib
-  - artifactId: workflow-cps
-  - artifactId: workflow-durable-task-step
-  - artifactId: workflow-job
-  - artifactId: workflow-multibranch
-  - artifactId: workflow-scm-step
-  - artifactId: workflow-step-api
-  - artifactId: workflow-support
-  - artifactId: ws-cleanup
+- artifactId: docker-plugin
+  source:
+    version: 1.2.3 
+- artifactId: job-dsl
+  source:
+    version: 1.78.1
+- artifactId: workflow-aggregator
+  source:
+    version: 2.6
+- artifactId: git
+  source:
+    version: 4.10.0
+- artifactId: configuration-as-code
+  source:
+    version: 1.54
+- artifactId: docker-workflow
+  source:
+    version: 1.26

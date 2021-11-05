@@ -6,10 +6,6 @@ jenkins:
         - id: admin
           password: admin
 
-security:
-  globaljobdslsecurityconfiguration:
-    useScriptSecurity: false
-
 unclassified:
   location:
     url: http://localhost:8083/
@@ -24,9 +20,6 @@ unclassified:
               git:
                 id: "ortak-kutuphane-pipeline-shared-lib"
                 remote: "https://github.com/cemtopkaya/jenkins-paylasilan-kutuphane-ornegi.git"
-  themeManager:
-    disableUserThemes: true
-    theme: "darkSystem" # use "dark" for forcing the dark theme regardless of OS settings
 
 jobs:
   - script: >

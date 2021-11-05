@@ -1,3 +1,5 @@
 *.jar
+*.hpi
 *.jpi
 *.war
+*.bak
