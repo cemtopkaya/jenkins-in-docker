@@ -68,8 +68,16 @@ RUN apt-get update && \
                       zip \
                       git \
                       curl \
-                      gettext-base \
-                      openjdk-8-jdk
+                      gettext-base 
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                           OPEN JDK KURULUMU                                                                                                #
+#                                                                                                                                                            #
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#
+RUN apt-get install -y software-properties-common && \
+    add-apt-repository -y ppa:openjdk-r/ppa && \
+    apt-get update && \
+    apt-get install -y openjdk-8-jdk
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -107,14 +115,7 @@ RUN apt-get install -qy openssh-server && \
     # jenkins Kullanıcısıyla SSH yapılırken açık anahtar ile doğrulama yapılırsa "yetki verilen anahtarlar" dosyasına açık anahtarı ekliyoruz
     # Elbette bu açık anahtarın istemciye eklenmesi ve /home/istemcideki_baglanti_yapacak_kullanicinin/.ssh/config dosyasında ayarların yapılması gerekiyor
     # Bkz. https://github.com/cemtopkaya/dockerfile_jenkinsfile/blob/main/Dockerfile 
-    cat ${JENKINS_HOME}/.ssh/id_rsa.pub > ${JENKINS_HOME}/.ssh/authorized_keys && \
-    # curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar -o /opt/ && \
-    echo '#!/bin/bash \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.11.1.jar $*"' > /usr/local/bin/jenkins-plugin-cli.sh && \
-    chmod +x /usr/local/bin/jenkins-plugin-cli.sh
-# ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar /opt/jenkins-plugin-manager-2.11.1.jar
-COPY jenkins-plugin-manager-2.11.1.jar plugins.txt /opt/
-RUN /usr/local/bin/jenkins-plugin-cli.sh --plugins < /opt/plugins.txt
-
+    cat ${JENKINS_HOME}/.ssh/id_rsa.pub > ${JENKINS_HOME}/.ssh/authorized_keys
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                            SERTİFİKA AYARLARI                                                                               #
@@ -140,16 +141,16 @@ RUN update-ca-certificates && \
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 # ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk 
 ENV JENKINS_OPTS=--httpPort=8090
-ENV JENKINS_SLAVE_AGENT_PORT 50000
+ENV JENKINS_SLAVE_AGENT_PORT=50000
 
-ENV JENKINS_UC https://updates.jenkins.io
-ENV JENKINS_UC_DOWNLOAD ${JENKINS_UC}/download
+ENV JENKINS_UC=https://updates.jenkins-ci.org
+ENV JENKINS_UC_DOWNLOAD=${JENKINS_UC}/download
 ENV JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
 ENV JENKINS_INCREMENTALS_REPO_MIRROR=https://repo.jenkins-ci.org/incrementals
 
-ENV COPY_REFERENCE_FILE_LOG /var/log/copy_reference_file.log
+ENV COPY_REFERENCE_FILE_LOG=/var/log/copy_reference_file.log
 # referans dosyalarını yalnızca bir kez kopyaladığımızdan emin olmak için bayrak olarak kullanılan işaret dosyası
-ENV COPY_REFERENCE_MARKER ${JENKINS_HOME}/.docker-onrun-complete
+ENV COPY_REFERENCE_MARKER=${JENKINS_HOME}/.docker-onrun-complete
 
 # docker host sunucusu olarak kendi hostunu gösteriyoruz ancak değiştirilebilir.
 ENV DOCKER_HOST=tcp://host.docker.internal:2375
@@ -168,15 +169,37 @@ Thread.start {\n\
       Jenkins.instance.setSlaveAgentPort(50000)\n\
 }' > /usr/share/jenkins/ref/init.groovy.d/init.groovy
 
-COPY ./jenkins.war /usr/share/jenkins/
 # RUN curl -L http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
 # ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
+COPY ./jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
 
-# eklentileri jenkins.war dosyasından ref dizinine çıkartıyoruz, böylece bu eklentileri yeni eklentilerle ezebiliriz
-RUN unzip -j -d /usr/share/jenkins/ref/plugins -n /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/* && \
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                            EKLENTİ  AYARLARI                                                                                #
+# Eklentileri önceleri install-plugins.sh adında bir betikle yapıyorken sonradan jenkins-plugin-manager.jar dosyasıyla yapar olmuşlar.                        #
+# Bu yüzden jenkins-plugin-manager.jar dosyası indirilir veya kopyalanır. Betik dosyasına geçirilen parametreler jar'a geçirilir                              #
+#                                                                                                                                                             #
+# Veya eklenti dosyaları, docker yansısı derlenirken kopyalanır.                                                                                              #
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
+
+# eklentileri jenkins.war dosyasından JENKINS'in eklentileri tuttuğu dizine çıkartıyoruz, böylece bu eklentileri yeni eklentilerle ezebiliriz
+RUN unzip -j -d ${PLUGIN_DIR} -n /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/* && \
     zip  -d /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/*
-COPY ./jenkins-plugins/plugins /var/jenkins_home/plugins
 
+# RUN curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar -o /opt/
+# ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar /opt/jenkins-plugin-manager-2.11.1.jar
+COPY jenkins-plugin-manager-2.11.1.jar ./jenkins-plugins/plugins.yaml /opt/
+RUN echo '#!/bin/bash \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.11.1.jar $*"' > /usr/local/bin/jenkins-plugin-cli.sh && \
+    chmod +x /usr/local/bin/jenkins-plugin-cli.sh
+# RUN /usr/local/bin/jenkins-plugin-cli.sh -f /opt/plugins.yaml --verbose
+# Veya eklentiler COPY komutuyla yansıya kopyalanır.
+# COPY ./jenkins-plugins/plugins ${PLUGIN_DIR}
+
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                            DOSYA SAHİPLİĞİ                                                                                  #
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 RUN chown -R ${user_name} "$JENKINS_HOME" /usr/share/jenkins /usr/share/jenkins/ref
 
 RUN touch $COPY_REFERENCE_FILE_LOG && \
@@ -184,6 +207,12 @@ RUN touch $COPY_REFERENCE_FILE_LOG && \
     touch $COPY_REFERENCE_MARKER && \
     chown ${user_name}.${user_group_name} $COPY_REFERENCE_MARKER
 
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                            VARSAYILAN JOB AYARLARI                                                                          #
+# Jenkins ayaklandığında yüklü olarak gelmesini istediğimiz job'ları ya config veya Job DSL CASC eklentisine uygun şekilde yükleyebiliriz.                    #
+#                                                                                                                                                             #
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml
 COPY ./jcasc_plugin_confs/casc.yaml /var/jenkins_home/casc.yaml
 
