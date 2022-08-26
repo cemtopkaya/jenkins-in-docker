@@ -222,11 +222,6 @@ RUN curl -L http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
 
-#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
-#                                                                                                                                                             #
-#                                                                                                                                                             #
-#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
-
 RUN curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar -o /opt/
 # ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar /opt/jenkins-plugin-manager-2.11.1.jar
 # COPY ./bin/jenkins-plugin-manager-2.11.1.jar ./jenkins-plugins/plugins.yaml /opt/
