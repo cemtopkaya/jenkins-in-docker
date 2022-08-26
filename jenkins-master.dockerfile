@@ -169,9 +169,9 @@ Thread.start {\n\
       Jenkins.instance.setSlaveAgentPort(50000)\n\
 }' > /usr/share/jenkins/ref/init.groovy.d/init.groovy
 
-# RUN curl -L http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
+RUN curl -L http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
 # ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
-COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
+# COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -208,7 +208,10 @@ COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
 #       zip  -d /usr/share/jenkins/jenkins.war WEB-INF/detached-plugins/*                                                                                     #
 #                                                                                                                                                             #
 # Eklentileri kurmak için jenkins-plugin-manager{sürüm}.jar dosyasını kullanacağız.                                                                           #
-#    https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar                                 #
+#    https://github.com/jenkinsci/plugin-installation-manager-tool/releases/                                                                                  #
+# adresindeki sürümlerden uygun olanı seçebiliriz                                                                                                             #
+#                                                                                                                                                             #
+#    https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar                                 #
 #                                                                                                                                                             #
 # jenkins.jar ile eklenti kurulumu da yapılabiliyor:                                                                                                          #
 #   java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_hostname }}:8080/ install-plugin {{ item }}                                                     #
@@ -219,9 +222,14 @@ COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
 
-# RUN curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar -o /opt/
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                                                                                                                             #
+#                                                                                                                                                             #
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+RUN curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar -o /opt/
 # ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.11.1/jenkins-plugin-manager-2.11.1.jar /opt/jenkins-plugin-manager-2.11.1.jar
-COPY ./bin/jenkins-plugin-manager-2.11.1.jar ./jenkins-plugins/plugins.yaml /opt/
+# COPY ./bin/jenkins-plugin-manager-2.11.1.jar ./jenkins-plugins/plugins.yaml /opt/
 
 RUN echo '#!/bin/bash \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.11.1.jar $*"' > /usr/local/bin/jenkins-plugin-cli && \
     chmod +x /usr/local/bin/jenkins-plugin-cli
