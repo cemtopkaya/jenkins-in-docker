@@ -4,6 +4,7 @@ FROM ubuntu:xenial
 # Make sure the package repository 6is up to date.
 RUN apt-get update && \
     apt-get -qy full-upgrade && \
+# Install git client for repo stuffes
     apt-get install -qy git && \
 # Install a basic SSH server
     apt-get install -qy openssh-server
