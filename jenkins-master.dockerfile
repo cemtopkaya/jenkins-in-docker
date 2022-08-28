@@ -20,7 +20,78 @@
 # https://github.com/jenkinsci/docker#preinstalling-plugins                                                                                                #
 # https://devopscube.com/docker-containers-as-build-slaves-jenkins/#Configure_a_Docker_Host_With_Remote_API_Important                                      #
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------#
-FROM ubuntu:xenial
+
+FROM ubuntu:xenial AS base
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                              KURULACAK PAKETLER ve AÇIKLAMALARI                                                             #
+# apt-transport-https: APT transport for downloading via the HTTP Secure protocol (HTTPS)                                                                     #
+# zip: jenkins.war içindeki eklentileri (detached-plugins) plugins dizinine açmak için                                                                        #
+# gettext-base: This package includes the gettext and ngettext programs which allow other packages to internationalize the messages given by shell scripts.   #
+# Jenkins içinde çeşitli araçlara ihtiyaç oluyor: sshd, jdk, git, node, python vs.                                                                            #
+# openjdk-8-jdk: Install JDK 8 (latest stable edition at 2019-04-01)                                                                                          #
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+RUN apt-get update && \
+    apt-get -qy full-upgrade && \
+    apt-get install -qy apt-transport-https \
+                      zip \
+                      git \
+                      curl \
+                      gettext-base 
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                           OPEN JDK KURULUMU                                                                                                #
+#                                                                                                                                                            #
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#
+RUN apt-get install -y software-properties-common && \
+    add-apt-repository -y ppa:openjdk-r/ppa && \
+    apt-get update && \
+    apt-get install -y openjdk-8-jdk
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                           DOCKER-CE-CLI KURULUMU                                                                                           #
+# Docker paketlerinden istemci paketini kurup sunucu olarak başka bir docker host'u göstereceğiz. DOCKER_HOST konteynerin hostu olacak (window için)         #
+# Docker dosyalarının indirileceğği paket havuzunun adresine erişimimizde GPG anahtarı kullanacağız. Bu anahtar sayesinde eriştiğimiz kaynağa güvenli        #
+# sağlamış olacağız. Önce GPG anahtarını docker.com adresinden indiriyor, bu reponun adresini girdiğimiz kayıt içinde GPG adresinin varsayılan GPG dosyaları #
+# ile aynı yerde olmaması sebebiyle signed-by özelliği ile belirteceğiz.                                                                                     #
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list && \
+    apt-get update && \
+    apt-get install -y docker-ce-cli
+
+
+
+
+
+
+# -----------------------------------------------------------------------------------------#
+#                               JENKINS DOSYALARININ INDIRILMESI                           #
+# Jenkins temel dosyalarının bu aşamada indirilmesi sağlanıyor. Kurulum ve ayarlar sonraki #
+# aşamada ele alınacak.                                                                    #
+#                                                                                          #
+# /usr   : Tüm kullanıcılarca paylaşılan verileri içeren dizindir. [https://t.ly/ELoo]     #
+# -----------------------------------------------------------------------------------------#
+FROM base as jenkins-base
+USER root
+RUN curl -L http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
+# ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
+# COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
+
+RUN curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar -o /opt/
+# ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar /opt/jenkins-plugin-manager-2.12.8.jar
+# COPY ./bin/jenkins-plugin-manager-2.12.8.jar ./jenkins-plugins/plugins.yaml /opt/
+
+
+
+
+
+
+
+# -----------------------------------------------------------------------------------------#
+#                               JENKINS KURULUM SİHİRBAZI                                  #
+# Jenkins tanımları ve ayarları için bu stage kullanılacaktır.                             #
+# -----------------------------------------------------------------------------------------#
+FROM jenkins-base
 
 # -----------------------------------------------------------------------------------------#
 #                               JENKINS KURULUM SİHİRBAZI                                  #
@@ -52,42 +123,6 @@ RUN echo "${user_name}:${user_password}" | chpasswd
 # RUN echo "${user_name}  ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${user_name} && chmod 0440 /etc/sudoers.d/${user_name}
 # Bu konteynere root kullanıcısını kullanarak SSH protokolüyle bağlanmak istediğimizde şifreyi sshpass ile geçirebilmek için ayarlayalım
 RUN echo 'root:${root_password}' | chpasswd
-
-
-#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
-#                                                              KURULACAK PAKETLER ve AÇIKLAMALARI                                                             #
-# apt-transport-https: APT transport for downloading via the HTTP Secure protocol (HTTPS)                                                                     #
-# zip: jenkins.war içindeki eklentileri (detached-plugins) plugins dizinine açmak için                                                                        #
-# gettext-base: This package includes the gettext and ngettext programs which allow other packages to internationalize the messages given by shell scripts.   #
-# Jenkins içinde çeşitli araçlara ihtiyaç oluyor: sshd, jdk, git, node, python vs.                                                                            #
-# openjdk-8-jdk: Install JDK 8 (latest stable edition at 2019-04-01)                                                                                          #
-#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
-RUN apt-get update && \
-    apt-get -qy full-upgrade && \
-    apt-get install -qy apt-transport-https \
-                      zip \
-                      git \
-                      curl \
-                      gettext-base 
-
-#------------------------------------------------------------------------------------------------------------------------------------------------------------#
-#                                           OPEN JDK KURULUMU                                                                                                #
-#                                                                                                                                                            #
-#------------------------------------------------------------------------------------------------------------------------------------------------------------#
-RUN apt-get install -y software-properties-common && \
-    add-apt-repository -y ppa:openjdk-r/ppa && \
-    apt-get update && \
-    apt-get install -y openjdk-8-jdk
-
-
-#------------------------------------------------------------------------------------------------------------------------------------------------------------#
-#                                           DOCKER-CE-CLI KURULUMU                                                                                           #
-# Docker paketlerinden istemci paketini kurup sunucu olarak başka bir docker host'u göstereceğiz. DOCKER_HOST konteynerin hostu olacak (window için)         #
-#------------------------------------------------------------------------------------------------------------------------------------------------------------#
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list && \
-    apt-get update && \
-    apt-get install -y docker-ce-cli
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -169,9 +204,6 @@ Thread.start {\n\
       Jenkins.instance.setSlaveAgentPort(50000)\n\
 }' > /usr/share/jenkins/ref/init.groovy.d/init.groovy
 
-RUN curl -L http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
-# ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
-# COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -222,11 +254,7 @@ RUN curl -L http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
 
-RUN curl -L https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar -o /opt/
-# ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar /opt/jenkins-plugin-manager-2.12.8.jar
-# COPY ./bin/jenkins-plugin-manager-2.12.8.jar ./jenkins-plugins/plugins.yaml /opt/
-
-RUN echo '#!/bin/bash \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.11.1.jar $*"' > /usr/local/bin/jenkins-plugin-cli && \
+RUN echo '#!/bin/bash \n env \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.12.8.jar $*"' > /usr/local/bin/jenkins-plugin-cli && \
     chmod +x /usr/local/bin/jenkins-plugin-cli
 RUN jenkins-plugin-cli -f /opt/plugins.yaml --verbose
 # Veya eklentiler COPY komutuyla yansıya kopyalanır.
