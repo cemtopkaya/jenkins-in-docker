@@ -21,7 +21,7 @@
 # https://devopscube.com/docker-containers-as-build-slaves-jenkins/#Configure_a_Docker_Host_With_Remote_API_Important                                      #
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------#
 
-FROM ubuntu:xenial AS base
+FROM ubuntu:focal AS base
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                              KURULACAK PAKETLER ve AÇIKLAMALARI                                                             #
 # apt-transport-https: APT transport for downloading via the HTTP Secure protocol (HTTPS)                                                                     #
@@ -37,6 +37,8 @@ RUN apt-get update && \
                       git \
                       curl \
                       gettext-base 
+
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                           OPEN JDK KURULUMU                                                                                                #
@@ -55,7 +57,7 @@ RUN apt-get install -y software-properties-common && \
 # ile aynı yerde olmaması sebebiyle signed-by özelliği ile belirteceğiz.                                                                                     #
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
 RUN curl --create-dirs -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
     apt-get install -y docker-ce-cli
 
@@ -285,6 +287,13 @@ COPY ./jcasc_plugin_confs/casc.yaml /var/jenkins_home/casc.yaml
 # RUN apt-get -qy autoremove && \
 #     rm -rf /var/lib/apt/lists/*
 
+RUN rm /etc/ssl/certs/java/cacerts && update-ca-certificates -f
+
+COPY ./jenkins.sh /usr/local/bin/jenkins.sh
+# RUN chown ${user_name}:${user_group_name} /usr/local/bin/jenkins.sh
+RUN chmod 777 /usr/local/bin/jenkins.sh
+RUN chown -R ${user_name}:${user_group_name} ${JENKINS_HOME}
+
 USER ${user_name}
 
 # Standard SSH port
@@ -301,7 +310,7 @@ EXPOSE 50000
 VOLUME [ "$JENKINS_HOME"]
 
 COPY ./jenkins.sh /usr/local/bin/jenkins.sh
-ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
+CMD ["/usr/local/bin/jenkins.sh"]
 
 # TODO: jenkins pipeline docker agent içinde çalışacak şekilde casc'a atılacak ve 
 # SCM adresinden uygulama çekilerek 
