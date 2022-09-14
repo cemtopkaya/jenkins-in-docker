@@ -41,6 +41,16 @@ RUN apt-get update && \
 
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                           OPEN JDK KURULUMU                                                                                                #
+#                                                                                                                                                            #
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#
+RUN apt-get install -y software-properties-common && \
+    add-apt-repository -y ppa:openjdk-r/ppa && \
+    apt-get install -y openjdk-11-jdk
+
+
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                           DOCKER-CE-CLI KURULUMU                                                                                           #
 # Docker paketlerinden istemci paketini kurup sunucu olarak başka bir docker host'u göstereceğiz. DOCKER_HOST konteynerin hostu olacak (window için)         #
@@ -52,16 +62,6 @@ RUN curl --create-dirs -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg 
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
     apt-get install -y docker-ce-cli
-
-
-#------------------------------------------------------------------------------------------------------------------------------------------------------------#
-#                                           OPEN JDK KURULUMU                                                                                                #
-#                                                                                                                                                            #
-#------------------------------------------------------------------------------------------------------------------------------------------------------------#
-RUN apt-get install -y software-properties-common && \
-    add-apt-repository -y ppa:openjdk-r/ppa && \
-    apt-get install -y openjdk-11-jdk
-
 
 
 # -----------------------------------------------------------------------------------------#
