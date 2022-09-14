@@ -42,15 +42,6 @@ RUN apt-get update && \
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
-#                                           OPEN JDK KURULUMU                                                                                                #
-#                                                                                                                                                            #
-#------------------------------------------------------------------------------------------------------------------------------------------------------------#
-RUN apt-get install -y software-properties-common && \
-    add-apt-repository -y ppa:openjdk-r/ppa && \
-    apt-get update && \
-    apt-get install -y openjdk-11-jdk
-
-#------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                           DOCKER-CE-CLI KURULUMU                                                                                           #
 # Docker paketlerinden istemci paketini kurup sunucu olarak başka bir docker host'u göstereceğiz. DOCKER_HOST konteynerin hostu olacak (window için)         #
 # Docker dosyalarının indirileceğği paket havuzunun adresine erişimimizde GPG anahtarı kullanacağız. Bu anahtar sayesinde eriştiğimiz kaynağa güvenli        #
@@ -58,12 +49,18 @@ RUN apt-get install -y software-properties-common && \
 # ile aynı yerde olmaması sebebiyle signed-by özelliği ile belirteceğiz.                                                                                     #
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
 RUN curl --create-dirs -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
     apt-get install -y docker-ce-cli
 
 
-
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                           OPEN JDK KURULUMU                                                                                                #
+#                                                                                                                                                            #
+#------------------------------------------------------------------------------------------------------------------------------------------------------------#
+RUN apt-get install -y software-properties-common && \
+    add-apt-repository -y ppa:openjdk-r/ppa && \
+    apt-get install -y openjdk-11-jdk
 
 
 
@@ -116,15 +113,22 @@ FROM jenkins-base
 #   Örn. chown -R jenkins:jenkins ./plugins                                                                                                                 #
 #                                                                                                                                                           #
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------#
-# ENV JENKINS_HOME /var/jenkins_home
+
+# Jenkins dosyaları JENKINS_HOME ortam değişkeninin gösterdiği dizinde olacak
 ENV JENKINS_HOME /usr/share/jenkins
+
+# Konteyner çalıştığında user_name argumanındaki kullanıcı ile çalıştırılacak ve JENKINS bu kullanıcı altında işlerini yapacak
+ARG user_id=1000
 ARG user_name=jenkins
 ARG user_password=jenkins
 ENV JENKINS_USER_HOME_DIR "/home/${user_name}"
-ARG user_group_name=jenkins
-ARG user_id=1000
+
+# Konteynerin kullanıcısı user_group_name ile tanımlı gruba üye olacak
 ARG user_group_id=1000
-ENV ROOT_USER_PASSWORD sifre
+ARG user_group_name=jenkins
+
+# Konteynerin root kullanıcısının şifresi
+ENV ROOT_USER_PASSWORD sifre123
 ARG root_password=${ROOT_USER_PASSWORD}
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -288,7 +292,9 @@ RUN [ -f "$PLUGINS_YAML" ] && jenkins-plugin-cli -f $PLUGINS_YAML --verbose || e
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                            DOSYA SAHİPLİĞİ                                                                                  #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
-RUN chown -R ${user_name} "$JENKINS_HOME" /usr/share/jenkins /usr/share/jenkins/ref
+# Jenkins dosyasını ilk olarak /usr/share/jenkins dizininde tuuyoruz bu yüzden sahipliğini almamız gerek
+# Eğer JENKINS_HOME farklı bir dizin olursa diye onun da sahipliğini almalıyız aksi halde konteyner kullanıcısı permission denied hatası alacaktır.
+RUN chown -R ${user_name} "$JENKINS_HOME" /usr/share/jenkins
 
 RUN touch $COPY_REFERENCE_FILE_LOG && \
     chown ${user_name}.${user_group_name} $COPY_REFERENCE_FILE_LOG && \
@@ -325,6 +331,8 @@ RUN mkdir $JENKINS_JOBS_DIR
 RUN mkdir $JENKINS_SECRETS_DIR
 RUN mkdir $JENKINS_NODES_DIR
 RUN mkdir $JENKINS_USERS_DIR
+# Dışarıdan bağlanabilecek dizinlerin sahipliğini konteyner kullanıcısı (jenkins) üstüne alıyorum ki host üstünden 
+# bağlanan dizinler olursa erişim izni sorunu yaşamayalım.
 RUN chown ${user_name}:${user_group_name} $JENKINS_JOBS_DIR  $JENKINS_SECRETS_DIR  $JENKINS_NODES_DIR  $JENKINS_USERS_DIR
 
 VOLUME [ "$JENKINS_JOBS_DIR" ]
