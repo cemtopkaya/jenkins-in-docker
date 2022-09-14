@@ -30,6 +30,7 @@ FROM ubuntu:focal AS base
 # Jenkins içinde çeşitli araçlara ihtiyaç oluyor: sshd, jdk, git, node, python vs.                                                                            #
 # openjdk-8-jdk: Install JDK 8 (latest stable edition at 2019-04-01)                                                                                          #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
 RUN apt-get update && \
     apt-get -qy full-upgrade && \
     apt-get install -qy apt-transport-https \
@@ -57,7 +58,7 @@ RUN apt-get install -y software-properties-common && \
 # ile aynı yerde olmaması sebebiyle signed-by özelliği ile belirteceğiz.                                                                                     #
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
 RUN curl --create-dirs -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" > /etc/apt/sources.list.d/docker.list && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
     apt-get install -y docker-ce-cli
 
@@ -89,25 +90,42 @@ RUN curl --create-dirs -fL https://github.com/jenkinsci/plugin-installation-mana
 
 
 
-# -----------------------------------------------------------------------------------------#
-#                               JENKINS KURULUM SİHİRBAZI                                  #
-# Jenkins tanımları ve ayarları için bu stage kullanılacaktır.                             #
-# -----------------------------------------------------------------------------------------#
-FROM jenkins-base
-
-# -----------------------------------------------------------------------------------------#
-#                               JENKINS KURULUM SİHİRBAZI                                  #
-# Jenkins master varsayılan olarak kurulum ile başlatılır. Kurulum yapmadan çalışması için #
-# jenkins.install.runSetupWizard=false  işaretlenir.                                       #
-#                                                                                          #
-# -----------------------------------------------------------------------------------------#
-ENV JENKINS_HOME /var/jenkins_home
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                               JENKINS KURULUM SİHİRBAZI                                                                                                   #
+# Jenkins tanımları ve ayarları için bu stage kullanılacaktır.                                                                                              #
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------#
+FROM jenkins-base                                                                 
+                                                                 
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                               JENKINS KURULUM SİHİRBAZI                                                                                                   #
+# Jenkins master varsayılan olarak kurulum ile başlatılır. Kurulum yapmadan çalışması için jenkins.install.runSetupWizard=false  işaretlenir.               #
+# Genelde /home/jenkins kullanıcı dizini içine dosya yetkilerinde kolaylık olsun diye kurulum yapılır ancak dizin yapısı yönetilemez hal alır.              #
+# Bu yüzden Jenkins dizini /usr/share/jenkins olarak kalacak ve jenkins isimli kullanıcı dizini .ssh gibi dizinleri, olması gerektiği gibi içerecek.        #
+#                                                                                                                                                           #
+# Diğer dizinleri konteynerin haricinden erişilebilir olması için VOLUME ile dış erişime açacağız.                                                          #
+#   JENKINS_HOME       = /usr/share/jenkins                                                                                                                 #
+#   JENKINS_JOBS_DIR   = ${JENKINS_HOME}/jobs                                                                                                               #
+#   JENKINS_SECRETS_DIR= ${JENKINS_HOME}/secrets                                                                                                            #
+#   JENKINS_NODES_DIR  = ${JENKINS_HOME}/nodes                                                                                                              #
+#   JENKINS_USERS_DIR  = ${JENKINS_HOME}/users                                                                                                              #
+#   PLUGIN_DIR         = ${JENKINS_HOME}/plugins                                                                                                            #
+#   PLUGINS_YAML       = ${JENKINS_HOME}/plugins.yaml                                                                                                       #
+#                                                                                                                                                           #
+# Eğer varolan bir JENKINS agent bu konteyner üzerine taşınacaksa dosya ve dizinlerin (plugins, jobs, users, secrets, nodes, secret.key, config.xml vs)     #
+# bu konteyner içinde tanımlı kullanıcı (u:jenkins uid:1000 g:jenkins gid:1000) ile yetkilendirilmeleri host makinada yapılmış olmalı.                      #
+#   Örn. chown -R jenkins:jenkins ./plugins                                                                                                                 #
+#                                                                                                                                                           #
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------#
+# ENV JENKINS_HOME /var/jenkins_home
+ENV JENKINS_HOME /usr/share/jenkins
 ARG user_name=jenkins
 ARG user_password=jenkins
+ENV JENKINS_USER_HOME_DIR "/home/${user_name}"
 ARG user_group_name=jenkins
 ARG user_id=1000
 ARG user_group_id=1000
-ARG root_password=sifre
+ENV ROOT_USER_PASSWORD sifre
+ARG root_password=${ROOT_USER_PASSWORD}
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                              KULLANICI-GRUP AYARLARI                                                                        #
@@ -119,7 +137,7 @@ ARG root_password=sifre
 # jenkins Adında bir grup oluşturup
 RUN groupadd -g ${user_group_id} ${user_group_name}
 # jenkins adında  bir kullanıcıyı bu gruba ekliyoruz 
-RUN useradd -c "Jenkins kullanici aciklamasi" -d "$JENKINS_HOME" -u ${user_id} -g ${user_group_id} -m ${user_name} -s /bin/bash
+RUN useradd -c "Jenkins kullanici aciklamasi" -d "$JENKINS_USER_HOME_DIR" -u ${user_id} -g ${user_group_id} -m ${user_name} -s /bin/bash
 RUN echo "${user_name}:${user_password}" | chpasswd
 # jenkins kullanıcısını sudoers grubuna her işlemi bir daha şifre sormadan yapabilsin diye ekliyoruz 
 # RUN echo "${user_name}  ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${user_name} && chmod 0440 /etc/sudoers.d/${user_name}
@@ -143,16 +161,16 @@ RUN apt-get install -qy openssh-server && \
     # Bu konteynere jenkins kullanıcısını kullanarak SSH ile bağlanmak istersek iki türlü kullanıcı doğrulaması yapılır:
     # 1. jenkins Kullanıcı adı ve şifresiyle ($ sshpass -p 'jenkins-sifresi' ssh -o StrictHostKeyChecking=no jenkins@konteyner_ip)
     # 2. jenkins Kullanıcısının ev dizinin altındaki .ssh dizininde olan açık-gizli anahtar ikilisiyle
-    mkdir ${JENKINS_HOME}/.ssh && \
-    chown -R ${user_name} ${JENKINS_HOME}/.ssh && \
-    chmod 700 ${JENKINS_HOME}/.ssh && \
-    cd ${JENKINS_HOME}/.ssh && \
+    mkdir ${JENKINS_USER_HOME_DIR}/.ssh && \
+    chown -R ${user_name} ${JENKINS_USER_HOME_DIR}/.ssh && \
+    chmod 700 ${JENKINS_USER_HOME_DIR}/.ssh && \
+    cd ${JENKINS_USER_HOME_DIR}/.ssh && \
     # jenkins Kullanıcısı için açık-gizli anahtarı (gizli anahtarı şifresiz olarak) oluşturuyoruz
-    ssh-keygen -q -t rsa -N '' -f ${JENKINS_HOME}/.ssh/id_rsa && \
+    ssh-keygen -q -t rsa -N '' -f ${JENKINS_USER_HOME_DIR}/.ssh/id_rsa && \
     # jenkins Kullanıcısıyla SSH yapılırken açık anahtar ile doğrulama yapılırsa "yetki verilen anahtarlar" dosyasına açık anahtarı ekliyoruz
     # Elbette bu açık anahtarın istemciye eklenmesi ve /home/istemcideki_baglanti_yapacak_kullanicinin/.ssh/config dosyasında ayarların yapılması gerekiyor
     # Bkz. https://github.com/cemtopkaya/dockerfile_jenkinsfile/blob/main/Dockerfile 
-    cat ${JENKINS_HOME}/.ssh/id_rsa.pub > ${JENKINS_HOME}/.ssh/authorized_keys
+    cat ${JENKINS_USER_HOME_DIR}/.ssh/id_rsa.pub > ${JENKINS_USER_HOME_DIR}/.ssh/authorized_keys
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -255,11 +273,14 @@ Thread.start {\n\
 #                                                                                                                                                             #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
+ENV PLUGINS_YAML=${JENKINS_HOME}/plugins.yaml
 
 RUN echo '#!/bin/bash \n env \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.12.8.jar $*"' > /usr/local/bin/jenkins-plugin-cli && \
     chmod +x /usr/local/bin/jenkins-plugin-cli
-# RUN jenkins-plugin-cli -f /opt/plugins.yaml --verbose
-RUN [ -f "/opt/plugins.yaml" ] && jenkins-plugin-cli -f /opt/plugins.yaml --verbose || echo "plugins.yaml dosyasi yok"
+
+RUN mkdir $PLUGIN_DIR
+RUN chown ${user_name}:${user_group_name} $PLUGIN_DIR
+RUN [ -f "$PLUGINS_YAML" ] && jenkins-plugin-cli -f $PLUGINS_YAML --verbose || echo "plugins.yaml dosyasi yok"
 # Veya eklentiler COPY komutuyla yansıya kopyalanır.
 # COPY ./jenkins-plugins/plugins ${PLUGIN_DIR}
 
@@ -280,19 +301,39 @@ RUN touch $COPY_REFERENCE_FILE_LOG && \
 # Jenkins ayaklandığında yüklü olarak gelmesini istediğimiz job'ları ya config veya Job DSL CASC eklentisine uygun şekilde yükleyebiliriz.                    #
 #                                                                                                                                                             #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
-ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml
-COPY ./jcasc_plugin_confs/casc.yaml /var/jenkins_home/casc.yaml
+ENV CASC_JENKINS_CONFIG $JENKINS_HOME/casc.yaml
+COPY ./jcasc_plugin_confs/casc.yaml $JENKINS_HOME/casc.yaml
 
 # Eski paketleri ve güncelleme listelerini temizliyoruz
 # RUN apt-get -qy autoremove && \
 #     rm -rf /var/lib/apt/lists/*
 
-RUN rm /etc/ssl/certs/java/cacerts && update-ca-certificates -f
+RUN rm /etc/ssl/certs/java/cacerts && update-ca-certificates -f 
 
 COPY ./jenkins.sh /usr/local/bin/jenkins.sh
 # RUN chown ${user_name}:${user_group_name} /usr/local/bin/jenkins.sh
 RUN chmod 777 /usr/local/bin/jenkins.sh
 RUN chown -R ${user_name}:${user_group_name} ${JENKINS_HOME}
+
+# jobs Dizini
+ENV JENKINS_JOBS_DIR=${JENKINS_HOME}/jobs
+ENV JENKINS_SECRETS_DIR=${JENKINS_HOME}/secrets
+ENV JENKINS_NODES_DIR=${JENKINS_HOME}/nodes
+ENV JENKINS_USERS_DIR=${JENKINS_HOME}/users
+
+RUN mkdir $JENKINS_JOBS_DIR
+RUN mkdir $JENKINS_SECRETS_DIR
+RUN mkdir $JENKINS_NODES_DIR
+RUN mkdir $JENKINS_USERS_DIR
+RUN chown ${user_name}:${user_group_name} $JENKINS_JOBS_DIR  $JENKINS_SECRETS_DIR  $JENKINS_NODES_DIR  $JENKINS_USERS_DIR
+
+VOLUME [ "$JENKINS_JOBS_DIR" ]
+VOLUME [ "$JENKINS_SECRETS_DIR" ]
+VOLUME [ "$JENKINS_NODES_DIR" ]
+VOLUME [ "$JENKINS_USERS_DIR" ]
+# Jenkins ana dizini yapılandırma kalıcı olabilir (host tarafında bir dizinle eşleştirilerek)
+VOLUME [ "$JENKINS_HOME"]
+VOLUME [ "$PLUGIN_DIR"]
 
 USER ${user_name}
 
@@ -306,10 +347,6 @@ EXPOSE 50000
 # Sadece bir executable için root kullanıcısı gerekmez
 # CMD ["/usr/sbin/sshd", "-D"]
 
-# Jenkins ana dizini yapılandırma kalıcı olabilir (host tarafında bir dizinle eşleştirilerek)
-VOLUME [ "$JENKINS_HOME"]
-
-COPY ./jenkins.sh /usr/local/bin/jenkins.sh
 CMD ["/usr/local/bin/jenkins.sh"]
 
 # TODO: jenkins pipeline docker agent içinde çalışacak şekilde casc'a atılacak ve 
