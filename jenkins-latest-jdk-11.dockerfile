@@ -37,7 +37,7 @@ RUN apt-get update && \
                       zip \
                       git \
                       curl \
-                      gettext-base 
+                      gettext-base
 
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 
@@ -91,8 +91,8 @@ RUN curl --create-dirs -fL https://github.com/jenkinsci/plugin-installation-mana
 #                               JENKINS KURULUM SİHİRBAZI                                                                                                   #
 # Jenkins tanımları ve ayarları için bu stage kullanılacaktır.                                                                                              #
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------#
-FROM jenkins-base                                                                 
-                                                                 
+FROM jenkins-base
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                               JENKINS KURULUM SİHİRBAZI                                                                                                   #
 # Jenkins master varsayılan olarak kurulum ile başlatılır. Kurulum yapmadan çalışması için jenkins.install.runSetupWizard=false  işaretlenir.               #
@@ -134,16 +134,22 @@ ARG root_password=${ROOT_USER_PASSWORD}
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                              KULLANICI-GRUP AYARLARI                                                                        #
 # jenkins adında bir kullanıcıyı jenkins adında bir grup içinde oluşturacağız.                                                                                #
+# Eğer bşka bir JENKINS sunucusundaki bilgileri (jobs, nodes, users, secrets, credentials.xml vs.) bu yansının örneği olacak bir konteynere bağlayacaksak,    #
+# aktarılacak dosya ve dizinlerin sahipliğindeki kullanıcının id ve ait olduğu grubun id değerlerini yansıyı derlerken arguman olarak vermemiz gerekiyor.     #
+#                                                                                                                                                             #
+# Buna göre aşağıdaki derleme komutuyla host bilgisayardaki kullanıcının ID ve GRUP_ID değerleriyle imaj içinde bir kullanıcı oluşturuyoruz:                  #
+#     docker build --build-arg user_id=$(id -u $USER) --build-arg user_group_id=$(id -g $USER) -t cemkins -f jenkins-latest-jdk-11.dockerfile .               #
+#                                                                                                                                                             #
 # Eğer sudo paketi kuruluysa jenkins kullanıcısını sudoers grubuna şifre istemeden super user olarak işlemleri yapacak şekilde ekleyeceğiz.                   #
 # jenkins kullanıcısının ev dizini jenkins uyglamasının çalışacağı yer olacak.                                                                                #
 # Hem jenkins hem root kullanıcısının şifrelerini SSH bağlantılarını yapabilmek için tayin edeceğiz.                                                          #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # jenkins Adında bir grup oluşturup
 RUN groupadd -g ${user_group_id} ${user_group_name}
-# jenkins adında  bir kullanıcıyı bu gruba ekliyoruz 
+# jenkins adında  bir kullanıcıyı bu gruba ekliyoruz
 RUN useradd -c "Jenkins kullanici aciklamasi" -d "$JENKINS_USER_HOME_DIR" -u ${user_id} -g ${user_group_id} -m ${user_name} -s /bin/bash
 RUN echo "${user_name}:${user_password}" | chpasswd
-# jenkins kullanıcısını sudoers grubuna her işlemi bir daha şifre sormadan yapabilsin diye ekliyoruz 
+# jenkins kullanıcısını sudoers grubuna her işlemi bir daha şifre sormadan yapabilsin diye ekliyoruz
 # RUN echo "${user_name}  ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${user_name} && chmod 0440 /etc/sudoers.d/${user_name}
 # Bu konteynere root kullanıcısını kullanarak SSH protokolüyle bağlanmak istediğimizde şifreyi sshpass ile geçirebilmek için ayarlayalım
 RUN echo 'root:${root_password}' | chpasswd
@@ -173,7 +179,7 @@ RUN apt-get install -qy openssh-server && \
     ssh-keygen -q -t rsa -N '' -f ${JENKINS_USER_HOME_DIR}/.ssh/id_rsa && \
     # jenkins Kullanıcısıyla SSH yapılırken açık anahtar ile doğrulama yapılırsa "yetki verilen anahtarlar" dosyasına açık anahtarı ekliyoruz
     # Elbette bu açık anahtarın istemciye eklenmesi ve /home/istemcideki_baglanti_yapacak_kullanicinin/.ssh/config dosyasında ayarların yapılması gerekiyor
-    # Bkz. https://github.com/cemtopkaya/dockerfile_jenkinsfile/blob/main/Dockerfile 
+    # Bkz. https://github.com/cemtopkaya/dockerfile_jenkinsfile/blob/main/Dockerfile
     cat ${JENKINS_USER_HOME_DIR}/.ssh/id_rsa.pub > ${JENKINS_USER_HOME_DIR}/.ssh/authorized_keys
 
 
@@ -199,7 +205,7 @@ RUN update-ca-certificates && \
 #                                                                                                                                                            #
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
-# ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk 
+# ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk
 ENV JENKINS_OPTS=--httpPort=8090
 ENV JENKINS_SLAVE_AGENT_PORT=50000
 
@@ -215,7 +221,7 @@ ENV COPY_REFERENCE_MARKER=${JENKINS_HOME}/.docker-onrun-complete
 # docker host sunucusu olarak kendi hostunu gösteriyoruz ancak değiştirilebilir.
 ENV DOCKER_HOST=tcp://host.docker.internal:2375
 
-# `/usr/share/jenkins/ref/` yeni bir kurulumda ayarlamak istediğimiz tüm referans yapılandırmalarını içerir. 
+# `/usr/share/jenkins/ref/` yeni bir kurulumda ayarlamak istediğimiz tüm referans yapılandırmalarını içerir.
 # Özel jenkins Docker yansınızda yer alacak diğer eklentiler veya ayar dosyasıları için bu dizini kullanın.
 RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d
 RUN echo '\
@@ -314,7 +320,7 @@ COPY ./jcasc_plugin_confs/casc.yaml $JENKINS_HOME/casc.yaml
 # RUN apt-get -qy autoremove && \
 #     rm -rf /var/lib/apt/lists/*
 
-RUN rm /etc/ssl/certs/java/cacerts && update-ca-certificates -f 
+RUN rm /etc/ssl/certs/java/cacerts && update-ca-certificates -f
 
 COPY ./jenkins.sh /usr/local/bin/jenkins.sh
 # RUN chown ${user_name}:${user_group_name} /usr/local/bin/jenkins.sh
@@ -331,7 +337,7 @@ RUN mkdir $JENKINS_JOBS_DIR
 RUN mkdir $JENKINS_SECRETS_DIR
 RUN mkdir $JENKINS_NODES_DIR
 RUN mkdir $JENKINS_USERS_DIR
-# Dışarıdan bağlanabilecek dizinlerin sahipliğini konteyner kullanıcısı (jenkins) üstüne alıyorum ki host üstünden 
+# Dışarıdan bağlanabilecek dizinlerin sahipliğini konteyner kullanıcısı (jenkins) üstüne alıyorum ki host üstünden
 # bağlanan dizinler olursa erişim izni sorunu yaşamayalım.
 RUN chown ${user_name}:${user_group_name} $JENKINS_JOBS_DIR  $JENKINS_SECRETS_DIR  $JENKINS_NODES_DIR  $JENKINS_USERS_DIR
 
@@ -357,18 +363,18 @@ EXPOSE 50000
 
 CMD ["/usr/local/bin/jenkins.sh"]
 
-# TODO: jenkins pipeline docker agent içinde çalışacak şekilde casc'a atılacak ve 
-# SCM adresinden uygulama çekilerek 
+# TODO: jenkins pipeline docker agent içinde çalışacak şekilde casc'a atılacak ve
+# SCM adresinden uygulama çekilerek
 # - derlenip (make build),
 # - test edilip (make test),
 # - debian paket oluşturulup (make dist_deb),
 #   - paket havuzuna yüklenecek,
 #       - deb havuzu container olarak ayaklanacak
 # - docker yansısı yaratılıp (make dist_image),
-#   - yansı repoya yüklenecek 
+#   - yansı repoya yüklenecek
 #       - docker container olarak ayaklanacak
 #
-# - eventler açılacak ve global/projenin kütüphanesi bu olayları dinleyerek kendi işlerini yapacak 
+# - eventler açılacak ve global/projenin kütüphanesi bu olayları dinleyerek kendi işlerini yapacak
 #
 # - makefile yalınlaştırma
 #   - makefile içinde bağımlı olduğu paketleri (kütüphaneleri) makefile etiketiyle kurmak (make install_prereq)
