@@ -81,7 +81,7 @@ RUN curl --create-dirs -fLk https://github.com/jenkinsci/plugin-installation-man
 # ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar /opt/jenkins-plugin-manager-2.12.8.jar
 # COPY ./bin/jenkins-plugin-manager-2.12.8.jar ./jenkins-plugins/plugins.yaml /opt/
 
-RUN curl --create-dirs -fLk https://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
+RUN curl --create-dirs -fLk https://ftp-nyc.osuosl.org/pub/jenkins/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
 # ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
 # COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
 
