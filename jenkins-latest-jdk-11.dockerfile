@@ -73,6 +73,10 @@ RUN curl --create-dirs -fsSLk https://download.docker.com/linux/ubuntu/gpg | gpg
 # -----------------------------------------------------------------------------------------#
 FROM base as jenkins-base
 USER root
+
+# curl ile https isteklerinde gelen sertifikaların doğrulanması gerekeceği için update-ca-certificates ile güncel sertifikalar indirilecek.
+RUN update-ca-certificates
+
 RUN curl --create-dirs -fLk http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
 # ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
 # COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
@@ -80,9 +84,6 @@ RUN curl --create-dirs -fLk http://mirrors.jenkins-ci.org/war-stable/latest/jenk
 RUN curl --create-dirs -fLk https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar -o /opt/jenkins-plugin-manager-2.12.8.jar
 # ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar /opt/jenkins-plugin-manager-2.12.8.jar
 # COPY ./bin/jenkins-plugin-manager-2.12.8.jar ./jenkins-plugins/plugins.yaml /opt/
-
-
-
 
 
 
@@ -187,8 +188,7 @@ RUN apt-get install -qy openssh-server && \
 #                                                            SERTİFİKA AYARLARI                                                                               #
 # Sunucudaki sertifikalar güncellenir ve /etc/ssl/certs dizini jenkins kullanıcısına sahiplendirilir                                                          #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
-RUN update-ca-certificates && \
-    chown -R ${user_name}:${user_group_name} /etc/ssl/certs/
+RUN chown -R ${user_name}:${user_group_name} /etc/ssl/certs/
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
