@@ -58,7 +58,7 @@ RUN apt-get install -y software-properties-common && \
 # sağlamış olacağız. Önce GPG anahtarını docker.com adresinden indiriyor, bu reponun adresini girdiğimiz kayıt içinde GPG adresinin varsayılan GPG dosyaları #
 # ile aynı yerde olmaması sebebiyle signed-by özelliği ile belirteceğiz.                                                                                     #
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
-RUN curl --create-dirs -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
+RUN curl --create-dirs -fsSLk https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
     apt-get install -y docker-ce-cli
@@ -73,11 +73,11 @@ RUN curl --create-dirs -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg 
 # -----------------------------------------------------------------------------------------#
 FROM base as jenkins-base
 USER root
-RUN curl --create-dirs -fL http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
+RUN curl --create-dirs -fLk http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
 # ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
 # COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
 
-RUN curl --create-dirs -fL https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar -o /opt/jenkins-plugin-manager-2.12.8.jar
+RUN curl --create-dirs -fLk https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar -o /opt/jenkins-plugin-manager-2.12.8.jar
 # ADD https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.8/jenkins-plugin-manager-2.12.8.jar /opt/jenkins-plugin-manager-2.12.8.jar
 # COPY ./bin/jenkins-plugin-manager-2.12.8.jar ./jenkins-plugins/plugins.yaml /opt/
 
