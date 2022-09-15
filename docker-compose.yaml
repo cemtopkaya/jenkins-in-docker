@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  jenkins:
+#    user: "1000:1000"
+    image: cemkins:latest
+#    image: jenkins/jenkins:2.60.3
+    privileged: true
+#    user: jenkins
+    extra_hosts:
+      - "bitbucket.ulakhaberlesme.com.tr:192.168.10.14"
+    ports:
+      - 81:8090
+      - 50001:50000
+    container_name: jenkins
+    volumes:
+      # eklentiler dizininde *.jpi dosyaları varsa tarayarak yükleyecek
+      - ./volume/plugins:/usr/share/jenkins/plugins
+
+      # jobs dizinindeki işleri tarayarak listeleyecek
+      - ./volume/jobs:/usr/share/jenkins/jobs:rw
+
+      # Kullanıcılar ve credetials bu bölümde bağlanacak
+      - ./volume/credentials.xml:/usr/share/jenkins/credentials.xml
+      - ./volume/users:/usr/share/jenkins/users
+      - ./volume/secrets:/usr/share/jenkins/secrets
+      - ./volume/secret.key:/usr/share/jenkins/secret.key
+
+      # Docker istemcisi dışarıdan bağlanacaksa
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - /usr/local/bin/docker:/usr/local/bin/docker
