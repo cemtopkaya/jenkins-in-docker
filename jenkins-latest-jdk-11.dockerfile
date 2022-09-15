@@ -77,7 +77,7 @@ USER root
 # curl ile https isteklerinde gelen sertifikaların doğrulanması gerekeceği için update-ca-certificates ile güncel sertifikalar indirilecek.
 RUN update-ca-certificates
 
-RUN curl --create-dirs -fLk http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
+RUN curl --create-dirs -fLk https://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war -o /usr/share/jenkins/jenkins.war
 # ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/share/jenkins/jenkins.war
 # COPY ./bin/jenkins-2.303.2.war /usr/share/jenkins/jenkins.war
 
