@@ -32,8 +32,8 @@ fi
 # komutuyla kontrol edilecek sertifika havuzunu tazeyeleyeceğiz ki sistem, bu yeni sertifkamızı doğrulamak için kullanabilsin.
 #echo -n | openssl s_client -showcerts -connect bitbucket.ulakhaberlesme.com.tr:8443 \
 #  2>/dev/null  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' >> /usr/local/share/ca-certificates/ulakhaberlesme.crt
-chown -R $USER /usr/local/share/ca-certificates/
-update-ca-certificates
+#chown -R $USER /usr/local/share/ca-certificates/
+#update-ca-certificates
 
 
 
