@@ -1,20 +1,25 @@
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                               KOMUTLAR VE AÇIKLAMALARI                                                                                                   #
 #                                                                                                                                                          #
-# docker build --add-host security.ubuntu.com:91.189.91.39  `                                                                                               #
-#              -t cemo                                      `                                                                                               #
-#              -f .\jenkins-master.dockerfile .                                                                                                            #
+# docker build --add-host security.ubuntu.com:91.189.91.39               `                                                                                 #
+#              --build-arg user_id=$(id -u jenkins)                      `                                                                                 #
+#              --build-arg user_group_id=$(id -g jenkins)                `                                                                                 #
+#              --add-host bitbucket.ulakhaberlesme.com.tr:192.168.10.14  `                                                                                 #
+#              -t cemo                                                   `                                                                                 #
+#              -f .\jenkins-latest-jdk-11.dockerfile .                                                                                                     #
 #                                                                                                                                                          #
-# docker run -it --rm                                        `                                                                                             #
-#            -p 8090:8090                                    `                                                                                             #
-#            -e JENKINS_OPTS=--httpPort=8090                 `                                                                                             #
-#            -e DOCKER_HOST=tcp://host.docker.internal:2375  `                                                                                             #
-#            --dns 176.31.121.197                            `                                                                                             #
-#            --add-host archive.ubuntu.com:91.189.88.142     `                                                                                             #
-#            --add-host security.ubuntu.com:91.189.88.142    `                                                                                             #
-#            --add-host updates.jenkins.io:52.202.51.185     `                                                                                             #
-#            --add-host get.jenkins.io:52.167.253.43         `                                                                                             #
-#            --name jendock                                  `                                                                                             #
+#                                                                                                                                                          #
+# docker run -it --rm                                                  `                                                                                   #
+#            -p 8090:8090                                              `                                                                                   #
+#            -e JENKINS_OPTS=--httpPort=8090                           `                                                                                   #
+#            -e DOCKER_HOST=tcp://host.docker.internal:2375            `                                                                                   #
+#            --dns 176.31.121.197                                      `                                                                                   #
+#            --add-host archive.ubuntu.com:91.189.88.142               `                                                                                   #
+#            --add-host security.ubuntu.com:91.189.88.142              `                                                                                   #
+#            --add-host updates.jenkins.io:52.202.51.185               `                                                                                   #
+#            --add-host get.jenkins.io:52.167.253.43                   `                                                                                   #
+#            --add-host bitbucket.ulakhaberlesme.com.tr:192.168.10.14  `                                                                                   #
+#            --name jendock                                            `                                                                                   #
 #            cemo                                                                                                                                          #
 # KAYNAKLAR:                                                                                                                                               #
 # https://github.com/jenkinsci/docker#preinstalling-plugins                                                                                                #
@@ -190,14 +195,20 @@ RUN apt-get install -qy openssh-server && \
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                            SERTİFİKA AYARLARI                                                                               #
 # Sunucudaki sertifikalar güncellenir ve /etc/ssl/certs dizini jenkins kullanıcısına sahiplendirilir                                                          #
+# ulakhaberlesme'nin sertifikasını indirip update-ca-certificates ile faal sertifikalar listesini güncelleyeceğiz                                             #
+# bitbucket.ulakhaberlesme.com.tr adresine derleme sırasında erişebilmek için "--add-host domainname:ip" 'anahtarı docker build komutuna verilmeli            #
+#                                                                                                                                                             #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 USER root
+
+
 # COPY ./volume/certs/ulakhaberlesme.crt /etc/ssl/certs/ulakhaberlesme.crt
-RUN echo -n | openssl s_client -showcerts -connect bitbucket.ulakhaberlesme.com.tr:8443 2>/dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/ssl/certs/ulakhaberlesme.crt
+RUN echo -n | openssl s_client -showcerts -connect bitbucket.ulakhaberlesme.com.tr:8443 \
+            2>/dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/ssl/certs/ulakhaberlesme.crt
+
 RUN chown -R ${user_name}:${user_group_name} /etc/ssl/certs/
 RUN chown -R ${user_name}:${user_group_name} /etc/default/cacerts
 RUN chown -R ${user_name}:${user_group_name} /usr/local/share/ca-certificates/
-#RUN rm /etc/ssl/certs/java/cacerts 
 RUN update-ca-certificates -f
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
