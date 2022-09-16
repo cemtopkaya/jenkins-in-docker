@@ -191,9 +191,12 @@ RUN apt-get install -qy openssh-server && \
 #                                                            SERTİFİKA AYARLARI                                                                               #
 # Sunucudaki sertifikalar güncellenir ve /etc/ssl/certs dizini jenkins kullanıcısına sahiplendirilir                                                          #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+COPY ./volume/certs/ulakhaberlesme.crt /etc/ssl/certs/ulakhaberlesme.crt
 RUN chown -R ${user_name}:${user_group_name} /etc/ssl/certs/
 RUN chown -R ${user_name}:${user_group_name} /etc/default/cacerts
 RUN chown -R ${user_name}:${user_group_name} /usr/local/share/ca-certificates/
+RUN rm /etc/ssl/certs/java/cacerts 
+RUN update-ca-certificates -f
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                              MAVEN KURULUMU & AYARLARI                                                                      #
@@ -324,7 +327,6 @@ COPY ./jcasc_plugin_confs/casc.yaml $JENKINS_HOME/casc.yaml
 # RUN apt-get -qy autoremove && \
 #     rm -rf /var/lib/apt/lists/*
 
-RUN rm /etc/ssl/certs/java/cacerts && update-ca-certificates -f
 
 COPY ./jenkins.sh /usr/local/bin/jenkins.sh
 # RUN chown ${user_name}:${user_group_name} /usr/local/bin/jenkins.sh
