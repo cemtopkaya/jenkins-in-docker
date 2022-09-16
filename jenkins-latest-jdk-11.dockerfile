@@ -193,8 +193,7 @@ RUN apt-get install -qy openssh-server && \
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 USER root
 # COPY ./volume/certs/ulakhaberlesme.crt /etc/ssl/certs/ulakhaberlesme.crt
-RUN echo -n | openssl s_client -showcerts -connect bitbucket.ulakhaberlesme.com.tr:8443 \
-        2>/dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/ssl/certs/ulakhaberlesme.crt
+RUN echo -n | openssl s_client -showcerts -connect bitbucket.ulakhaberlesme.com.tr:8443 2>/dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/ssl/certs/ulakhaberlesme.crt
 RUN chown -R ${user_name}:${user_group_name} /etc/ssl/certs/
 RUN chown -R ${user_name}:${user_group_name} /etc/default/cacerts
 RUN chown -R ${user_name}:${user_group_name} /usr/local/share/ca-certificates/
