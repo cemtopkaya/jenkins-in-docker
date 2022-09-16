@@ -193,6 +193,7 @@ RUN apt-get install -qy openssh-server && \
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 RUN chown -R ${user_name}:${user_group_name} /etc/ssl/certs/
 RUN chown -R ${user_name}:${user_group_name} /etc/default/cacerts
+RUN chown -R ${user_name}:${user_group_name} /usr/local/share/ca-certificates/
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                              MAVEN KURULUMU & AYARLARI                                                                      #

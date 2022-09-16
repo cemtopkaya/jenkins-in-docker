@@ -1,18 +1,17 @@
 version: '3.7'
 services:
   jenkins:
-#    user: "1000:1000"
+    container_name: jenkins
     image: cemkins:latest
-#    image: jenkins/jenkins:2.60.3
     privileged: true
-#    user: jenkins
+    restart: unless-stopped
     extra_hosts:
       - "bitbucket.ulakhaberlesme.com.tr:192.168.10.14"
     ports:
       - 81:8090
       - 50001:50000
-    container_name: jenkins
     volumes:
+      - ./volume/certs/ulakhaberlesme.crt:/usr/local/share/ca-certificates/ulakhaberlesme.crt
       # eklentiler dizininde *.jpi dosyaları varsa tarayarak yükleyecek
       - ./volume/plugins:/usr/share/jenkins/plugins
 
