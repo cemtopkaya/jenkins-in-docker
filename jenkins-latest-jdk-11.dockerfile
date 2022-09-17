@@ -313,7 +313,7 @@ Thread.start {\n\
 ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
 
 COPY ./volume/plugins/ /tmp/plugins/
-ENV YUKLENECEK_PLUGINS_DOSYASI=
+ARG YUKLENECEK_PLUGINS_DOSYASI=
 
 RUN echo '#!/bin/bash \n env \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.12.8.jar $*"' > /usr/local/bin/jenkins-plugin-cli && \
     chmod +x /usr/local/bin/jenkins-plugin-cli
