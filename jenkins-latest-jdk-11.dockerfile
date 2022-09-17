@@ -226,7 +226,7 @@ RUN update-ca-certificates -f
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 # ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk
-ENV JENKINS_OPTS=--httpPort=8090
+ENV JENKINS_OPTS --httpPort=8090 --argumentsRealm.roles.user=yonetici --argumentsRealm.passwd.yonetici=sifre --argumentsRealm.roles.yonetici=admin
 ENV JENKINS_SLAVE_AGENT_PORT=50000
 
 ENV JENKINS_UC=https://updates.jenkins-ci.org
@@ -258,6 +258,11 @@ Thread.start {\n\
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                            EKLENTİ  AYARLARI                                                                                #
+#                                                                                                                                                             #
+# Eklentileri tüm ayrıntılarıyla xml formatında görmek için:                                                                                                  #
+# -----> http://<jenkins-url>/pluginManager/api/xml?depth=1                                                                                                   #
+# -----> http://<jenkins-url>/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins                                                 #
+#                                                                                                                                                             #
 # Eklentileri önceleri install-plugins.sh adında bir betikle yapıyorken sonradan jenkins-plugin-manager.jar dosyasıyla yapar olmuşlar.                        #
 # Bu yüzden jenkins-plugin-manager.jar dosyası indirilir veya kopyalanır. Betik dosyasına geçirilen parametreler jar'a geçirilir                              #
 #                                                                                                                                                             #
@@ -300,17 +305,20 @@ Thread.start {\n\
 #                                                                                                                                                             #
 # Eklentileri yansının derlenmesi aşamasında da kurabiliriz:                                                                                                  #
 #  RUN /usr/local/bin/jenkins-plugin-cli --plugins docker-plugin:1.2.3 job-dsl:1.78.1 workflow-aggregator:2.6 git:4.10.0 configuration-as-code:1.54 --verbose #
+#  RUN /usr/local/bin/jenkins-plugin-cli --plugin-file /your/path/to/plugins.txt  --verbose                                                                   #
+#                      java -jar jenkins-plugin-manager-*.jar --war /your/path/to/jenkins.war                                                                                                                                        #
+#                                                                                                                                                             #
 #                                                                                                                                                             #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
-ENV PLUGINS_YAML=${JENKINS_HOME}/plugins.yaml
+ENV PLUGINS_DOSYASI=${JENKINS_HOME}/plugins
 
 RUN echo '#!/bin/bash \n env \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.12.8.jar $*"' > /usr/local/bin/jenkins-plugin-cli && \
     chmod +x /usr/local/bin/jenkins-plugin-cli
 
 RUN mkdir $PLUGIN_DIR
 RUN chown ${user_name}:${user_group_name} $PLUGIN_DIR
-RUN [ -f "$PLUGINS_YAML" ] && jenkins-plugin-cli -f $PLUGINS_YAML --verbose || echo "plugins.yaml dosyasi yok"
+RUN [ -f "$PLUGINS_DOSYASI" ] && jenkins-plugin-cli -f $PLUGINS_YAML --verbose || echo "yuklenecek plugins dosyasi yok"
 # Veya eklentiler COPY komutuyla yansıya kopyalanır.
 # COPY ./jenkins-plugins/plugins ${PLUGIN_DIR}
 
