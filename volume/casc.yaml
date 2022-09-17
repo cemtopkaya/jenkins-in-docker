@@ -1,0 +1,230 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          id: "66934009-d55e-43c9-9925-b539e69ec4ce"
+          password: "{AQAAABAAAABA3xeJaKQilsQg/6FS0lpQ8dTHmb0BwsaTL0Ra8UgAZpn3F6LbCnWgyujKlWAMhccc9xcQEOb0tZsHN55NLL0ZaZcq3csPHzGA2gfSqkf+hmc=}"
+          scope: GLOBAL
+          username: "admin"
+          usernameSecret: true
+      - usernamePassword:
+          id: "9e3f511b-a497-4973-a73e-e15055d1f290"
+          password: "{AQAAABAAAABAbfOulAatY3gsY/vKneS42zhMct1VyZ+AitJQy4d9WlfZZHxOwwc4dSMh6a2PP5kstZIQ2iZLnP/RmeCOuhBbUR4oFjJTqZs1/E83krcoZSw=}"
+          scope: GLOBAL
+          username: "admin"
+          usernameSecret: true
+      - usernamePassword:
+          id: "e37fb38f-e2d3-4003-bee0-b27a9c53e7b8"
+          password: "{AQAAABAAAABA7/7vC6RaLYBm5UVhxEqAQm92uIvzUHoNG0GqtbsCeIQqDMZCxEzFYtTLtUZt5heL+Pb2jTj6kTO/ynSgS3XwajWRB5UjkPCyNM4m7vcQOsw=}"
+          scope: GLOBAL
+          username: "ali.kirca"
+          usernameSecret: true
+      - usernamePassword:
+          id: "7b9ba9be-db73-4880-a78d-2cc1e27e1c15"
+          password: "{AQAAABAAAABASm8bb1BYLuOE3P8N07faX/bCdhQt+bddWoMpYbeRWKeG/+7xCT+xUreZfQADMqEGr44BC5kRW/QBDeE1TlDKo8h6QrlrqKDXIXHlxz7MbQs=}"
+          scope: GLOBAL
+          username: "ali.kirca"
+          usernameSecret: true
+      - usernamePassword:
+          description: "git "
+          id: "1b01389a-6a5f-4b8f-a8cf-0c05b44163df"
+          password: "{AQAAABAAAABAXtRuAh0ZNzJr+aZtKJTUD7w4/3sxcS2ybxb+Pc3uZUiWX/ViavBkaVaYGp2xNnAaI9QzFmfhjWvFO83g3VtCahpky3ciP8KGCAptuF1tFa8=}"
+          scope: GLOBAL
+          username: "okan.erman"
+          usernameSecret: true
+      - usernamePassword:
+          id: "7c197764-a9c9-41ae-ac3a-ff270c1f5874"
+          password: "{AQAAABAAAABAq6u+g5W1SILbUZ9heB488CHxXJyvVJ097+PqjyGuFMJSd9GJm+FVvZE0KtuteZWw4RS6DCTmQlYkQx13f39ThTSu4soA6JLKFqPUp/MeBb4=}"
+          scope: GLOBAL
+          username: "mustafa.akocak"
+          usernameSecret: true
+      - usernamePassword:
+          id: "497172c9-c310-40c9-98a0-1bfcdf27f16b"
+          password: "{AQAAABAAAABAAtsATR4bRvZXu4kDeKArL6zRXFmx38Qd4Wfa7mbBQshkrbBWmZxFlhuNJqQYsFF1DZpFqY5nbI+FPCqshPWT9PF7v/LTIymrk43Cx1YcYtM=}"
+          scope: GLOBAL
+          username: "jale.arslan"
+          usernameSecret: true
+      - usernamePassword:
+          id: "96a2f618-506a-4bf7-8e70-3c09adfa850e"
+          password: "{AQAAABAAAABAhNub9S9JMeZuzJsQyzowE0laATrQlX8RUWGe/aGRHcjAgXS23XUvjNlCo45cmnzcVTo7rFMieXL14pI+ki0BA5ahe/mTcmf+ZeiT+djJbic=}"
+          scope: GLOBAL
+          username: "alparslan.sahin"
+          usernameSecret: true
+      - usernamePassword:
+          id: "e6ee85cf-5647-4fa1-9c7f-0bdf03105983"
+          password: "{AQAAABAAAABA6n5d7qT7a16Ni8feLV0dEe9gzM89tCayu/knkDy90cHwunefrPrvj0wsVQNcyoW6XRbekw41o1i6gsmerTGenmeGOHia+OSR86GzIxHdvgs=}"
+          scope: GLOBAL
+          username: "maya-devops"
+          usernameSecret: true
+      - string:
+          description: "Migrated SonarQube authentication token"
+          id: "b05d63d6-0345-4f2c-9140-de65cbccb89f"
+          scope: GLOBAL
+          secret: "{AQAAABAAAABwTWGR+ToA8iH7Ogpr12H1SQKJaUDy+G5C1cBNLAHGFZAnenaOsAuXCpgveHbyWyUJ/hp9F7QKbn1wqhhvS+zaAQLXGkVMlTexXB/d8r4jh0+SDW32XvqmF7utu3tDGXsLk5dPml1Mjqa4oUkIAPyBRTp2fvQ8W0Aw1NfbtlEYHcA=}"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  labelAtoms:
+  - name: "built-in"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "admin"
+        name: "admin"
+        properties:
+        - "apiToken"
+        - "myView"
+        - preferredProvider:
+            providerId: "default"
+        - mailer:
+            emailAddress: "ali.kirca@ulakhaberlesme.com.tr"
+        - "timezone"
+  slaveAgentPort: 0
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  envInject:
+    enableLoadingFromMaster: false
+    enablePermissions: false
+    hideInjectedVars: false
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+  sSHD:
+    port: -1
+  scriptApproval:
+    approvedScriptHashes:
+    - "558e93da8f9f9c9004de82275979ce5cbcabc6f4"
+    - "a60b719e1412c84ae3abb564d951df8d4c81ad20"
+unclassified:
+  bitbucketEndpointConfiguration:
+    endpoints:
+    - bitbucketCloudEndpoint:
+        enableCache: false
+        manageHooks: false
+        repositoriesCacheDuration: 0
+        teamCacheDuration: 0
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  buildMonitorView:
+    permissionToCollectAnonymousUsageStatistics: true
+  buildStepOperation:
+    enabled: false
+  casCGlobalConfig:
+    configurationPath: "/usr/share/jenkins/casc.yaml"
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://localhost:8083/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  globalLibraries:
+    libraries:
+    - defaultVersion: "main"
+      implicit: true
+      name: "ortak-kutuphane"
+      retriever:
+        modernSCM:
+          scm:
+            git:
+              id: "ortak-kutuphane-pipeline-shared-lib"
+              remote: "https://github.com/cemtopkaya/jenkins-paylasilan-kutuphane-ornegi.git"
+  globalTimeOutConfiguration:
+    operations:
+    - "abortOperation"
+    overwriteable: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://localhost:8083/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  mavenModuleSet:
+    localRepository: "default"
+  pollSCM:
+    pollingThreadCount: 10
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: false
+  subversionSCM:
+    workspaceFormat: 8
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  whitelist:
+    enabled: false
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
