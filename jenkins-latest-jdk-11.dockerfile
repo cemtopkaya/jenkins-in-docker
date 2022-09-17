@@ -311,14 +311,16 @@ Thread.start {\n\
 #                                                                                                                                                             #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
-ENV PLUGINS_DOSYASI=${JENKINS_HOME}/plugins
+
+COPY ./volume/plugins/ /tmp/plugins/
+ENV YUKLENECEK_PLUGINS_DOSYASI=
 
 RUN echo '#!/bin/bash \n env \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.12.8.jar $*"' > /usr/local/bin/jenkins-plugin-cli && \
     chmod +x /usr/local/bin/jenkins-plugin-cli
 
 RUN mkdir $PLUGIN_DIR
 RUN chown ${user_name}:${user_group_name} $PLUGIN_DIR
-RUN [ -f "$PLUGINS_DOSYASI" ] && jenkins-plugin-cli -f $PLUGINS_YAML --verbose || echo "yuklenecek plugins dosyasi yok"
+RUN [ -f "$YUKLENECEK_PLUGINS_DOSYASI" ] && jenkins-plugin-cli -f $YUKLENECEK_PLUGINS_DOSYASI --verbose || echo "yuklenecek plugins dosyasi yok"
 # Veya eklentiler COPY komutuyla yansıya kopyalanır.
 # COPY ./jenkins-plugins/plugins ${PLUGIN_DIR}
 

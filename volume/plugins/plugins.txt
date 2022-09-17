@@ -1,132 +1,132 @@
-Bootstrap 5 API Plugin (bootstrap5-api): 5.2.0-3
-Pipeline: Groovy (workflow-cps): 2759.v87459c4eea_ca_
-GitHub Branch Source Plugin (github-branch-source): 1695.v88de84e9f6b_9
-Plain Credentials Plugin (plain-credentials): 139.ved2b_9cf7587b
-Pipeline Graph Analysis Plugin (pipeline-graph-analysis): 195.v5812d95a_a_2f9
-OWASP Markup Formatter Plugin (antisamy-markup-formatter): 2.7
-Run Condition Plugin (run-condition): 1.5
-MapDB API Plugin (mapdb-api): 1.0.9-28.vf251ce40855d
-Build Pipeline Plugin (build-pipeline-plugin): 1.5.8
-Bootstrap 4 API Plugin (bootstrap4-api): 4.6.0-5
-Pipeline: Stage Step (pipeline-stage-step): 296.v5f6908f017a_5
-LDAP Plugin (ldap): 2.12
-Resource Disposer Plugin (resource-disposer): 0.20
-Publish Over SSH (publish-over-ssh): 1.24
-Infrastructure plugin for Publish Over X (publish-over): 0.22
-Workspace Cleanup Plugin (ws-cleanup): 0.43
-Command Agent Launcher Plugin (command-launcher): 84.v4a_97f2027398
-SSH Credentials Plugin (ssh-credentials): 305.v8f4381501156
-Pipeline: SCM Step (workflow-scm-step): 400.v6b_89a_1317c9a_
-SCM API Plugin (scm-api): 621.vda_a_b_055e58f7
-Authentication Tokens API Plugin (authentication-tokens): 1.4
-JavaScript GUI Lib: jQuery bundles (jQuery and jQuery UI) plugin (jquery-detached): 1.2.1
-JavaBeans Activation Framework (JAF) API (javax-activation-api): 1.2.0-4
-Pipeline: Input Step (pipeline-input-step): 449.v77f0e8b_845c4
-Pipeline: Declarative Extension Points API (pipeline-model-extensions): 2.2114.v2654ca_721309
-Subversion Plug-in (subversion): 2.16.0
-Pipeline: Declarative (pipeline-model-definition): 2.2114.v2654ca_721309
-Mina SSHD API :: Core (mina-sshd-api-core): 2.9.1-44.v476733c11f82
-Display URL API (display-url-api): 2.3.6
-Pipeline: Multibranch (workflow-multibranch): 716.vc692a_e52371b_
-Pipeline: Groovy Libraries (pipeline-groovy-lib): 612.v84da_9c54906d
-Pipeline: Build Step (pipeline-build-step): 2.18
-ECharts API Plugin (echarts-api): 5.3.3-1
-Gerrit Trigger (gerrit-trigger): 2.36.0
-SnakeYAML API Plugin (snakeyaml-api): 1.31-84.ve43da_fb_49d0b
-SSH server (sshd): 3.249.v2dc2ea_416e33
-Pipeline: Stage View Plugin (pipeline-stage-view): 2.24
-SSH Build Agents plugin (ssh-slaves): 2.846.v1b_70190624f5
-Token Macro Plugin (token-macro): 308.v4f2b_ed62b_b_16
-Pipeline: API (workflow-api): 1192.v2d0deb_19d212
-Git plugin (git): 4.11.5
-Popper.js API Plugin (popper-api): 1.16.1-3
-Durable Task Plugin (durable-task): 500.v8927d9fd99d8
-Bitbucket Plugin (bitbucket): 223.vd12f2bca5430
-Javadoc Plugin (javadoc): 226.v71211feb_e7e9
-Pipeline: Nodes and Processes (workflow-durable-task-step): 1199.v02b_9244f8064
-Docker API Plugin (docker-java-api): 3.2.13-37.vf3411c9828b9
-JQuery3 API Plugin (jquery3-api): 3.6.0-4
-Gradle Plugin (gradle): 1.39.4
-jQuery plugin (jquery): 1.12.4-1
-Sonar Gerrit Plugin (sonar-gerrit): 376.v67dc39df1298
-built-on-column (built-on-column): 1.1
-Pipeline: REST API Plugin (pipeline-rest-api): 2.24
-Git Parameter Plug-In (git-parameter): 0.9.17
-Matrix Project Plugin (matrix-project): 785.v06b_7f47b_c631
-Pipeline: Job (workflow-job): 1232.v5a_4c994312f1
-Structs Plugin (structs): 324.va_f5d6774f3a_d
-Bitbucket Branch Source Plugin (cloudbees-bitbucket-branch-source): 791.vb_eea_a_476405b
-Generic Webhook Trigger Plugin (generic-webhook-trigger): 1.84.1
-Popper.js 2 API Plugin (popper2-api): 2.11.6-1
-JavaMail API (javax-mail-api): 1.6.2-7
-Mailer Plugin (mailer): 438.v02c7f0a_12fa_4
-SSH plugin (ssh): 2.6.1
-External Monitor Job Type Plugin (external-monitor-job): 192.ve979ca_8b_3ccd
-Build Timeout (build-timeout): 1.24
-Folders Plugin (cloudbees-folder): 6.758.vfd75d09eea_a_1
-Pipeline: Step API (workflow-step-api): 639.v6eca_cd8c04a_a_
-Java JSON Web Token (JJWT) Plugin (jjwt-api): 0.11.5-77.v646c772fddb_0
-Pipeline: Milestone Step (pipeline-milestone-step): 101.vd572fef9d926
-WMI Windows Agents Plugin (windows-slaves): 1.8.1
-SonarQube Scanner for Jenkins (sonar): 2.14
-Git server Plugin (git-server): 99.va_0826a_b_cdfa_d
-Script Security Plugin (script-security): 1175.v4b_d517d6db_f0
-JSch dependency plugin (jsch): 0.1.55.61.va_e9ee26616e7
-JaCoCo plugin (jacoco): 3.3.2
-Variant Plugin (variant): 59.vf075fe829ccb
-Ant Plugin (ant): 475.vf34069fef73c
-Matrix Authorization Strategy Plugin (matrix-auth): 3.1.5
-JavaScript GUI Lib: Handlebars bundle plugin (handlebars): 3.0.8
-GitHub plugin (github): 1.35.0
-Trilead API Plugin (trilead-api): 2.72.v2a_3236754f73
-Pipeline: GitHub Groovy Libraries (pipeline-github-lib): 38.v445716ea_edda_
-bouncycastle API Plugin (bouncycastle-api): 2.26
-Mina SSHD API :: Common (mina-sshd-api-common): 2.9.1-44.v476733c11f82
-Pipeline: Deprecated Groovy Libraries (workflow-cps-global-lib): 588.v576c103a_ff86
-Email Extension Plugin (email-ext): 2.91
-Timestamper (timestamper): 1.20
-Parameter Pool Plugin (parameter-pool): 1.0.3
-Environment Injector Plugin (envinject): 2.875.v9b_9e962da_a_ec
-Pipeline: Declarative Agent API (pipeline-model-declarative-agent): 1.1.1
-PAM Authentication plugin (pam-auth): 1.10
-OkHttp Plugin (okhttp-api): 4.9.3-108.v0feda04578cf
-Maven Integration plugin (maven-plugin): 3.19
-Docker Pipeline (docker-workflow): 521.v1a_a_dd2073b_2e
-Git client plugin (git-client): 3.12.0
-Bitbucket Server Integration (atlassian-bitbucket-server-integration): 3.3.1
-Jakarta Mail API (jakarta-mail-api): 2.0.1-1
-Parameterized Trigger plugin (parameterized-trigger): 2.45
-Pipeline (workflow-aggregator): 590.v6a_d052e5a_a_b_5
-Pre SCM BuildStep Plugin (preSCMbuildstep): 0.3
-Oracle Java SE Development Kit Installer Plugin (jdk-tool): 55.v1b_32b_6ca_f9ca
-Font Awesome API Plugin (font-awesome-api): 6.1.2-1
-JavaScript GUI Lib: ACE Editor bundle plugin (ace-editor): 1.1
-URL SCM plugin (URLSCM): 1.6
-Instance Identity (instance-identity): 116.vf8f487400980
-Pipeline: Stage Tags Metadata (pipeline-stage-tags-metadata): 2.2114.v2654ca_721309
-Handy Uri Templates 2.x API Plugin (handy-uri-templates-2-api): 2.1.8-22.v77d5b_75e6953
-Plugin Utilities API Plugin (plugin-util-api): 2.17.0
-Git Tag Message Plugin (git-tag-message): 1.7.1
-Job Import Plugin (job-import-plugin): 3.5
-JavaScript GUI Lib: Moment.js bundle plugin (momentjs): 1.1.1
-Mercurial plugin (mercurial): 1251.va_b_121f184902
-Jakarta Activation API (jakarta-activation-api): 2.0.1-1
-GitHub API Plugin (github-api): 1.303-400.v35c2d8258028
-Checks API plugin (checks-api): 1.7.5
-Docker Commons Plugin (docker-commons): 1.21
-Conditional BuildStep (conditional-buildstep): 1.4.2
-JAXB plugin (jaxb): 2.3.6-1
-Credentials Plugin (credentials): 1143.vb_e8b_b_ceee347
-Jackson 2 API Plugin (jackson2-api): 2.13.3-285.vc03c0256d517
-Build Monitor View (build-monitor-plugin): 1.13+build.202205140447
-Pipeline: Basic Steps (workflow-basic-steps): 994.vd57e3ca_46d24
-Caffeine API Plugin (caffeine-api): 2.9.3-65.v6a_47d0f4d1fe
-Pipeline: Supporting APIs (workflow-support): 838.va_3a_087b_4055b
-Apache HttpComponents Client 4.x API Plugin (apache-httpcomponents-client-4-api): 4.5.13-138.v4e7d9a_7b_a_e61
-Credentials Binding Plugin (credentials-binding): 523.vd859a_4b_122e6
-Multijob plugin (jenkins-multijob-plugin): 623.v03401733c9a_9
-Pipeline: Model API (pipeline-model-api): 2.2114.v2654ca_721309
-ThinBackup (thinBackup): 1.10
-Branch API Plugin (branch-api): 2.1046.v0ca_37783ecc5
-EnvInject API Plugin (envinject-api): 1.199.v3ce31253ed13
-JUnit Plugin (junit): 1119.1121.vc43d0fc45561
+bootstrap5-api
+workflow-cps
+github-branch-source
+plain-credentials
+pipeline-graph-analysis
+antisamy-markup-formatter
+run-condition
+mapdb-api
+build-pipeline-plugin
+bootstrap4-api
+pipeline-stage-step
+ldap
+resource-disposer
+publish-over-ssh
+publish-over
+ws-cleanup
+command-launcher
+ssh-credentials
+workflow-scm-step
+scm-api
+authentication-tokens
+jquery-detached
+javax-activation-api
+pipeline-input-step
+pipeline-model-extensions
+subversion
+pipeline-model-definition
+mina-sshd-api-core
+display-url-api
+workflow-multibranch
+pipeline-groovy-lib
+pipeline-build-step
+echarts-api
+gerrit-trigger
+snakeyaml-api
+sshd
+pipeline-stage-view
+ssh-slaves
+token-macro
+workflow-api
+git
+popper-api
+durable-task
+bitbucket
+javadoc
+workflow-durable-task-step
+docker-java-api
+jquery3-api
+gradle
+jquery
+sonar-gerrit
+built-on-column
+pipeline-rest-api
+git-parameter
+matrix-project
+workflow-job
+structs
+cloudbees-bitbucket-branch-source
+generic-webhook-trigger
+popper2-api
+javax-mail-api
+mailer
+ssh
+external-monitor-job
+build-timeout
+cloudbees-folder
+workflow-step-api
+jjwt-api
+pipeline-milestone-step
+windows-slaves
+sonar
+git-server
+script-security
+jsch
+jacoco
+variant
+ant
+matrix-auth
+handlebars
+github
+trilead-api
+pipeline-github-lib
+bouncycastle-api
+mina-sshd-api-common
+workflow-cps-global-lib
+email-ext
+timestamper
+parameter-pool
+envinject
+pipeline-model-declarative-agent
+pam-auth
+okhttp-api
+maven-plugin
+docker-workflow
+git-client
+atlassian-bitbucket-server-integration
+jakarta-mail-api
+parameterized-trigger
+workflow-aggregator
+preSCMbuildstep
+jdk-tool
+font-awesome-api
+ace-editor
+URLSCM
+instance-identity
+pipeline-stage-tags-metadata
+handy-uri-templates-2-api
+plugin-util-api
+git-tag-message
+job-import-plugin
+momentjs
+mercurial
+jakarta-activation-api
+github-api
+checks-api
+docker-commons
+conditional-buildstep
+jaxb
+credentials
+jackson2-api
+build-monitor-plugin
+workflow-basic-steps
+caffeine-api
+workflow-support
+apache-httpcomponents-client-4-api
+credentials-binding
+jenkins-multijob-plugin
+pipeline-model-api
+thinBackup
+branch-api
+envinject-api
+junit
