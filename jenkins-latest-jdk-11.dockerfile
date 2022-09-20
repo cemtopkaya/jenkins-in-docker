@@ -224,7 +224,7 @@ RUN update-ca-certificates -f
 # jenkins.war uygulaması Jenkins olarak çalışacak ancak eklentiler, ayar dosyaları gibi ek ayarlara ihtiyacımız olack.                                       #
 #                                                                                                                                                            #
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
-ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true -Djava.awt.headless=true
 # ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk
 ENV JENKINS_OPTS --httpPort=8090 --argumentsRealm.roles.user=yonetici --argumentsRealm.passwd.yonetici=sifre --argumentsRealm.roles.yonetici=admin
 ENV JENKINS_SLAVE_AGENT_PORT=50000
@@ -330,12 +330,12 @@ RUN [ -f "$YUKLENECEK_PLUGINS_DOSYASI" ] && jenkins-plugin-cli -f $YUKLENECEK_PL
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # Jenkins dosyasını ilk olarak /usr/share/jenkins dizininde tuuyoruz bu yüzden sahipliğini almamız gerek
 # Eğer JENKINS_HOME farklı bir dizin olursa diye onun da sahipliğini almalıyız aksi halde konteyner kullanıcısı permission denied hatası alacaktır.
-RUN chown -R ${user_name} "$JENKINS_HOME" /usr/share/jenkins
+RUN chown -R ${user_name}:${user_group_name} "$JENKINS_HOME" /usr/share/jenkins
 
 RUN touch $COPY_REFERENCE_FILE_LOG && \
-    chown ${user_name}.${user_group_name} $COPY_REFERENCE_FILE_LOG && \
+    chown ${user_name}:${user_group_name} $COPY_REFERENCE_FILE_LOG && \
     touch $COPY_REFERENCE_MARKER && \
-    chown ${user_name}.${user_group_name} $COPY_REFERENCE_MARKER
+    chown ${user_name}:${user_group_name} $COPY_REFERENCE_MARKER
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -345,6 +345,9 @@ RUN touch $COPY_REFERENCE_FILE_LOG && \
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV CASC_JENKINS_CONFIG $JENKINS_HOME/casc.yaml
 COPY ./jcasc_plugin_confs/casc.yaml $JENKINS_HOME/casc.yaml
+
+COPY ./etc-default-jenkins /etc/default/jenkins
+RUN chown ${user_name}:${user_group_name} /etc/default/jenkins
 
 # Eski paketleri ve güncelleme listelerini temizliyoruz
 # RUN apt-get -qy autoremove && \
