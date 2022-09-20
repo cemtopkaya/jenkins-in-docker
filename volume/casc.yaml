@@ -4,56 +4,56 @@ credentials:
     - credentials:
       - usernamePassword:
           id: "66934009-d55e-43c9-9925-b539e69ec4ce"
-          password: "{AQAAABAAAABA3xeJaKQilsQg/6FS0lpQ8dTHmb0BwsaTL0Ra8UgAZpn3F6LbCnWgyujKlWAMhccc9xcQEOb0tZsHN55NLL0ZaZcq3csPHzGA2gfSqkf+hmc=}"
+          password: "{AQAAABAAAABAieIe+gmAKN2/ScSZnYIC1JWNVESBdUuVyK4ee3Uv3QDfTk1cairnyHi+bbb1OvI6S4za0UhSGYC5VwGHiPmcAeCgI0fv5Bvonl+y6zulghA=}"
           scope: GLOBAL
           username: "admin"
           usernameSecret: true
       - usernamePassword:
           id: "9e3f511b-a497-4973-a73e-e15055d1f290"
-          password: "{AQAAABAAAABAbfOulAatY3gsY/vKneS42zhMct1VyZ+AitJQy4d9WlfZZHxOwwc4dSMh6a2PP5kstZIQ2iZLnP/RmeCOuhBbUR4oFjJTqZs1/E83krcoZSw=}"
+          password: "{AQAAABAAAABA+lqHhwZ6l0Yj1tuw6UyM3a6SKPtkFAR8B4gfE9ky6Xhrwq8Ir/X9+5IxnHFWb7dqFkxNr153wv4qT8Mvsp0bN7jN9HVReuh8HHI6956BRP0=}"
           scope: GLOBAL
           username: "admin"
           usernameSecret: true
       - usernamePassword:
           id: "e37fb38f-e2d3-4003-bee0-b27a9c53e7b8"
-          password: "{AQAAABAAAABA7/7vC6RaLYBm5UVhxEqAQm92uIvzUHoNG0GqtbsCeIQqDMZCxEzFYtTLtUZt5heL+Pb2jTj6kTO/ynSgS3XwajWRB5UjkPCyNM4m7vcQOsw=}"
+          password: "{AQAAABAAAABAhnAbqrP8Uv+HyKRWnAc6l13yMJeIkzYKo3Lg7UNM56uu56HIinyiXSURfzbGhjR5Otj4X+9gz9j7clLxhZOSkq1TUL2OkTnK3dFZbVR1nH8=}"
           scope: GLOBAL
           username: "ali.kirca"
           usernameSecret: true
       - usernamePassword:
           id: "7b9ba9be-db73-4880-a78d-2cc1e27e1c15"
-          password: "{AQAAABAAAABASm8bb1BYLuOE3P8N07faX/bCdhQt+bddWoMpYbeRWKeG/+7xCT+xUreZfQADMqEGr44BC5kRW/QBDeE1TlDKo8h6QrlrqKDXIXHlxz7MbQs=}"
+          password: "{AQAAABAAAABA6LB+jaFEe0JDu8K7b0M9aBKypjuR2RDYWbS+DFJDXnW9wx0D2HxwTi2RCaUeXw1S2pQCkJp5XfDTqncEhykRtV2ZzYSAzowEXg3yvuB6P8I=}"
           scope: GLOBAL
           username: "ali.kirca"
           usernameSecret: true
       - usernamePassword:
           description: "git "
           id: "1b01389a-6a5f-4b8f-a8cf-0c05b44163df"
-          password: "{AQAAABAAAABAXtRuAh0ZNzJr+aZtKJTUD7w4/3sxcS2ybxb+Pc3uZUiWX/ViavBkaVaYGp2xNnAaI9QzFmfhjWvFO83g3VtCahpky3ciP8KGCAptuF1tFa8=}"
+          password: "{AQAAABAAAABAvDbQSSvbHfyW3TXHhlQKYRwwPcsCZy4oqEFjybR4ztizJ5v7NJwG2OlR2Cguz16+GBL1+7AX3Ts6ULKsAstUFAcNqhTaaFjUYGaZJjeTO+o=}"
           scope: GLOBAL
           username: "okan.erman"
           usernameSecret: true
       - usernamePassword:
           id: "7c197764-a9c9-41ae-ac3a-ff270c1f5874"
-          password: "{AQAAABAAAABAq6u+g5W1SILbUZ9heB488CHxXJyvVJ097+PqjyGuFMJSd9GJm+FVvZE0KtuteZWw4RS6DCTmQlYkQx13f39ThTSu4soA6JLKFqPUp/MeBb4=}"
+          password: "{AQAAABAAAABAWcyTOmccqn9GYZAyY6icNis+IkmDhKBUp6QkXANe7JG/FVVGk4pcbUHegCHkIicl7WSKtmy0YgI2dkCEiuW83rcvxVq+JeUnNTt/cm29IUI=}"
           scope: GLOBAL
           username: "mustafa.akocak"
           usernameSecret: true
       - usernamePassword:
           id: "497172c9-c310-40c9-98a0-1bfcdf27f16b"
-          password: "{AQAAABAAAABAAtsATR4bRvZXu4kDeKArL6zRXFmx38Qd4Wfa7mbBQshkrbBWmZxFlhuNJqQYsFF1DZpFqY5nbI+FPCqshPWT9PF7v/LTIymrk43Cx1YcYtM=}"
+          password: "{AQAAABAAAABAzv0tjEElYb30Y19P7UnuUzDY/u18T//2AWVDUWQzmTA3SgrQbpkaINsCSh4mmfN5dvGOCvZ/f1t60KSoIz788hDLVYOWe2B9XqH5+uEls0A=}"
           scope: GLOBAL
           username: "jale.arslan"
           usernameSecret: true
       - usernamePassword:
           id: "96a2f618-506a-4bf7-8e70-3c09adfa850e"
-          password: "{AQAAABAAAABAhNub9S9JMeZuzJsQyzowE0laATrQlX8RUWGe/aGRHcjAgXS23XUvjNlCo45cmnzcVTo7rFMieXL14pI+ki0BA5ahe/mTcmf+ZeiT+djJbic=}"
+          password: "{AQAAABAAAABApeKVhOOURGpa1HWYrXcSAGA/YskGjAl5IvU1dVHVK3s74IgJ/d3KalUyiUlzp2cCjNusnHbgb9I3QG0SIketRf7P51Vl1vGB8YFzlLJJr7Q=}"
           scope: GLOBAL
           username: "alparslan.sahin"
           usernameSecret: true
       - usernamePassword:
           id: "e6ee85cf-5647-4fa1-9c7f-0bdf03105983"
-          password: "{AQAAABAAAABA6n5d7qT7a16Ni8feLV0dEe9gzM89tCayu/knkDy90cHwunefrPrvj0wsVQNcyoW6XRbekw41o1i6gsmerTGenmeGOHia+OSR86GzIxHdvgs=}"
+          password: "{AQAAABAAAABAPOTld38Pf4b8rsPSYRuq9K1WieYc0WnAkDTDZmNIOCFRRpUyB4oHRJagtKKh1PVitDfTLpYg2sWdP2T1mIvSxFT6sNpEBs+mumln5CjOIp8=}"
           scope: GLOBAL
           username: "maya-devops"
           usernameSecret: true
@@ -61,11 +61,23 @@ credentials:
           description: "Migrated SonarQube authentication token"
           id: "b05d63d6-0345-4f2c-9140-de65cbccb89f"
           scope: GLOBAL
-          secret: "{AQAAABAAAABwTWGR+ToA8iH7Ogpr12H1SQKJaUDy+G5C1cBNLAHGFZAnenaOsAuXCpgveHbyWyUJ/hp9F7QKbn1wqhhvS+zaAQLXGkVMlTexXB/d8r4jh0+SDW32XvqmF7utu3tDGXsLk5dPml1Mjqa4oUkIAPyBRTp2fvQ8W0Aw1NfbtlEYHcA=}"
+          secret: "{AQAAABAAAABw4R6+6BTVqkmCJUn35NpigeG1hwrnTrOHNLB/FKIA+7BC6N2K3bO2lnxGj9dprAoZMA98LH0ZG/GVlqTM3jCET8l+qb40FvsKVS7URhlYrkQ7yZ5FFVfWt/CLCMPbuShEhl/8lypuo94KWSFWZHebO98SQQDVlMQGPHGZmYFkJ4Y=}"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
   - "Ping"
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+      - "GROUP:Credentials/View:authenticated"
+      - "GROUP:Job/Read:authenticated"
+      - "GROUP:Overall/Read:authenticated"
+      - "GROUP:View/Read:authenticated"
+      - "USER:Overall/Administer:ali.kirca"
+      - "USER:Overall/Administer:alparslan.sahin"
+      - "USER:Overall/Administer:cem.topkaya"
+      - "USER:Overall/Administer:doga.aslan"
+      - "USER:Overall/Administer:fatih.yuce"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -85,20 +97,18 @@ jenkins:
     enabled: true
   scmCheckoutRetryCount: 0
   securityRealm:
-    local:
-      allowsSignup: false
-      enableCaptcha: false
-      users:
-      - id: "admin"
-        name: "admin"
-        properties:
-        - "apiToken"
-        - "myView"
-        - preferredProvider:
-            providerId: "default"
-        - mailer:
-            emailAddress: "ali.kirca@ulakhaberlesme.com.tr"
-        - "timezone"
+    ldap:
+      configurations:
+      - inhibitInferRootDN: false
+        managerDN: "CN=redmine server,CN=Users,DC=ulakhaberlesme,DC=com,DC=tr"
+        managerPasswordSecret: "{AQAAABAAAAAQ7nFL6ZN+DPkl1bb7SUIMqjvoctHWGlX36D59zGdEyE4=}"
+        rootDN: "cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
+        server: "192.168.10.12"
+        userSearch: "sAMAccountName={0}"
+      disableMailAddressResolver: false
+      disableRolePrefixing: true
+      groupIdStrategy: "caseInsensitive"
+      userIdStrategy: "caseInsensitive"
   slaveAgentPort: 0
   updateCenter:
     sites:
@@ -130,10 +140,6 @@ security:
     useScriptSecurity: true
   sSHD:
     port: -1
-  scriptApproval:
-    approvedScriptHashes:
-    - "558e93da8f9f9c9004de82275979ce5cbcabc6f4"
-    - "a60b719e1412c84ae3abb564d951df8d4c81ad20"
 unclassified:
   bitbucketEndpointConfiguration:
     endpoints:
@@ -149,8 +155,6 @@ unclassified:
     permissionToCollectAnonymousUsageStatistics: true
   buildStepOperation:
     enabled: false
-  casCGlobalConfig:
-    configurationPath: "/usr/share/jenkins/casc.yaml"
   email-ext:
     adminRequiredForTemplateTesting: false
     allowUnregisteredEnabled: false
