@@ -1,4 +1,10 @@
 
+### LDAP Sunucu Bilgilerini Girmek 
+
+Aşağıdaki ekran çıktısında LDAP bilgileri girilmeden az önce tüm dosya tarihleri sabitleniyor ve LDAP bilgilerinden sonra değişen dosya dizinleri listeliyoruz:
+
+![image](https://user-images.githubusercontent.com/261946/191525174-3d9f3054-204c-4f49-b41a-a3d347d91421.png)
+
 
 ### LDAP Kullanıcı Tanımlama ve Yetkilendirme Stratejisini Değiştirmek
 
