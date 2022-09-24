@@ -4,6 +4,7 @@
 # docker build --add-host security.ubuntu.com:91.189.91.39               `                                                                                 #
 #              --build-arg user_id=$(id -u jenkins)                      `                                                                                 #
 #              --build-arg user_group_id=$(id -g jenkins)                `                                                                                 #
+#              --build-arg YUKLENECEK_PLUGINS_DOSYASI=/tm/plugins/cinar-plugins.txt `                `                                                     #                                                                                 #
 #              --add-host bitbucket.ulakhaberlesme.com.tr:192.168.10.14  `                                                                                 #
 #              -t cemo                                                   `                                                                                 #
 #              -f .\jenkins-latest-jdk-11.dockerfile .                                                                                                     #
