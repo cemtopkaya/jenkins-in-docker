@@ -230,7 +230,7 @@ RUN update-ca-certificates -f
 #  -Djenkins.model.Jenkins.workspacesDir=${JENKINS_HOMW}/workspace/${ITEM_FULL_NAME}                                                                         #
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # -Dhudson.slaves.WorkspaceList=_
-ENV JAVA_OPTS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true -Dhudson.security.csrf.DefaultCrumbIssuer.EXCLUDE_SESSION_ID=true -Dhudson.model.UpdateCenter.never=true  -Dhudson.model.DirectoryBrowserSupport.CSP=\"default-src 'self'; style-src 'self' 'unsafe-inline';\""
+ENV JAVA_OPTS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true -Dhudson.security.csrf.DefaultCrumbIssuer.EXCLUDE_SESSION_ID=true -Dhudson.model.UpdateCenter.never=true"
 # ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk
 ENV JENKINS_OPTS --httpPort=8090 --argumentsRealm.roles.user=yonetici --argumentsRealm.passwd.yonetici=sifre --argumentsRealm.roles.yonetici=admin
 ENV JENKINS_SLAVE_AGENT_PORT=50000
