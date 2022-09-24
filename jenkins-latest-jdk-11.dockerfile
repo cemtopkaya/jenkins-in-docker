@@ -405,7 +405,7 @@ EXPOSE 50000
 
 # Sadece bir executable için root kullanıcısı gerekmez
 # CMD ["/usr/sbin/sshd", "-D"]
-
+WORKDIR ${JENKINS_HOME}
 CMD ["/usr/local/bin/jenkins.sh"]
 
 # TODO: jenkins pipeline docker agent içinde çalışacak şekilde casc'a atılacak ve
