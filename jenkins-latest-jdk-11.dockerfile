@@ -181,7 +181,7 @@ RUN apt-get install -qy openssh-server && \
     # Bu konteynere jenkins kullanıcısını kullanarak SSH ile bağlanmak istersek iki türlü kullanıcı doğrulaması yapılır:
     # 1. jenkins Kullanıcı adı ve şifresiyle ($ sshpass -p 'jenkins-sifresi' ssh -o StrictHostKeyChecking=no jenkins@konteyner_ip)
     # 2. jenkins Kullanıcısının ev dizinin altındaki .ssh dizininde olan açık-gizli anahtar ikilisiyle
-    mkdir ${JENKINS_USER_HOME_DIR}/.ssh && \
+    mkdir -p ${JENKINS_USER_HOME_DIR}/.ssh && \
     chown -R ${user_name} ${JENKINS_USER_HOME_DIR}/.ssh && \
     chmod 700 ${JENKINS_USER_HOME_DIR}/.ssh && \
     cd ${JENKINS_USER_HOME_DIR}/.ssh && \
@@ -224,8 +224,12 @@ RUN update-ca-certificates -f
 #                                           JENKINS KURULUMU                                                                                                 #
 # jenkins.war uygulaması Jenkins olarak çalışacak ancak eklentiler, ayar dosyaları gibi ek ayarlara ihtiyacımız olack.                                       #
 #                                                                                                                                                            #
+#  https://www.jenkins.io/doc/book/managing/system-properties/#jenkins-model-jenkins-buildsdir                                                               #
+#  -Djenkins.model.Jenkins.buildsDir=${JENKINS_HOME}/builds/${ITEM_FULL_NAME}                                                                                #
+#  -Djenkins.model.Jenkins.workspacesDir=${JENKINS_HOMW}/workspace/${ITEM_FULL_NAME}                                                                         #
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true -Djava.awt.headless=true
+
 # ENV JENKINS_OPTS --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk
 ENV JENKINS_OPTS --httpPort=8090 --argumentsRealm.roles.user=yonetici --argumentsRealm.passwd.yonetici=sifre --argumentsRealm.roles.yonetici=admin
 ENV JENKINS_SLAVE_AGENT_PORT=50000
@@ -349,6 +353,14 @@ COPY ./jcasc_plugin_confs/casc.yaml $JENKINS_HOME/casc.yaml
 
 COPY ./etc-default-jenkins /etc/default/jenkins
 RUN chown ${user_name}:${user_group_name} /etc/default/jenkins
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                            JOB BUILDS Dizinini harici bir yerde tutmak için                                                 #
+#                                                                                                                                                             #
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------#
+ARG JENKINS_BUILDS_DIR=${JENKINS_USER_HOME_DIR}/builds
+RUN mkdir -p $JENKINS_BUILDS_DIR
+RUN chown -R ${user_name}:${user_group_name} $JENKINS_BUILDS_DIR
 
 # Eski paketleri ve güncelleme listelerini temizliyoruz
 # RUN apt-get -qy autoremove && \
