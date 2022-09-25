@@ -374,23 +374,23 @@ RUN chmod 777 /usr/local/bin/jenkins.sh
 RUN chown -R ${user_name}:${user_group_name} ${JENKINS_HOME}
 
 # jobs Dizini
-ENV JENKINS_JOBS_DIR=${JENKINS_HOME}/jobs
-ENV JENKINS_SECRETS_DIR=${JENKINS_HOME}/secrets
-ENV JENKINS_NODES_DIR=${JENKINS_HOME}/nodes
-ENV JENKINS_USERS_DIR=${JENKINS_HOME}/users
+# ENV JENKINS_JOBS_DIR=${JENKINS_HOME}/jobs
+# ENV JENKINS_SECRETS_DIR=${JENKINS_HOME}/secrets
+# ENV JENKINS_NODES_DIR=${JENKINS_HOME}/nodes
+# ENV JENKINS_USERS_DIR=${JENKINS_HOME}/users
 
 #RUN mkdir $JENKINS_JOBS_DIR
-RUN mkdir $JENKINS_SECRETS_DIR
-RUN mkdir $JENKINS_NODES_DIR
-RUN mkdir $JENKINS_USERS_DIR
+# RUN mkdir $JENKINS_SECRETS_DIR
+# RUN mkdir $JENKINS_NODES_DIR
+# RUN mkdir $JENKINS_USERS_DIR
 # Dışarıdan bağlanabilecek dizinlerin sahipliğini konteyner kullanıcısı (jenkins) üstüne alıyorum ki host üstünden
 # bağlanan dizinler olursa erişim izni sorunu yaşamayalım.
-RUN chown ${user_name}:${user_group_name} $JENKINS_JOBS_DIR  $JENKINS_SECRETS_DIR  $JENKINS_NODES_DIR  $JENKINS_USERS_DIR
+# RUN chown ${user_name}:${user_group_name} $JENKINS_JOBS_DIR  $JENKINS_SECRETS_DIR  $JENKINS_NODES_DIR  $JENKINS_USERS_DIR
 
-VOLUME [ "$JENKINS_JOBS_DIR" ]
-VOLUME [ "$JENKINS_SECRETS_DIR" ]
-VOLUME [ "$JENKINS_NODES_DIR" ]
-VOLUME [ "$JENKINS_USERS_DIR" ]
+# VOLUME [ "$JENKINS_JOBS_DIR" ]
+# VOLUME [ "$JENKINS_SECRETS_DIR" ]
+# VOLUME [ "$JENKINS_NODES_DIR" ]
+# VOLUME [ "$JENKINS_USERS_DIR" ]
 # Jenkins ana dizini yapılandırma kalıcı olabilir (host tarafında bir dizinle eşleştirilerek)
 VOLUME [ "$JENKINS_HOME"]
 VOLUME [ "$PLUGIN_DIR"]
