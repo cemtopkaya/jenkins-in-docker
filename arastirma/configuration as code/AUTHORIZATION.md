@@ -1,4 +1,4 @@
-# config.xml Yetkilendirme
+# Yetkisiz & Kullanıcı Girişi Olmaksızın
 
 Öncelikle config.xml dosyasını sildiğimizde Jenkins'i yeniden başlattığımız vakit kendi config.xml dosyasını yaratır ve sisteme login olmaksızın açılır.
 Ama var olan config.xml'i yetkilendirme ve kullanıcı girişi olmaksızın başlatmak için aşağıdaki etiketleri kullanaibliriz.
@@ -39,7 +39,7 @@ jenkins:
         - "timezone"
 ```
 
-# LDAP ile Yetkilendirme
+# LDAP ile Kullanıcı Girişi & Yetkilendirme
 
 LDAP sunucu ve ayarlarını yaptıktan sonra config.xml dosyasında cem.topkaya kullanıcısını administrator olarak yetkilendiriyoruz:
 
