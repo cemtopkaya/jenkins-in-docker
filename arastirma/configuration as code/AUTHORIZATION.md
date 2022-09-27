@@ -41,6 +41,8 @@ jenkins:
 
 # LDAP ile Kullanıcı Girişi & Yetkilendirme
 
+## Sadece USERS İçinde
+
 LDAP sunucu ve ayarlarını yaptıktan sonra config.xml dosyasında cem.topkaya kullanıcısını administrator olarak yetkilendiriyoruz:
 
 ```xml
@@ -89,6 +91,143 @@ jenkins:
       - inhibitInferRootDN: false
         managerDN: "cn=redmine server,cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
         managerPasswordSecret: "{AQAAABAAAAAQFJaAPQ5wSag3OXdRr0k4FkTAZbG4bABKg0t9AXDCLYY=}"
+        rootDN: "cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
+        server: "192.168.10.12"
+        userSearch: "sAMAccountName={0}"
+      disableMailAddressResolver: false
+      disableRolePrefixing: true
+      groupIdStrategy: "caseInsensitive"
+      userIdStrategy: "caseInsensitive"
+```
+
+## Gruplarda Arama
+
+Grup yetkilendirmesi:
+```xml
+    <permission>GROUP:hudson.model.Hudson.Read:Cekirdek_Sebeke_Yazilimlari_Mudurlugu</permission>
+```
+
+```xml
+<?xml version='1.1' encoding='UTF-8'?>
+<hudson>
+  <useSecurity>true</useSecurity>
+  
+  <securityRealm class="hudson.security.LDAPSecurityRealm" plugin="ldap@2.12">
+    <disableMailAddressResolver>false</disableMailAddressResolver>
+    <configurations>
+      <jenkins.security.plugins.ldap.LDAPConfiguration>
+        <server>192.168.10.12</server>
+        <rootDN>cn=Users,dc=ulakhaberlesme,dc=com,dc=tr</rootDN>
+        <inhibitInferRootDN>false</inhibitInferRootDN>
+        <userSearchBase></userSearchBase>
+        <userSearch>sAMAccountName={0}</userSearch>
+        <groupSearchFilter>cn={0}</groupSearchFilter>
+        <groupMembershipStrategy class="jenkins.security.plugins.ldap.FromGroupSearchLDAPGroupMembershipStrategy">
+          <filter></filter>
+        </groupMembershipStrategy>
+        <managerDN>cn=redmine server,cn=Users,dc=ulakhaberlesme,dc=com,dc=tr</managerDN>
+        <managerPasswordSecret>{AQAAABAAAAAQFJaAPQ5wSag3OXdRr0k4FkTAZbG4bABKg0t9AXDCLYY=}</managerPasswordSecret>
+        <displayNameAttributeName>displayname</displayNameAttributeName>
+        <mailAddressAttributeName>mail</mailAddressAttributeName>
+        <ignoreIfUnavailable>false</ignoreIfUnavailable>
+      </jenkins.security.plugins.ldap.LDAPConfiguration>
+    </configurations>
+    <userIdStrategy class="jenkins.model.IdStrategy$CaseInsensitive"/>
+    <groupIdStrategy class="jenkins.model.IdStrategy$CaseInsensitive"/>
+    <disableRolePrefixing>true</disableRolePrefixing>
+  </securityRealm>
+  
+  <authorizationStrategy class="hudson.security.GlobalMatrixAuthorizationStrategy">
+    <permission>USER:hudson.model.Hudson.Administer:cem.topkaya</permission>
+    <permission>GROUP:hudson.model.Hudson.Read:Cekirdek_Sebeke_Yazilimlari_Mudurlugu</permission>
+  </authorizationStrategy>
+
+```
+
+Neden grup aramasında `cn={0}` yazdığımızı görmek için bir LDAP araması yapalım ve grup adının `CN=...` olduğunu görelim.
+Distinguised Name kısmında nasıl bir süzgeç kullanacağımızı görebiliriz: `CN=Cekirdek_Sebeke_Yazilimlari_Mudurlugu,CN=Users,DC=ulakhaberlesme,DC=com`
+
+```shell
+$ ldapsearch -h 192.168.10.12 -p 389 -D "redmine.server@ulakhaberlesme.com.tr" -W -b "cn=Cekirdek_Sebeke_Yazilimlari_Mudurlugu,cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
+Enter LDAP Password:
+# extended LDIF
+#
+# LDAPv3
+# base <cn=Cekirdek_Sebeke_Yazilimlari_Mudurlugu,cn=Users,dc=ulakhaberlesme,dc=com,dc=tr> with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# Cekirdek_Sebeke_Yazilimlari_Mudurlugu, Users, ulakhaberlesme.com.tr
+dn: CN=Cekirdek_Sebeke_Yazilimlari_Mudurlugu,CN=Users,DC=ulakhaberlesme,DC=com
+ ,DC=tr
+objectClass: top
+objectClass: group
+cn: Cekirdek_Sebeke_Yazilimlari_Mudurlugu
+description: Ldif Yapisi
+member: CN=Hakan BATMAZ,CN=Users,DC=ulakhaberlesme,DC=com,DC=tr
+member: CN=Serkan ACAR,CN=Users,DC=ulakhaberlesme,DC=com,DC=tr
+member: CN=Ugur Alp TURE,CN=Users,DC=ulakhaberlesme,DC=com,DC=tr
+member: CN=Fatih DARTICI,CN=Users,DC=ulakhaberlesme,DC=com,DC=tr
+member:: Q049QXLEsW5jIEFscCBFUkVOLENOPVVzZXJzLERDPXVsYWtoYWJlcmxlc21lLERDPWNvb
+ SxEQz10cg==
+member: CN=Tolga Hakan Oduncu,OU=Disabled,DC=ulakhaberlesme,DC=com,DC=tr
+member:: Q049TWVobWV0IEVtaW4gQkHFnkFSLENOPVVzZXJzLERDPXVsYWtoYWJlcmxlc21lLERDP
+ WNvbSxEQz10cg==
+member: CN=Sami GURPINAR,CN=Users,DC=ulakhaberlesme,DC=com,DC=tr
+member: CN=Cem Topkaya,CN=Users,DC=ulakhaberlesme,DC=com,DC=tr
+member: CN=Yasin Caner,CN=Users,DC=ulakhaberlesme,DC=com,DC=tr
+member:: Q049w5ZtZXIgWmVrdmFuIFnEsWxtYXosQ049VXNlcnMsREM9dWxha2hhYmVybGVzbWUsR
+ EM9Y29tLERDPXRy
+member:: Q049QsO8bGVudCBLYW1iZXJvxJ9sdSxDTj1Vc2VycyxEQz11bGFraGFiZXJsZXNtZSxEQ
+ z1jb20sREM9dHI=
+member: CN=Ozlem Aydin,CN=Users,DC=ulakhaberlesme,DC=com,DC=tr
+member: CN=Omer Faruk Aktulum,OU=Disabled,DC=ulakhaberlesme,DC=com,DC=tr
+distinguishedName: CN=Cekirdek_Sebeke_Yazilimlari_Mudurlugu,CN=Users,DC=ulakha
+ berlesme,DC=com,DC=tr
+instanceType: 4
+whenCreated: 20220729142947.0Z
+whenChanged: 20220805122659.0Z
+uSNCreated: 54524713
+uSNChanged: 54825063
+name: Cekirdek_Sebeke_Yazilimlari_Mudurlugu
+objectGUID:: clXWE3y/JkucIoowMQIGLA==
+objectSid:: AQUAAAAAAAUVAAAA0zVP2bd+qwQ+r7HmbBEAAA==
+sAMAccountName: Cekirdek_Sebeke_Yazilimlari_Mudurlugu
+sAMAccountType: 268435456
+groupType: -2147483646
+objectCategory: CN=Group,CN=Schema,CN=Configuration,DC=ulakhaberlesme,DC=com,D
+ C=tr
+dSCorePropagationData: 16010101000000.0Z
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+```
+
+casc.yaml Dosyasında ise:
+
+```yaml
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+      - "GROUP:Overall/Administer:Cekirdek_Sebeke_Yazilimlari_Mudurlugu"
+      - "USER:Overall/Administer:anonymous"
+      - "USER:Overall/Administer:cem.topkaya"
+  securityRealm:
+    ldap:
+      configurations:
+      - groupSearchFilter: "cn={0}"
+        inhibitInferRootDN: false
+        managerDN: "cn=redmine server,cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
+        managerPasswordSecret: "{AQAAABAAAAAQgbVH6VRKnzDqaur8hav75JpFtK1V5mzjXWnB5RmouJE=}"
         rootDN: "cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
         server: "192.168.10.12"
         userSearch: "sAMAccountName={0}"
