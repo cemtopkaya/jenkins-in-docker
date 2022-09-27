@@ -226,6 +226,9 @@ RUN update-ca-certificates -f
 # jenkins.war uygulaması Jenkins olarak çalışacak ancak eklentiler, ayar dosyaları gibi ek ayarlara ihtiyacımız olack.                                       #
 #                                                                                                                                                            #
 #  https://www.jenkins.io/doc/book/managing/system-properties/#jenkins-model-jenkins-buildsdir                                                               #
+#  ${JENKINS_HOME} — Absolute path of the Jenkins home directory                                                                                             #
+#  ${ITEM_ROOTDIR} — Jenkins'in belirli bir iş için yapılandırmayı ve ilgili meta verileri depoladığı dizinin mutlak yolu                                    #
+#  ${ITEM_FULL_NAME} — The full name of a given job, which may be slash-separated, e.g. foo/bar for the job bar in folder foo                                #
 #  -Djenkins.model.Jenkins.buildsDir=${JENKINS_HOME}/builds/${ITEM_FULL_NAME}                                                                                #
 #  -Djenkins.model.Jenkins.workspacesDir=${JENKINS_HOMW}/workspace/${ITEM_FULL_NAME}                                                                         #
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
