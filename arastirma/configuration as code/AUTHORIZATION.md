@@ -121,12 +121,12 @@ Grup yetkilendirmesi:
         <inhibitInferRootDN>false</inhibitInferRootDN>
         <userSearchBase></userSearchBase>
         <userSearch>sAMAccountName={0}</userSearch>
-        <groupSearchFilter>cn={0}</groupSearchFilter>
-        <groupMembershipStrategy class="jenkins.security.plugins.ldap.FromGroupSearchLDAPGroupMembershipStrategy">
-          <filter></filter>
+        <groupSearchFilter>(&amp; (cn={0}) (objectclass=group) )</groupSearchFilter>
+        <groupMembershipStrategy class="jenkins.security.plugins.ldap.FromUserRecordLDAPGroupMembershipStrategy">
+          <attributeName>memberOf</attributeName>
         </groupMembershipStrategy>
         <managerDN>cn=redmine server,cn=Users,dc=ulakhaberlesme,dc=com,dc=tr</managerDN>
-        <managerPasswordSecret>{AQAAABAAAAAQFJaAPQ5wSag3OXdRr0k4FkTAZbG4bABKg0t9AXDCLYY=}</managerPasswordSecret>
+        <managerPasswordSecret>{AQAAABAAAAAQoDmaJ/yCJfMCPN4whjn443RmqFYwVQEahMe5omjwCTU=}</managerPasswordSecret>
         <displayNameAttributeName>displayname</displayNameAttributeName>
         <mailAddressAttributeName>mail</mailAddressAttributeName>
         <ignoreIfUnavailable>false</ignoreIfUnavailable>
@@ -136,10 +136,11 @@ Grup yetkilendirmesi:
     <groupIdStrategy class="jenkins.model.IdStrategy$CaseInsensitive"/>
     <disableRolePrefixing>true</disableRolePrefixing>
   </securityRealm>
-  
+
   <authorizationStrategy class="hudson.security.GlobalMatrixAuthorizationStrategy">
-    <permission>USER:hudson.model.Hudson.Administer:cem.topkaya</permission>
-    <permission>GROUP:hudson.model.Hudson.Read:Cekirdek_Sebeke_Yazilimlari_Mudurlugu</permission>
+    <permission>GROUP:hudson.model.Hudson.Administer:Cekirdek_Sebeke_Yazilimlari_Mudurlugu</permission>
+    <permission>USER:hudson.model.Hudson.Administer:alp.eren</permission>
+    <permission>USER:hudson.model.Hudson.Administer:redmine.server</permission>
   </authorizationStrategy>
 
 ```
@@ -219,15 +220,18 @@ jenkins:
     globalMatrix:
       permissions:
       - "GROUP:Overall/Administer:Cekirdek_Sebeke_Yazilimlari_Mudurlugu"
-      - "USER:Overall/Administer:anonymous"
-      - "USER:Overall/Administer:cem.topkaya"
+      - "USER:Overall/Administer:alp.eren"
+      - "USER:Overall/Administer:redmine.server"
   securityRealm:
     ldap:
       configurations:
-      - groupSearchFilter: "cn={0}"
+      - groupMembershipStrategy:
+          fromUserRecord:
+            attributeName: "memberOf"
+        groupSearchFilter: "(& (cn={0}) (objectclass=group) )"
         inhibitInferRootDN: false
         managerDN: "cn=redmine server,cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
-        managerPasswordSecret: "{AQAAABAAAAAQgbVH6VRKnzDqaur8hav75JpFtK1V5mzjXWnB5RmouJE=}"
+        managerPasswordSecret: "{AQAAABAAAAAQoDmaJ/yCJfMCPN4whjn443RmqFYwVQEahMe5omjwCTU=}"
         rootDN: "cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
         server: "192.168.10.12"
         userSearch: "sAMAccountName={0}"
@@ -235,4 +239,8 @@ jenkins:
       disableRolePrefixing: true
       groupIdStrategy: "caseInsensitive"
       userIdStrategy: "caseInsensitive"
+  slaveAgentPort: 0
 ```
+
+![image](https://user-images.githubusercontent.com/261946/192666106-73f5a55d-344f-4339-a8e4-8edd33e744e5.png)
+
