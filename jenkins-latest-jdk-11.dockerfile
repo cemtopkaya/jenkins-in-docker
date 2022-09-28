@@ -68,7 +68,7 @@ RUN apt-get install -y software-properties-common && \
 RUN curl --create-dirs -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
-    apt-get install -y docker-ce-cli
+    apt-get install -y docker-ce-cli docker-compose
 
 
 # -----------------------------------------------------------------------------------------#
