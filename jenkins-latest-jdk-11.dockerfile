@@ -72,7 +72,7 @@ RUN curl --create-dirs -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg 
     apt-get update && \
     apt-get install -y docker-ce-cli 
     
-RUN curl -L "https://github.com/docker/compose/releases/download/v2.11.2/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
+RUN curl -L "https://github.com/docker/compose/releases/download/v2.11.2/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose  && \
     ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose 
 
