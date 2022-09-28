@@ -64,11 +64,17 @@ RUN apt-get install -y software-properties-common && \
 # Docker dosyalarının indirileceğği paket havuzunun adresine erişimimizde GPG anahtarı kullanacağız. Bu anahtar sayesinde eriştiğimiz kaynağa güvenli        #
 # sağlamış olacağız. Önce GPG anahtarını docker.com adresinden indiriyor, bu reponun adresini girdiğimiz kayıt içinde GPG adresinin varsayılan GPG dosyaları #
 # ile aynı yerde olmaması sebebiyle signed-by özelliği ile belirteceğiz.                                                                                     #
+#                                                                                                                                                            #
+# docker-compose 3.9 destekleyecek sürümü olan 2.11.2'yi istemci olarak kuracağız                                                                            #
 #------------------------------------------------------------------------------------------------------------------------------------------------------------#
 RUN curl --create-dirs -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu focal stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
-    apt-get install -y docker-ce-cli docker-compose
+    apt-get install -y docker-ce-cli 
+    
+RUN curl -L "https://github.com/docker/compose/releases/download/v2.11.2/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose  && \
+    ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose 
 
 
 # -----------------------------------------------------------------------------------------#
