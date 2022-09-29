@@ -2,10 +2,10 @@
 #                               KOMUTLAR VE AÇIKLAMALARI                                                                                                   #
 #                                                                                                                                                          #
 # docker build --add-host security.ubuntu.com:91.189.91.39               `                                                                                 #
-#              --build-arg user_id=$(id -u jenkins)                      `                                                                                 #
-#              --build-arg user_group_id=$(id -g jenkins)                `                                                                                 #
-#              --build-arg JENKINS_BUILDS_DIR=/builds                    `                                                                                 #
-#              --build-arg YUKLENECEK_PLUGINS_DOSYASI=/tmp/plugins/cinar-plugins.txt `                `                                                     #                                                                                 #
+#              --build-arg ARG_USER_ID=$(id -u jenkins)                      `                                                                                 #
+#              --build-arg ARG_USER_GROUP_ID=$(id -g jenkins)                `                                                                                 #
+#              --build-arg ARG_JENKINS_BUILDS_DIR=/builds                    `                                                                                 #
+#              --build-arg ARG_YUKLENECEK_PLUGINS_DOSYASI=/tmp/plugins/cinar-plugins.txt `                `                                                     #                                                                                 #
 #              --add-host bitbucket.ulakhaberlesme.com.tr:192.168.10.14  `                                                                                 #
 #              -t cemo                                                   `                                                                                 #
 #              -f .\jenkins-latest-jdk-11.dockerfile .                                                                                                     #
@@ -132,21 +132,22 @@ FROM jenkins-base
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 # Jenkins dosyaları JENKINS_HOME ortam değişkeninin gösterdiği dizinde olacak
-ENV JENKINS_HOME /usr/share/jenkins
+ARG ARG_JENKINS_HOME=/usr/share/jenkins
+ENV JENKINS_HOME=${ARG_JENKINS_HOME}
 
-# Konteyner çalıştığında user_name argumanındaki kullanıcı ile çalıştırılacak ve JENKINS bu kullanıcı altında işlerini yapacak
-ARG user_id=1000
-ARG user_name=jenkins
-ARG user_password=jenkins
-ENV JENKINS_USER_HOME_DIR "/home/${user_name}"
+# Konteyner çalıştığında ARG_USER_NAME argumanındaki kullanıcı ile çalıştırılacak ve JENKINS bu kullanıcı altında işlerini yapacak
+ARG ARG_USER_ID=1000
+ARG ARG_USER_NAME=jenkins
+ARG ARG_USER_PASSWORD=jenkins
+ENV JENKINS_USER_HOME_DIR "/home/${ARG_USER_NAME}"
 
-# Konteynerin kullanıcısı user_group_name ile tanımlı gruba üye olacak
-ARG user_group_id=1000
-ARG user_group_name=jenkins
+# Konteynerin kullanıcısı ARG_USER_GROUP_NAME ile tanımlı gruba üye olacak
+ARG ARG_USER_GROUP_ID=1000
+ARG ARG_USER_GROUP_NAME=jenkins
 
 # Konteynerin root kullanıcısının şifresi
-ENV ROOT_USER_PASSWORD sifre123
-ARG root_password=${ROOT_USER_PASSWORD}
+ENV ROOT_ARG_USER_PASSWORD sifre123
+ARG ARG_ROOT_PASSWORD=${ROOT_ARG_USER_PASSWORD}
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                              KULLANICI-GRUP AYARLARI                                                                        #
@@ -155,21 +156,21 @@ ARG root_password=${ROOT_USER_PASSWORD}
 # aktarılacak dosya ve dizinlerin sahipliğindeki kullanıcının id ve ait olduğu grubun id değerlerini yansıyı derlerken arguman olarak vermemiz gerekiyor.     #
 #                                                                                                                                                             #
 # Buna göre aşağıdaki derleme komutuyla host bilgisayardaki kullanıcının ID ve GRUP_ID değerleriyle imaj içinde bir kullanıcı oluşturuyoruz:                  #
-#     docker build --build-arg user_id=$(id -u $USER) --build-arg user_group_id=$(id -g $USER) -t cemkins -f jenkins-latest-jdk-11.dockerfile .               #
+#     docker build --build-arg ARG_USER_ID=$(id -u $USER) --build-arg ARG_USER_GROUP_ID=$(id -g $USER) -t cemkins -f jenkins-latest-jdk-11.dockerfile .               #
 #                                                                                                                                                             #
 # Eğer sudo paketi kuruluysa jenkins kullanıcısını sudoers grubuna şifre istemeden super user olarak işlemleri yapacak şekilde ekleyeceğiz.                   #
 # jenkins kullanıcısının ev dizini jenkins uyglamasının çalışacağı yer olacak.                                                                                #
 # Hem jenkins hem root kullanıcısının şifrelerini SSH bağlantılarını yapabilmek için tayin edeceğiz.                                                          #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # jenkins Adında bir grup oluşturup
-RUN groupadd -g ${user_group_id} ${user_group_name}
+RUN groupadd -g ${ARG_USER_GROUP_ID} ${ARG_USER_GROUP_NAME}
 # jenkins adında  bir kullanıcıyı bu gruba ekliyoruz
-RUN useradd -c "Jenkins kullanici aciklamasi" -d "$JENKINS_USER_HOME_DIR" -u ${user_id} -g ${user_group_id} -m ${user_name} -s /bin/bash
-RUN echo "${user_name}:${user_password}" | chpasswd
+RUN useradd -c "Jenkins kullanici aciklamasi" -d "$JENKINS_USER_HOME_DIR" -u ${ARG_USER_ID} -g ${ARG_USER_GROUP_ID} -m ${ARG_USER_NAME} -s /bin/bash
+RUN echo "${ARG_USER_NAME}:${ARG_USER_PASSWORD}" | chpasswd
 # jenkins kullanıcısını sudoers grubuna her işlemi bir daha şifre sormadan yapabilsin diye ekliyoruz
-# RUN echo "${user_name}  ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${user_name} && chmod 0440 /etc/sudoers.d/${user_name}
+# RUN echo "${ARG_USER_NAME}  ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${ARG_USER_NAME} && chmod 0440 /etc/sudoers.d/${ARG_USER_NAME}
 # Bu konteynere root kullanıcısını kullanarak SSH protokolüyle bağlanmak istediğimizde şifreyi sshpass ile geçirebilmek için ayarlayalım
-RUN echo 'root:${root_password}' | chpasswd
+RUN echo 'root:${ARG_ROOT_PASSWORD}' | chpasswd
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -189,7 +190,7 @@ RUN apt-get install -qy openssh-server && \
     # 1. jenkins Kullanıcı adı ve şifresiyle ($ sshpass -p 'jenkins-sifresi' ssh -o StrictHostKeyChecking=no jenkins@konteyner_ip)
     # 2. jenkins Kullanıcısının ev dizinin altındaki .ssh dizininde olan açık-gizli anahtar ikilisiyle
     mkdir -p ${JENKINS_USER_HOME_DIR}/.ssh && \
-    chown -R ${user_name} ${JENKINS_USER_HOME_DIR}/.ssh && \
+    chown -R ${ARG_USER_NAME} ${JENKINS_USER_HOME_DIR}/.ssh && \
     chmod 700 ${JENKINS_USER_HOME_DIR}/.ssh && \
     cd ${JENKINS_USER_HOME_DIR}/.ssh && \
     # jenkins Kullanıcısı için açık-gizli anahtarı (gizli anahtarı şifresiz olarak) oluşturuyoruz
@@ -214,9 +215,9 @@ USER root
 RUN echo -n | openssl s_client -showcerts -connect bitbucket.ulakhaberlesme.com.tr:8443 \
             2>/dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/ssl/certs/ulakhaberlesme.crt
 
-RUN chown -R ${user_name}:${user_group_name} /etc/ssl/certs/
-RUN chown -R ${user_name}:${user_group_name} /etc/default/cacerts
-RUN chown -R ${user_name}:${user_group_name} /usr/local/share/ca-certificates/
+RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} /etc/ssl/certs/
+RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} /etc/default/cacerts
+RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} /usr/local/share/ca-certificates/
 RUN update-ca-certificates -f
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -328,14 +329,14 @@ Thread.start {\n\
 ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
 
 COPY ./volume/plugins/ /tmp/plugins/
-ARG YUKLENECEK_PLUGINS_DOSYASI=
+ARG ARG_YUKLENECEK_PLUGINS_DOSYASI=
 
 RUN echo '#!/bin/bash \n env \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.12.8.jar $*"' > /usr/local/bin/jenkins-plugin-cli && \
     chmod +x /usr/local/bin/jenkins-plugin-cli
 
 RUN mkdir $PLUGIN_DIR
-RUN chown ${user_name}:${user_group_name} $PLUGIN_DIR
-RUN [ -f "$YUKLENECEK_PLUGINS_DOSYASI" ] && jenkins-plugin-cli -f $YUKLENECEK_PLUGINS_DOSYASI --verbose || echo "yuklenecek plugins dosyasi yok"
+RUN chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $PLUGIN_DIR
+RUN [ -f "$ARG_YUKLENECEK_PLUGINS_DOSYASI" ] && jenkins-plugin-cli -f $ARG_YUKLENECEK_PLUGINS_DOSYASI --verbose || echo "yuklenecek plugins dosyasi yok"
 # Veya eklentiler COPY komutuyla yansıya kopyalanır.
 # COPY ./jenkins-plugins/plugins ${PLUGIN_DIR}
 
@@ -345,12 +346,12 @@ RUN [ -f "$YUKLENECEK_PLUGINS_DOSYASI" ] && jenkins-plugin-cli -f $YUKLENECEK_PL
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # Jenkins dosyasını ilk olarak /usr/share/jenkins dizininde tuuyoruz bu yüzden sahipliğini almamız gerek
 # Eğer JENKINS_HOME farklı bir dizin olursa diye onun da sahipliğini almalıyız aksi halde konteyner kullanıcısı permission denied hatası alacaktır.
-RUN chown -R ${user_name}:${user_group_name} "$JENKINS_HOME" /usr/share/jenkins
+RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} "$JENKINS_HOME" /usr/share/jenkins
 
 RUN touch $COPY_REFERENCE_FILE_LOG && \
-    chown ${user_name}:${user_group_name} $COPY_REFERENCE_FILE_LOG && \
+    chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $COPY_REFERENCE_FILE_LOG && \
     touch $COPY_REFERENCE_MARKER && \
-    chown ${user_name}:${user_group_name} $COPY_REFERENCE_MARKER
+    chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $COPY_REFERENCE_MARKER
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -362,15 +363,15 @@ ENV CASC_JENKINS_CONFIG $JENKINS_HOME/casc.yaml
 COPY ./jcasc_plugin_confs/casc.yaml $JENKINS_HOME/casc.yaml
 
 COPY ./etc-default-jenkins /etc/default/jenkins
-RUN chown ${user_name}:${user_group_name} /etc/default/jenkins
+RUN chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} /etc/default/jenkins
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                            JOB BUILDS Dizinini harici bir yerde tutmak için                                                 #
 #                                                                                                                                                             #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
-ARG JENKINS_BUILDS_DIR=${JENKINS_USER_HOME_DIR}/builds
-RUN mkdir -p $JENKINS_BUILDS_DIR
-RUN chown -R ${user_name}:${user_group_name} $JENKINS_BUILDS_DIR
+ARG ARG_JENKINS_BUILDS_DIR=${JENKINS_USER_HOME_DIR}/builds
+RUN mkdir -p $ARG_JENKINS_BUILDS_DIR
+RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $ARG_JENKINS_BUILDS_DIR
 
 # Eski paketleri ve güncelleme listelerini temizliyoruz
 # RUN apt-get -qy autoremove && \
@@ -378,9 +379,9 @@ RUN chown -R ${user_name}:${user_group_name} $JENKINS_BUILDS_DIR
 
 
 COPY ./jenkins.sh /usr/local/bin/jenkins.sh
-# RUN chown ${user_name}:${user_group_name} /usr/local/bin/jenkins.sh
+# RUN chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} /usr/local/bin/jenkins.sh
 RUN chmod 777 /usr/local/bin/jenkins.sh
-RUN chown -R ${user_name}:${user_group_name} ${JENKINS_HOME}
+RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} ${JENKINS_HOME}
 
 # jobs Dizini
 # ENV JENKINS_JOBS_DIR=${JENKINS_HOME}/jobs
@@ -388,13 +389,15 @@ RUN chown -R ${user_name}:${user_group_name} ${JENKINS_HOME}
 # ENV JENKINS_NODES_DIR=${JENKINS_HOME}/nodes
 # ENV JENKINS_USERS_DIR=${JENKINS_HOME}/users
 
+COPY ./volume/${ARG_SECRETS_DIR}/* ${ARG_JENKINS_HOME}
+
 #RUN mkdir $JENKINS_JOBS_DIR
 # RUN mkdir $JENKINS_SECRETS_DIR
 # RUN mkdir $JENKINS_NODES_DIR
 # RUN mkdir $JENKINS_USERS_DIR
 # Dışarıdan bağlanabilecek dizinlerin sahipliğini konteyner kullanıcısı (jenkins) üstüne alıyorum ki host üstünden
 # bağlanan dizinler olursa erişim izni sorunu yaşamayalım.
-# RUN chown ${user_name}:${user_group_name} $JENKINS_JOBS_DIR  $JENKINS_SECRETS_DIR  $JENKINS_NODES_DIR  $JENKINS_USERS_DIR
+# RUN chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $JENKINS_JOBS_DIR  $JENKINS_SECRETS_DIR  $JENKINS_NODES_DIR  $JENKINS_USERS_DIR
 
 # VOLUME [ "$JENKINS_JOBS_DIR" ]
 # VOLUME [ "$JENKINS_SECRETS_DIR" ]
@@ -404,7 +407,7 @@ RUN chown -R ${user_name}:${user_group_name} ${JENKINS_HOME}
 VOLUME [ "$JENKINS_HOME"]
 VOLUME [ "$PLUGIN_DIR"]
 
-USER ${user_name}
+USER ${ARG_USER_NAME}
 
 # Standard SSH port
 EXPOSE 22
