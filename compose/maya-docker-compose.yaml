@@ -1,0 +1,53 @@
+version: '3.7'
+services:
+  jenkins:
+    image: cinar/jenkins:maya-1.1
+    privileged: true
+    restart: unless-stopped
+    extra_hosts:
+      - "bitbucket.ulakhaberlesme.com.tr:192.168.10.14"
+    ports:
+      - 82:8090
+      - 50002:50000
+    container_name: jenkins2
+    environment:
+      - JAVA_OPTS=-Djava.awt.headless=true -Dpermissive-script-security.enabled=true -Djenkins.install.runSetupWizard=false
+      - JENKINS_OPTS=--httpListenAddress=0.0.0.0 --httpPort=8090 --argumentsRealm.roles.user=devops --argumentsRealm.passwd.devops=sifre --argumentsRealm.roles.devops=admin
+    volumes:
+      - maya-home:/usr/share/jenkins
+      - ./volume/certs/ulakhaberlesme.crt:/usr/local/share/ca-certificates/ulakhaberlesme.crt
+      - ./volume/maya/cascs/casc-ldap-akademi.yaml:/usr/share/jenkins/casc.yaml
+#      - ./volume/maya/cascs/maya-casc.yaml:/usr/share/jenkins/casc.yaml
+#      - ./volume/casc.yaml:/usr/share/jenkins/casc.yaml
+#      - ./volume:/usr/share/jenkins
+
+#      - ./volume/plugins:/usr/share/jenkins/plugins
+
+#      - ./volume/etc-default-jenkins:/etc/default/jenkins:rw
+#      - ./volume/casc.yaml:/usr/share/jenkins/casc.yaml:rw
+#      - ./volume/config.xml:/usr/share/jenkins/config.xml:rw
+
+#      - type: bind
+#        source: ./volume/config.xml
+#        target: /usr/share/jenkins/config.xml
+
+#      - ./volume/jobs:/usr/share/jenkins/jobs:rw
+
+#      - ./volume/jenkins/config.xml:/var/jenkins_home/config.xml:rw
+#      - ./volume/jenkins_home/jobs/THIRD_PARTY_POSTGRESQL:/var/jenkins_home/jobs/THIRD_PARTY_POSTGRESQL:rw
+#      - ./volume/maya-api:/var/jenkins_home/jobs/maya-api:rw
+#      - ./volume/jenkins_home/hudson.model.UpdateCenter.xml:/var/jenkins_home/hudson.model.UpdateCenter.xml
+
+#      - ./volume/credentials.xml:/usr/share/jenkins/credentials.xml
+#      - ./volume/users:/usr/share/jenkins/users
+#      - ./volume/secrets:/usr/share/jenkins/secrets
+#      - ./volume/secret.key:/usr/share/jenkins/secret.key
+
+
+#      - ./volume/jenkins_home/secret.key.not-so-secret:/var/jenkins_home/secret.key.not-so-secret
+
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - /usr/local/bin/docker:/usr/local/bin/docker
+
+volumes:
+  maya-home:

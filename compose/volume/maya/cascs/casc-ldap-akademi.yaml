@@ -1,0 +1,253 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          id: "66934009-d55e-43c9-9925-b539e69ec4ce"
+          password: "{AQAAABAAAACABin4QKQ9WC20rejG2CMxVL73PomVvlHejmFSUXamDB59N80chMChSsP2owbU5Ztxt/AeGvv8CHMzQsOQtq12bx2tec0p8ZSM79aOlrB3GpEWqtGelfNav76rBaLY7E7nYqOp/WMIpxOhvjIYluBfaqivvwjsuciZ3232SpZ2RukzaBQHU7f1QxXL3gDSqrJg}"
+          scope: GLOBAL
+          username: "admin"
+          usernameSecret: true
+      - usernamePassword:
+          id: "9e3f511b-a497-4973-a73e-e15055d1f290"
+          password: "{AQAAABAAAACAm4OPX+/AA4kGjVTe0Hg6OBKM3sI1JusSmuZLAkQNv32qk7oHPOY/KrV8WEVJoyx6MR80Oymf43toyjAVx4KmYfYNiChVpAx/tG+iRs2SjH7M10JWrw2bJsyE4LIqZ2a0VsvNH54L53BlGni07gDiVHPAD1gWUaLqKzm6DuTEysZCzlITk551nmzuluN53vg6}"
+          scope: GLOBAL
+          username: "admin"
+          usernameSecret: true
+      - usernamePassword:
+          id: "e37fb38f-e2d3-4003-bee0-b27a9c53e7b8"
+          password: "{AQAAABAAAACA1sjzJhLDLYpoDrt7HSkHift7hwFKz9xvblHjZo8yDnyBlV2ZZRdM9sBW7ZSNp6wUBtelpwLz+6+c2ZicT42Vl0bARJzkX+XoMeOJcl3j+3TjGNAhB/IV/MaiE1t/V23kabFMxLCxCOiIbBUsKLh89+ybzKPa06Cn2OPVEpEv17R4lQYN9Vqh9a1rbY2vxQon}"
+          scope: GLOBAL
+          username: "ali.kirca"
+          usernameSecret: true
+      - usernamePassword:
+          id: "7b9ba9be-db73-4880-a78d-2cc1e27e1c15"
+          password: "{AQAAABAAAACAWC39+BDBDrO3Ubf8ulLtQxh9CJrOjKyfzbRovEQeY1JCpxZA9a3kR4MHmuCLdj+UcwAHd+o2j+07GOFAm2NZ/rtWYW+iX6RMva+ZpOP/bghhcrM3zL82eRM5Wptou//KIx6IcZFUk8tDVtWoT0ZQ6nROC/ltValrDPLHeXVTg8cDl0X01xUoOEDCtxD4NyIk}"
+          scope: GLOBAL
+          username: "ali.kirca"
+          usernameSecret: true
+      - usernamePassword:
+          description: "git "
+          id: "1b01389a-6a5f-4b8f-a8cf-0c05b44163df"
+          password: "{AQAAABAAAACATQmgYgVRQccL2FbHxyoCuGMfKAEB3xrYNEyNBAWyVPuUwMfjnpotKJElBpZUxqpd9boHMYoutvxcJTDwl4yR/dFqmG50DJ8d/cDfn8/Em9d5s5m2E06Ax+SGroqXg5dgs0VqnCkcdIq0o3FQ1rI6+AVVDQnsBFojpP9PrH8AKFZqMHpjPqGcx8zfH5SbJ+31}"
+          scope: GLOBAL
+          username: "okan.erman"
+          usernameSecret: true
+      - usernamePassword:
+          id: "7c197764-a9c9-41ae-ac3a-ff270c1f5874"
+          password: "{AQAAABAAAACAb1GzACf/ZzhKJXsmxexvFYQFd/VuXC9scW75+lq2aIYWiqnkg8SFpEEuVpEP4WskVssFwSLmw3iIFGY7P+u7eT44OdxrkeW8Tov2vAbZOZY/ZQuevneRTWBT6wa6dltH6mn3YEUPlXTCVp4Ymffk1Rrh9gQLyC6qInw91AB/y327Gf6rwFMuVT8qmTHk9SQX}"
+          scope: GLOBAL
+          username: "mustafa.akocak"
+          usernameSecret: true
+      - usernamePassword:
+          id: "497172c9-c310-40c9-98a0-1bfcdf27f16b"
+          password: "{AQAAABAAAACAR3TNqnC0ZxjvB52rEl9OSOFgPWd2jOcvBD3SuYSvdWgBxgQGm2DFRZA/6Y77PITTGriE/lrkMMFWR2/aKIudM47usl5S8yCSsfXGLf4AVf3RJtJmoCh4EG4tvaWPVlf2FfDr3fJWz3VHnodJ4T5yrOFd6ISMw59e+/N2zNkVIwOXJ7AguVMPjMI+q7P65T4O}"
+          scope: GLOBAL
+          username: "jale.arslan"
+          usernameSecret: true
+      - usernamePassword:
+          id: "96a2f618-506a-4bf7-8e70-3c09adfa850e"
+          password: "{AQAAABAAAACAX6R+VmWg1KKCSh+v9ZIBRAZqjrBhzj2z4LXRWuKGjI4E+uYJCreT3+OgoNr2EKHkkABtloClzC1aVT+NBe01jExljbzDl+sG9vXSdUf4ofPAwgOY0wHrLKHtj1sRhIXgCJbWjFoQwqPQLXjI351XholwO29m3yFqBBoBGIpQIE/o4zuyYhP46yD5i9SaIz42}"
+          scope: GLOBAL
+          username: "alparslan.sahin"
+          usernameSecret: true
+      - usernamePassword:
+          id: "e6ee85cf-5647-4fa1-9c7f-0bdf03105983"
+          password: "{AQAAABAAAACAgz3R2OOmWScQy9SndBS1dqWCN4K8gTSVDVLm5DkzDrYy2cmGC/CIZ/MZyApIIgpcXKDFg9dvc5Brk8b6LmOslCrmi+5D8On7G6IoKLz+cmPDgXqMSCUKpCBJkd9Yxmm+L3QSc7yXL6RNqzfxGH4fHsJtxnqQnEbM9XyezSwihxp1dafiGDqyuBK/2WJuZyCu}"
+          scope: GLOBAL
+          username: "maya-devops"
+          usernameSecret: true
+      - string:
+          description: "Migrated SonarQube authentication token"
+          id: "b05d63d6-0345-4f2c-9140-de65cbccb89f"
+          scope: GLOBAL
+          secret: "{AQAAABAAAADAIX1GP8kDye4QSroIswQtbeqc9gOcOFI/L7NnCS1lpqCw8A6PeGBRG7PLFVHfLqEXIkAeu0w4Ptm3+qvB9zCSfKLNTNGMArQdkOLjx8RvbDqxgvajc88tzoRVVNnhCYg+43xSPzN6t5BwCDB+btmOuvWkjfGGnryoGNg1DWYQn7HBjnFpBbgobD6GTJYLD95dpHbCw81S42bRj+GW1jFPe1yJ1TRLcX7K2CBI3GIspEMF8kq14lHZduA+HjNyr8eCAKhIrDwrSaxr8KzIrzij8A==}"
+      - usernamePassword:
+          id: "3b5dfdb3-98ce-4d9c-869d-e405e624125c"
+          password: "{AQAAABAAAACA7SzU7hzztHPye68yMGylyjj+PQAhVe8VwEIh7fknDUdXbu9CN3NZlGV+3h1mvmDINa2+NEI3HMDXL8Zi327df4dSmkvkDRLIvNkrqPRi7A1HMGoWdIkL7IMWrjqBS3YMRYGp2pm+5q80w7lPdtAem9W5q48fGPemWBH0OCyNo/mqhMfG+tfFknfFu0SGZorT}"
+          scope: GLOBAL
+          username: "alparslan.sahin"
+      - usernamePassword:
+          id: "db231a67-3e62-447b-a2bb-991c0474b0a8"
+          password: "{AQAAABAAAACAnUuy8A+duftxuksXXrLpDdKnalkxpadJASzRNkrRy/8inqWluEfAw1nfb7mWhKOSb4QnhMM0bzljkXbeLYpiqCUGspepV70tM12SUQG7wyrXHCKK7J7i0jLkDJXhHCAfxFodgglKgPxzE4Z/A3U3VCNpNdC/98MGJncdpFuJX8w66jxnlIYx2QvpVW+BTa4F}"
+          scope: GLOBAL
+          username: "alparslan.sahin"
+      - usernamePassword:
+          id: "926433de-b9b2-4dd4-9d57-cac29c2bfbfa"
+          password: "{AQAAABAAAACAs7SbnUIvQJ5BNBQE/RJJig54UxCtvx8I+zvvUJHEzeX1eNLs22eLZClymnmccJfgyXYbVhznvgoZvvDJkqZCGBiNWhvFJQVtx3v9fr0gALco9Qw72KhruD1l6gppeH+J4UeQYvmVkwjJ1YypRZyy/c6uHPvwowckr94xD2cKCFIttD6W4uGxUWHIEjxdZney}"
+          scope: GLOBAL
+          username: "alparslan.sahin"
+      - usernamePassword:
+          id: "637d388e-fc3a-4317-a861-4f8b3a1f4fcb"
+          password: "{AQAAABAAAACAuoac5kYsmD4cdlOWqxodgg7Blu4Fq2nNKXuSQdwsF5TJ1ppgZW9WNk+LkMGrPt1TFU4h1bK/2zGu3YrB/Yv0BHApWHfzrl9IWQjVye4mqz+tSQv1xk6IQgr3MXLma3D+h3x5Prkv6RxkAjYMFlRTjN0KcOzN+dBmwn5Ya8iPsIe1dDnjhirhvyC7Hb/29j9R}"
+          scope: GLOBAL
+          username: "alparslan.sahin"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+      - "USER:Overall/Administer:ali.kirca"
+      - "USER:Overall/Administer:alparslan.sahin"
+      - "USER:Overall/Administer:anonymous"
+      - "USER:Overall/Administer:cem.topkaya"
+      - "USER:Overall/Administer:doga.aslan"
+      - "USER:Overall/Administer:fatih.yuce"
+      - "USER:Overall/Administer:yahya.civelek"
+      - "USER:Overall/Read:Yazilim_Tanimli_Ag_Teknolojileri_Mudurlugu"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  labelAtoms:
+  - name: "built-in"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    ldap:
+      configurations:
+      - displayNameAttributeName: "displayName"
+        groupMembershipStrategy:
+          fromUserRecord:
+            attributeName: "memberOf"
+        groupSearchFilter: "(& (cn={0}) (objectclass=group) )"
+        inhibitInferRootDN: false
+        managerDN: "cn=akademi akademi,cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
+        managerPasswordSecret: "{AQAAABAAAAAQnG60j+y4U6suZ4cy+mT8MZfB/xHvwzQ8Wh/HTOhiVQg=}"
+        rootDN: "cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
+        server: "ulakdc.ulakhaberlesme.com.tr"
+        userSearch: "sAMAccountName={0}"
+      disableMailAddressResolver: false
+      disableRolePrefixing: true
+      groupIdStrategy: "caseInsensitive"
+      userIdStrategy: "caseInsensitive"
+  slaveAgentPort: 0
+  systemMessage: |-
+    Merhaba,
+     Yazılım Tanımlı Ağ Teknolojileri Müdürlüğü'nün Jenkins sistemine hoş geldiniz.
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  envInject:
+    enableLoadingFromMaster: false
+    enablePermissions: false
+    hideInjectedVars: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  sSHD:
+    port: -1
+unclassified:
+  bitbucketEndpointConfiguration:
+    endpoints:
+    - bitbucketCloudEndpoint:
+        enableCache: false
+        manageHooks: false
+        repositoriesCacheDuration: 0
+        teamCacheDuration: 0
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  buildMonitorView:
+    permissionToCollectAnonymousUsageStatistics: true
+  buildStepOperation:
+    enabled: false
+  casCGlobalConfig:
+    configurationPath: "/usr/share/jenkins/casc.yaml"
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://192.168.57.58:82/github-webhook/"
+  gitLabConnectionConfig:
+    connections:
+    - clientBuilderId: "autodetect"
+      connectionTimeout: 10
+      ignoreCertificateErrors: false
+      readTimeout: 10
+    useAuthenticatedEndpoint: true
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  globalTimeOutConfiguration:
+    operations:
+    - "abortOperation"
+    overwriteable: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  mavenModuleSet:
+    localRepository: "default"
+  pollSCM:
+    pollingThreadCount: 10
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: false
+  subversionSCM:
+    workspaceFormat: 8
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  whitelist:
+    enabled: false
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
