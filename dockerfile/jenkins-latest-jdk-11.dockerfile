@@ -1,11 +1,13 @@
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                               KOMUTLAR VE AÇIKLAMALARI                                                                                                   #
 #                                                                                                                                                          #
+# sudo docker build --add-host security.ubuntu.com:91.189.91.39  --build-arg ARG_USER_ID=$(id -u jenkins) --build-arg ARG_USER_GROUP_ID=$(id -g jenkins)  --build-arg ARG_YUKLENECEK_PLUGINS_DOSYASI=/tmp/plugins/maya-plugins.txt --build-arg ARG_SECRETS_DIR=secret-maya --add-host bitbucket.ulakhaberlesme.com.tr:192.168.10.14  -t cinar/jenkins:maya-1.1 -f jenkins-latest-jdk-11.dockerfile . #
+#                                                                                                                                                          #
 # docker build --add-host security.ubuntu.com:91.189.91.39               `                                                                                 #
-#              --build-arg ARG_USER_ID=$(id -u jenkins)                      `                                                                                 #
-#              --build-arg ARG_USER_GROUP_ID=$(id -g jenkins)                `                                                                                 #
-#              --build-arg ARG_JENKINS_BUILDS_DIR=/builds                    `                                                                                 #
-#              --build-arg ARG_YUKLENECEK_PLUGINS_DOSYASI=/tmp/plugins/cinar-plugins.txt `                `                                                     #                                                                                 #
+#              --build-arg ARG_USER_ID=$(id -u jenkins)                      `                                                                             #
+#              --build-arg ARG_USER_GROUP_ID=$(id -g jenkins)                `                                                                             #
+#              --build-arg ARG_JENKINS_BUILDS_DIR=/builds                    `                                                                             #
+#              --build-arg ARG_YUKLENECEK_PLUGINS_DOSYASI=/tmp/plugins/cinar-plugins.txt `                `                                                #                                                                                 #
 #              --add-host bitbucket.ulakhaberlesme.com.tr:192.168.10.14  `                                                                                 #
 #              -t cemo                                                   `                                                                                 #
 #              -f .\jenkins-latest-jdk-11.dockerfile .                                                                                                     #
