@@ -360,7 +360,7 @@ RUN touch $COPY_REFERENCE_FILE_LOG && \
 #                                                                                                                                                             #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV CASC_JENKINS_CONFIG $JENKINS_HOME/casc.yaml
-COPY ./jcasc_plugin_confs/casc.yaml $JENKINS_HOME/casc.yaml
+COPY ./jcasc_plugin_confs/initial-casc.yaml $JENKINS_HOME/casc.yaml
 
 COPY ./etc-default-jenkins /etc/default/jenkins
 RUN chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} /etc/default/jenkins
@@ -389,7 +389,7 @@ RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} ${JENKINS_HOME}
 # ENV JENKINS_NODES_DIR=${JENKINS_HOME}/nodes
 # ENV JENKINS_USERS_DIR=${JENKINS_HOME}/users
 
-COPY ./volume/${ARG_SECRETS_DIR}/* ${ARG_JENKINS_HOME}
+COPY ./volume/secret-maya/* ${ARG_JENKINS_HOME}/
 
 #RUN mkdir $JENKINS_JOBS_DIR
 # RUN mkdir $JENKINS_SECRETS_DIR
