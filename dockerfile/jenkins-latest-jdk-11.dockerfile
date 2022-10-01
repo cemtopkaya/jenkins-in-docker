@@ -3,6 +3,8 @@
 #                                                                                                                                                          #
 # sudo docker build --add-host security.ubuntu.com:91.189.91.39  --build-arg ARG_USER_ID=$(id -u jenkins) --build-arg ARG_USER_GROUP_ID=$(id -g jenkins)  --build-arg ARG_YUKLENECEK_PLUGINS_DOSYASI=/tmp/plugins/maya-plugins.txt --build-arg ARG_SECRETS_DIR=secret-maya --add-host bitbucket.ulakhaberlesme.com.tr:192.168.10.14  -t cinar/jenkins:maya-1.1 -f jenkins-latest-jdk-11.dockerfile . #
 #                                                                                                                                                          #
+# sudo docker build --add-host security.ubuntu.com:91.189.91.39  --build-arg ARG_USER_ID=$(id -u jenkins) --build-arg ARG_USER_GROUP_ID=$(id -g jenkins)  --build-arg ARG_YUKLENECEK_PLUGINS_DOSYASI=/tmp/plugins/cinar-plugins.txt --build-arg ARG_SECRETS_DIR=./secret/cinar/secrets --build-arg ARG_SECRET_KEY_FILE=./secret/cinar/secret.key --add-host bitbucket.ulakhaberlesme.com.tr:192.168.10.14  -t cinar/jenkins:cinar-1.1 -f jenkins-latest-jdk-11.dockerfile .
+#                                                                                                                                                          #
 # docker build --add-host security.ubuntu.com:91.189.91.39               `                                                                                 #
 #              --build-arg ARG_USER_ID=$(id -u jenkins)                      `                                                                             #
 #              --build-arg ARG_USER_GROUP_ID=$(id -g jenkins)                `                                                                             #
@@ -330,14 +332,14 @@ Thread.start {\n\
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV PLUGIN_DIR=${JENKINS_HOME}/plugins
 
-COPY ./volume/plugins/ /tmp/plugins/
+COPY ./plugins/ /tmp/plugins/
 ARG ARG_YUKLENECEK_PLUGINS_DOSYASI=
 
 RUN echo '#!/bin/bash \n env \n exec /bin/bash -c "java $JAVA_OPTS -jar /opt/jenkins-plugin-manager-2.12.8.jar $*"' > /usr/local/bin/jenkins-plugin-cli && \
     chmod +x /usr/local/bin/jenkins-plugin-cli
 
 RUN mkdir $PLUGIN_DIR
-RUN chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $PLUGIN_DIR
+RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $PLUGIN_DIR
 RUN [ -f "$ARG_YUKLENECEK_PLUGINS_DOSYASI" ] && jenkins-plugin-cli -f $ARG_YUKLENECEK_PLUGINS_DOSYASI --verbose || echo "yuklenecek plugins dosyasi yok"
 # Veya eklentiler COPY komutuyla yansıya kopyalanır.
 # COPY ./jenkins-plugins/plugins ${PLUGIN_DIR}
@@ -351,9 +353,9 @@ RUN [ -f "$ARG_YUKLENECEK_PLUGINS_DOSYASI" ] && jenkins-plugin-cli -f $ARG_YUKLE
 RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} "$JENKINS_HOME" /usr/share/jenkins
 
 RUN touch $COPY_REFERENCE_FILE_LOG && \
-    chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $COPY_REFERENCE_FILE_LOG && \
+    chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $COPY_REFERENCE_FILE_LOG && \
     touch $COPY_REFERENCE_MARKER && \
-    chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $COPY_REFERENCE_MARKER
+    chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} $COPY_REFERENCE_MARKER
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -362,10 +364,11 @@ RUN touch $COPY_REFERENCE_FILE_LOG && \
 #                                                                                                                                                             #
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 ENV CASC_JENKINS_CONFIG $JENKINS_HOME/casc.yaml
-COPY ./jcasc_plugin_confs/initial-casc.yaml $JENKINS_HOME/casc.yaml
+ARG ARG_CASC_FILE=./cascs/initial-casc.yaml
+COPY ${ARG_CASC_FILE} $JENKINS_HOME/casc.yaml
 
 COPY ./etc-default-jenkins /etc/default/jenkins
-RUN chown ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} /etc/default/jenkins
+RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} /etc/default/jenkins
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                            JOB BUILDS Dizinini harici bir yerde tutmak için                                                 #
@@ -391,7 +394,10 @@ RUN chown -R ${ARG_USER_NAME}:${ARG_USER_GROUP_NAME} ${JENKINS_HOME}
 # ENV JENKINS_NODES_DIR=${JENKINS_HOME}/nodes
 # ENV JENKINS_USERS_DIR=${JENKINS_HOME}/users
 
-COPY ./volume/secret-maya/* ${ARG_JENKINS_HOME}/
+ARG ARG_SECRETS_DIR=./secret/cinar/secrets
+ARG ARG_SECRET_KEY_FILE=./secret/cinar/secret.key
+COPY ${ARG_SECRETS_DIR} ${ARG_JENKINS_HOME}/
+COPY ${ARG_SECRET_KEY_FILE} ${ARG_JENKINS_HOME}/
 
 #RUN mkdir $JENKINS_JOBS_DIR
 # RUN mkdir $JENKINS_SECRETS_DIR

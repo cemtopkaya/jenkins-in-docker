@@ -1,29 +1,47 @@
 version: '3.7'
+
+networks:
+  jenkins-cinar:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.10.0/24
+          gateway: 172.16.10.1
+        - subnet: "2001:3984:3989::/64"
+          gateway: "2001:3984:3989::1"
+
 services:
   jenkins:
-    container_name: jenkins
-    image: cemkins:latest
+    image: cinar/jenkins:csym-1.1
+    container_name: jenkins5
     privileged: true
+    user: jenkins
     restart: unless-stopped
     extra_hosts:
       - "bitbucket.ulakhaberlesme.com.tr:192.168.10.14"
     ports:
-      - 81:8090
-      - 50001:50000
+      - 85:8090
+      - 50005:50000
+    networks:
+      jenkins-cinar:
+        ipv4_address: 172.16.10.2
     volumes:
-      - ./volume/certs/ulakhaberlesme.crt:/usr/local/share/ca-certificates/ulakhaberlesme.crt
-      # eklentiler dizininde *.jpi dosyaları varsa tarayarak yükleyecek
-      - ./volume/plugins:/usr/share/jenkins/plugins
-
-      # jobs dizinindeki işleri tarayarak listeleyecek
-      - ./volume/jobs:/usr/share/jenkins/jobs:rw
+      - cinar-home:/usr/share/jenkins
+      - ./volume/cinar/certs/ulakhaberlesme.crt:/usr/local/share/ca-certificates/ulakhaberlesme.crt
+      # CASC için ayarla
+      - ./volume/cinar/cascs/casc_ldap.yaml:/usr/share/jenkins/casc.yaml
 
       # Kullanıcılar ve credetials bu bölümde bağlanacak
-      - ./volume/credentials.xml:/usr/share/jenkins/credentials.xml
-      - ./volume/users:/usr/share/jenkins/users
-      - ./volume/secrets:/usr/share/jenkins/secrets
-      - ./volume/secret.key:/usr/share/jenkins/secret.key
+      - ./volume/cinar/secret/secrets:/usr/share/jenkins/secrets
+      - ./volume/cinar/secret/secret.key:/usr/share/jenkins/secret.key
 
       # Docker istemcisi dışarıdan bağlanacaksa
 #      - /var/run/docker.sock:/var/run/docker.sock
 #      - /usr/local/bin/docker:/usr/local/bin/docker
+
+
+volumes:
+  cinar-home:

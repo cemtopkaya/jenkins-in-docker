@@ -1,0 +1,877 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          id: "d0d6728d-c821-4ad6-a654-6cb0e6a4de3f"
+          password: "{AQAAABAAAAAQaTQQKMM89e/9e5gTeDfC6AzVNT2CHQ+PpyPwAVJaObs=}"
+          scope: GLOBAL
+          username: "jenkins.servis"
+          usernameSecret: true
+      - basicSSHUserPrivateKey:
+          id: "34b41445-84b6-42ea-abc1-e74e88019643"
+          privateKeySource:
+            directEntry:
+              privateKey: "{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}"
+          scope: GLOBAL
+          username: "jenkins.servis.pk"
+          usernameSecret: true
+      - usernamePassword:
+          id: "7267ca7d-ae35-456c-9732-4c84b1d2c715"
+          password: "{AQAAABAAAAAQHDhv4siiNO4Yxkrjc3r2anVrXu2fQ484ygFmzFygCyw=}"
+          scope: GLOBAL
+          username: "jenkins.servis"
+          usernameSecret: true
+      - basicSSHUserPrivateKey:
+          description: "bitbucket_ssh"
+          id: "a64a70a5-6e93-4afe-9bab-aff1ddc1b9d3"
+          passphrase: "{AQAAABAAAAAQ5iaVZZ6P0V6DQz9lGBQyVBPaJWmulXxQt0B+7jLyNlo=}"
+          privateKeySource:
+            directEntry:
+              privateKey: "{AQAAABAAAAaQZnWB6gwAdYNgOQAgF7tkSqIP099J4M+mDB8EJUwnVBAPo+D5+gqnyrz0UV/2gVRpUTZjWtqM/gexij4sXDk2SWwyh4HYfIPt7iqCoK28/sDjB33Ty8tly7yi11EgNi2yWEgYWDWjO02IPR6RhjFRZX4TnhMPlc3mUHRdK0Ikhd5ppoScRMvuNLyjkEWoMydOFQxj34K/oi3+wIQvrJk06azU4f5w/+cLLisft+xMRSHSGET7UFeBs4qchbyQxyEbRz7WsaatBiWzt1LsPNwsu90OEdyW6ToDUh18HBkF+TNpNM9ZKBDhHYn5mV2eaQp864yuiad+sU8TG6b5pCnS+fQN+GkuLkvlumgIDRdRkqIkQaR+hPvTjKDMIhhBimOBtKRt12Sf278N8ByfdoH+bP33XOh4P9svJpAUXrwk4o1jgHLWnXw3E7NlAbXo6RjZLxvUhLHHexiJMgjrU/l8b/bTJCjbDrwdZyM4mfjUbDN3R5eX2cQy8DtLSqG2HRtNbyevTv2kTaxZ3Fm7JHzLgwDoXDbjyr7IS2UpAUvLJJH+RMtiHFh48kKuvgOGMjGfG/uqoEWAisL980L1cnsFTAyHj8lP7OUPxyq5bwN5LvTHXgMMjKg+iJ4iDLVexxSOeYr+HQjJy66VvD7boHS5iVIdKBAugrUQrpUhD3yz5lIXxH42ovflobVzCmmgAAoutN3lsavyWf5RB0/Hkepy/ZT3YewYHP+6zNdzKiBqQwZ61+gU29Xruoet9Mdye40haeYPK+/mozXIjEd1tqXtItiajfxDJNFmvEc1MpHIeuvDvUA0BONWANvEuSRJTJPm9675RneU51IZ9jKKgbxok1XaSYxVDPig8fSzetmGhG36neHMfOvny1Aa34qY3Cfm+hVKuzSkubPXRjkkHgrwB60v+RJoswd0NqP5LdAeVUH3PWvogyhdHVjS0D0SUePbWAi6jv40kLpYPCmSFj6ufOF1WLALoE1DU/ImDp2y5oLVl/da/M/qF5AKH9hFxy6xDFYmz4uE1Zn7oxZmyGyY6o4iy2irrvN9eBdH21CAzUPwN4vpqmoCxDTga1KjFvnWUPUk5pAuLhTgxXQu/jnJw/NbKUhHOsdhGajsEUtF4GG2+VA86e/D7XyK8OBo2C9WS82LipaJGjwg3J+Y30dNYkKYWkvwlLtCnLMhpMeVdwI0sLOmzvyI2djstPIbauPVyX2lrR9cDX3r74jV4WXB+R0ZCDvQp5po//zAFyBuhjQMnFsfA4hjA+1KNfBDR+LCy2C5y0MV1aXaNxUWtC0jRCB2yWCJ1kXvRdjnOludFZIlZN3eYmMRumLndYBlcwbfTWVGVwJ4gniq0GHWGqAwfZAP4iTzmPVIjELsatRbSUWGagfLPSadqyy7Yrjw/TAriKtCNGpthTSFeAFTBvYcrrmTjK8jeZLo+ImngglpiRaaS9FoJpgcOOM09Usnq4xpVqBDmdacLSC/AyLLuZG06gWdU/6678HJZWFHK3OHVVa4GPiOXA1v7j9sZ0rtwzW29CoejW7JXW3HTk8LfMiPbOQqE2D9SBlcxzwH8pHsDl9e2k0s5antYltvLurEpkvlLfH0BWZ4ROiZJSZdvQnol6SNP10+x3nVX3RVMYVWwWuiS3Lmmf4MoSQLF83Ku/GC4njj+t92HUSUNkVyLGbavtvIL1L+hxAXWS+Ax9Tq+vLSbAJre1OBCUG2n1risBefC0d4v/Z9/M+UNXbroX4tgzw9qHG5jfWXEg7M+ED8T9yazipGrZ2CGpjM2iWEjbWygXSKi9h8NeFSbzxb9jcNXWpkATPFwnfYaMLQkNceV0/Pq/pBf1b2xfJU1/AGNtR2wL8x5N1g0IUJqgqpGwnDLVwW8RyBNMkFkCN9gVhAl7digxhImPvaC8z/KVWp6q4s3ENJQWu9F8zvsAzXCyAs4eGTcVABa9YKBbaHPrr0ZARxH1s3y3f9AHqDNzwij5/Vpy/9b1XR8tENXmOaN69KRsjP0ZN/hI7LhYzvMmeSLHbnNitk4aqz/3NR0+tpCoegI+JUZi5xzqSubFKa2QI4DQFe9zhoQvRBvRVuCRhi93dCMcsUTRx+OaCT9a9WVV2wNj80I1tcpWKxTvcngF/68AfwiH5dlvzgYesJqyiMpwXViQ7ADKmML/r0/QTOjDW28dcK6BRbhLJZoDFwp5+xnXrCV7nc/hdrOhqlxhsvFmKGVYlTf4TnBTZpLnAhSZeJRO5akEBbs2XpCQbANzc0sw==}"
+          scope: GLOBAL
+          username: "jenkins.servis"
+          usernameSecret: true
+      - usernamePassword:
+          id: "bb256036-e25f-4242-ab19-46ed996d30c1"
+          password: "{AQAAABAAAAAQ1VHv1xOe1RnKVnK7ab3tIcuAF2wEE+s5iMyf28Y5o+c=}"
+          scope: GLOBAL
+          username: "cnrusr"
+          usernameSecret: true
+      - usernamePassword:
+          id: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          password: "{AQAAABAAAAAQCMwsVHpJ9Pj8IKjNhngiDTlKju08OTIURjcHJQSDG3g=}"
+          scope: GLOBAL
+          username: "jenkins"
+          usernameSecret: true
+      - usernamePassword:
+          id: "963e04ee-884b-4b56-ba68-0f05e9aff83e"
+          password: "{AQAAABAAAAAQz+gX8957NxFNXrO78GM+UAXT3S3rwf3EPAsRlEpki14=}"
+          scope: GLOBAL
+          username: "betulaslan"
+          usernameSecret: true
+      - usernamePassword:
+          description: " Bitbucket üstünde cem.topkaya hesabındaki kod depolarına\
+            \ erişim"
+          id: "bitbucket_cem.topkaya"
+          password: "{AQAAABAAAAAQBwFvzMMOAW/LupRD7kAInsrFoqGCQcsXIbALLRgSmg8=}"
+          scope: GLOBAL
+          username: "cem.topkaya"
+          usernameSecret: true
+      - usernamePassword:
+          description: "Arınç Alp Eren Bitbucket credentials"
+          id: "alp.eren_bitbucket"
+          password: "{AQAAABAAAAAQiqismzl1h3jBNYkrLFqngo6tSDQ3792Xw90AoXrqP/8=}"
+          scope: GLOBAL
+          username: "alp.eren"
+          usernameSecret: true
+      - basicSSHUserPrivateKey:
+          description: "cinar-build-node-1-ssh-key"
+          id: "cinar-build-node-1"
+          passphrase: "{AQAAABAAAAAQgkb3YwkCcjvnT3EFYma2s5R8NjoHKZy30zbYBN+ctRQ=}"
+          privateKeySource:
+            directEntry:
+              privateKey: "{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}"
+          scope: GLOBAL
+          username: "jenkins.servis"
+          usernameSecret: true
+      - openstackV2:
+          id: "4e8a5c5b-1b6d-4d04-ac7e-02d81d8f8828"
+          password: "{AQAAABAAAAAQpASS9EtIiUQH0Ms7LZ0RVpfsUOvgWp1E3SrZB1OG4Q8=}"
+          username: "ozlem.aydin"
+      - openstackV2:
+          description: "ozlemaydin-bb"
+          id: "ecee3815-d8e4-4c78-91ff-74f20fd8c0e2"
+          password: "{AQAAABAAAAAQZSoaAzQVK3j2bo3Wo9CYXyPL+M44n/N33Wr4Mpz0i7I=}"
+          tenant: "ozlem-aydin-bb"
+          username: "ozlem.aydin"
+
+
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+
+  securityRealm:
+    ldap:
+      configurations:
+      - groupMembershipStrategy:
+          fromUserRecord:
+            attributeName: "memberOf"
+        groupSearchFilter: "(& (cn={0}) (objectclass=group) )"
+        inhibitInferRootDN: false
+        managerDN: "cn=redmine server,cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
+        managerPasswordSecret: "{AQAAABAAAAAQe4BMsPma7M0LAZDdpF/eYTPQ9Wy5jI49fs4BlyUBA8A=}"
+        rootDN: "cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
+        server: "192.168.10.12"
+        userSearch: "sAMAccountName={0}"
+      disableMailAddressResolver: false
+      disableRolePrefixing: true
+      groupIdStrategy: "caseInsensitive"
+      userIdStrategy: "caseInsensitive"
+
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+      - "GROUP:Overall/Administer:Cekirdek_Sebeke_Yazilimlari_Mudurlugu"
+      - "USER:Overall/Administer:fatih.dartici"
+      - "USER:Overall/Administer:cem.topkaya"
+      - "USER:Overall/Administer:alp.eren"
+      - "USER:Overall/Administer:ozlem.aydin"
+      - "USER:Overall/Administer:ozlem.cubukcu"
+      - "USER:Overall/Administer:ildeniz.duman"
+      - "USER:Overall/Administer:redmine.server"
+
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  globalNodeProperties:
+  - envVars:
+      env:
+      - key: "MAJOR"
+        value: "1"
+      - key: "PHASE_NUMBER"
+        value: "0"
+      - key: "SPRINT_NUMBER"
+        value: "0"
+  labelAtoms:
+  - name: "CINAR_BUILD_NODE_1"
+  - name: "CINAR_BUILD_NODE_ASELSAN"
+  - name: "CINAR_BUILD_NODE_KAREL"
+  - name: "CINAR_BUILD_NODE_KAREL-2"
+  - name: "CINAR_BUILD_NODE_PCF"
+  - name: "CINAR_BUILD_NODE_ULAK"
+  - name: "Cinar_Aselsan_Node2"
+  - name: "DockerAMF"
+  - name: "DockerAnalizci"
+  - name: "DockerNEF"
+  - name: "DockerNRF"
+  - name: "DockerNSSF"
+  - name: "DockerNSSF_Availability"
+  - name: "DockerNSSF_Configuration"
+  - name: "DockerNSSF_NRFClientmanager"
+  - name: "DockerNSSF_Selection"
+  - name: "DockerNSSF_Subscription"
+  - name: "DockerSMF"
+  - name: "Open_EPC_node"
+  - name: "UI_demo_node"
+  - name: "cinar_box_1.1_build_UPF"
+  - name: "cinar_box_1.1_build_YHayat"
+  - name: "cinar_box_1.1_functional_test"
+  - name: "cinar_box_1.1_functional_test_calisma"
+  - name: "cinar_box_1.1_karel"
+  - name: "dockerAMF"
+  - name: "dockerSMF"
+  - name: "master"
+  labelString: "master"
+  log:
+    recorders:
+    - loggers:
+      - level: "ALL"
+        name: "org.jenkinsci.plugins.periodicbackup"
+      name: "org.jenkinsci.plugins.periodicbackup"
+    - loggers:
+      - level: "ALL"
+        name: "hudson.plugins.active_directory.ActiveDirectoryUserDetail"
+      name: "AD_test"
+    - loggers:
+      - level: "ALL"
+        name: "hudson.plugins.active_directory.ActiveDirectorySecurityRealm"
+      name: "AD_Security_realm"
+    - loggers:
+      - level: "ALL"
+        name: "hudson.plugins.active_directory.ActiveDirectoryUnixAuthenticationProvider"
+      name: "AD_UnixAuthenticationProvider"
+    - loggers:
+      - level: "ALL"
+        name: "hudson.plugins.git.GitStatus"
+      - level: "ALL"
+        name: "com.cloudbees.jenkins.GitHubWebHook"
+      - level: "ALL"
+        name: "org.jenkinsci.plugins.github"
+      - level: "ALL"
+        name: "com.cloudbees.jenkins.plugins.BitbucketHookReceiver"
+      - level: "ALL"
+        name: "com.cloudbees.jenkins.plugins.BitBucketTrigger"
+      - level: "ALL"
+        name: "com.cloudbees.jenkins.plugins.BitbucketJobProbe"
+      - level: "ALL"
+        name: "com.cloudbees.jenkins.plugins.BitbucketPayloadProcessor"
+      - level: "ALL"
+        name: "com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource"
+      name: "cem-test"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  nodes:
+  - permanent:
+      labelString: "CINAR_BUILD_NODE_1"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.239"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      mode: EXCLUSIVE
+      name: "CINAR_BUILD_NODE_1"
+      nodeDescription: "CINAR_BUILD_NODE_1"
+      numExecutors: 2
+      remoteFS: "/home/jenkins/workspace"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "Cinar_Aselsan_Node2"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.209"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      mode: EXCLUSIVE
+      name: "CINAR_BUILD_NODE_ASELSAN"
+      nodeDescription: "CINAR_BUILD_NODE_ASELSAN"
+      numExecutors: 2
+      remoteFS: "/home/jenkins/workspace"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "CINAR_BUILD_NODE_KAREL"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.219"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "CINAR_BUILD_NODE_KAREL"
+      nodeDescription: "CINAR_BUILD_NODE_KAREL"
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "CINAR_BUILD_NODE_KAREL-2"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.215"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "CINAR_BUILD_NODE_KAREL-2"
+      nodeDescription: "CINAR_BUILD_NODE_KAREL-2"
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "CINAR_BUILD_NODE_PCF"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.176"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      mode: EXCLUSIVE
+      name: "CINAR_BUILD_NODE_PCF"
+      nodeDescription: "CINAR_BUILD_NODE_PCF"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "CINAR_BUILD_NODE_ULAK"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.179"
+          port: 22
+          retryWaitTime: 10
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      mode: EXCLUSIVE
+      name: "CINAR_BUILD_NODE_ULAK"
+      nodeDescription: "CINAR_BUILD_NODE_ULAK"
+      numExecutors: 2
+      remoteFS: "/home/jenkins/workspace"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "dockerAMF"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/amf/docker-compose.yml\
+            \ --env-file env-amf run --rm  jenkins-node java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerAMF"
+      nodeDescription: "dockerAMF"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerAnalizci"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/analizci/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerAnalizci"
+      nodeDescription: "DockerAnalizci"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerNEF"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nef/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerNEF"
+      nodeDescription: "DockerNEF"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerNRF"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nrf/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerNRF"
+      nodeDescription: "DockerNRF"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerNSSF"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/subscription-service/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerNSSF"
+      nodeDescription: "DockerNSSF"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerNSSF_Availability"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/availability-service/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerNSSF_Availability"
+      nodeDescription: "DockerNSSF_Availability"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerNSSF_Configuration"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/configuration-service/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerNSSF_Configuration"
+      nodeDescription: "DockerNSSF_Configuration"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerNSSF_NRFClientmanager"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/nrfclientmanager-service/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerNSSF_NRFClientmanager"
+      nodeDescription: "DockerNSSF_NRFClientmanager"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerNSSF_Selection"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/selection-service/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerNSSF_Selection"
+      nodeDescription: "DockerNSSF_Selection"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerNSSF_Subscription"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/subscription-service/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerNSSF_Subscription"
+      nodeDescription: "DockerNSSF_Subscription"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "dockerSMF"
+      launcher:
+        command:
+          command: "docker-compose --host tcp://192.168.13.199:2376 -f /usr/share/jenkins/agents/docker/smf//docker-compose.yml\
+            \ --env-file env-smf run --rm jenkins-node java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerSMF"
+      nodeDescription: "dockerSMF"
+      nodeProperties:
+      - envVars:
+          env:
+          - key: "DOCKER_HOST"
+            value: "tcp://192.168.199:2376"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "Open_EPC_node"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.199"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      mode: EXCLUSIVE
+      name: "Open_EPC_node"
+      nodeDescription: "Open_EPC_node"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "UI_demo_node"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.183"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      mode: EXCLUSIVE
+      name: "UI_demo_node"
+      nodeDescription: "cinar gui node"
+      numExecutors: 4
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "cinar_box_1.1_karel"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.235"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      mode: EXCLUSIVE
+      name: "cinar_box_1.1_build_UPF"
+      nodeDescription: "cinar_box_1.1_upf"
+      numExecutors: 4
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "cinar_box_1.1_build_YHayat"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.107"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      mode: EXCLUSIVE
+      name: "cinar_box_1.1_build_YHayat"
+      nodeDescription: "cinar_box_1.1_build_YHayat"
+      numExecutors: 4
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "cinar_box_1.1_functional_test"
+      launcher:
+        ssh:
+          credentialsId: "3953b6aa-ed6e-47f1-821e-51445c16d2df"
+          host: "192.168.13.156"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      mode: EXCLUSIVE
+      name: "cinar_box_1.1_functional_test"
+      nodeDescription: "cinar_box_1.1_functional_test"
+      numExecutors: 4
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "cinar_box_1.1_functional_test_calisma"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /home/jenkins/agents/docker/nssf/docker-compose-nssf.yaml\
+            \ --env-file /home/jenkins/agents/docker/nssf/nssf.env run --rm jenkins-node\
+            \  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "cinar_box_1.1_functional_test_calisma"
+      nodeDescription: "Fonksiyonel Testlerin Çalışacağı Docker Container Jenkins\
+        \ Agent (ÇALIŞMA)"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  slaveAgentPort: 0
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+
+
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+
+
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  copyartifact:
+    mode: MIGRATION
+  envInject:
+    enableLoadingFromMaster: false
+    enablePermissions: false
+    hideInjectedVars: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+  sSHD:
+    port: -1
+  scriptApproval:
+    approvedScriptHashes:
+    - "001c7b5345e450250dcc5afcbbf496cfd23cca03"
+    - "016757bcd34b23a87272d7deec65ca2cda922845"
+    - "029bbbfd9734228c430939695850e95d5b6b2b83"
+    - "06062ab3db921d8c2a6b3625686c2bb0623010d5"
+    - "06d602e61280657bd1696894181b513774037ce6"
+    - "077c82b4f011d2d732c2a81a9e92bdbee18e5ba4"
+    - "09d7330b9f314c68b819731c8a8ae38f18c7057c"
+    - "0aaa8670191f30afbbb3771830fd6eea58b56b92"
+    - "0ae78c0711fc5386f6f7d3cd953ce876252b5bf1"
+    - "0b0f63a24ff306b0c7cc500798cb142e247171fb"
+    - "0cb5d07341c70abd00207268b954751536121a55"
+    - "0d1d4c17911147a2326918fe28b2e6a5b9ad7b82"
+    - "0eeb0ef561168a1c8e93397071056ec8eee76511"
+    - "0fa6a662aff1535ca5ea461cd2945cf7a87d4d2c"
+    - "14f732d03904a0ecdfba4552cfd107d40890e0ef"
+    - "1b57ac454e42b256f1c8784986d51e2767649337"
+    - "28e4467ea1a9979aa37de8120ce3492d0428b5ee"
+    - "36a5006090524ec52bd9caecb15a7b1ac2b2657d"
+    - "39020357e59ccb2a51d115a85156b838637568d1"
+    - "3bd31d0185073bdb1d444ef97abf3cc144b2b781"
+    - "3eeb3f25b9c42b34c07e73a89e4b7ae39ac3863e"
+    - "3f30ddfe3d9f25e53ad754b1a391b355ffd37e8e"
+    - "3f91ad545b92b68f8240036957272ef16833e24c"
+    - "4014a873fd0d428b0c1ec498dcac4399fc206df0"
+    - "42e4758f9f01b31a805b8f51e33bf6f6dd3f6438"
+    - "43b91a6ec30f8c3e774f6450f9c4b3737e982bcb"
+    - "44c75460f452c8f0eaead72a93505ff9c8d3cc4b"
+    - "46c829f9bf40a7872566a99830508cccca0cd905"
+    - "477cf6938ab9b66c9bac4d7b50957ad2fd3cfe7d"
+    - "4af80764b2b01f3950f6cd54ba04da8b69afe96d"
+    - "4e9c57f950727709244813c6a2b6ad77c7fea5c8"
+    - "588a120c3d15711035edd42867c17d88d5d7cb64"
+    - "5d4bef3f9f9e4cdcd4c4b6ef8ae161c11bdb7f1e"
+    - "6111b294784b2894c1f26c0a2d6e4c323dd6b1a1"
+    - "633619acd10c386f6633bc9b30f1ae75a88c8faf"
+    - "642dc9c2e1db5ad8d4e8ef52d2d582ab21fb9ec3"
+    - "6b8ea231bc426e6aec2f43873f5a8a84963b0509"
+    - "6cdac75b84940a67562a980ca45bed87cb33a9d4"
+    - "721ffaf3724d48ccaea172babac93fbad7c7e4cd"
+    - "74dff2a8018555c469b5f6e6dd6523db70041d4d"
+    - "7c311e1bd2a29684f1804faeb1dad4c09c2dbdda"
+    - "7ca316e06ac6dc772eb0aa0f952d264fd1ab1f5a"
+    - "7ed8682e10c38fc51e682f50dc2b19ac4258530f"
+    - "8443ca197a10dfa0a22551ccf11aa7a931efaaa4"
+    - "8a98acfc1b79caf2bac6ff4a3da1e93c064bb788"
+    - "8e1ba87280154f36662e6a33318e76649fb0e052"
+    - "8eaab50d8a1a4e994f796fdfb4f844dcb04c21d1"
+    - "905bae340099a1c1109e6dac60d2b1ec7cc41a7f"
+    - "92cd7bda40bd7dcc6fafd8522d0c2d9cebdb9bac"
+    - "931e8953a348e57ed83100d15a5ad8bba823eebf"
+    - "93ab6e536f2162c570565988f3ee8577a06ba3b4"
+    - "982979ad0fc643c95b59b1e3b0101f45fc6ae255"
+    - "9b98cb0c7150206d7a9cfe8b2c021ed7865ec1e0"
+    - "a60235e1c80dad227f00651a08a524a597670132"
+    - "a6567f182c33e7408dff539b94869d9ed474d4c7"
+    - "a6dbf8badfd36b865b3a8c2c2d0a959e226659a3"
+    - "a923299d02e09d3fe844c660cdcba6b9243ab942"
+    - "a92e2a8f6d7d78fea2ab15824733f0b1a7f57a9e"
+    - "aba2c133942577e4cbbaf48f460554f3da5823c3"
+    - "abee42edb9307d697f9d5b53af91ffa28c3a2c12"
+    - "ac186dac3428e97c2f3fd5f7a77cdba46cd82d44"
+    - "ac5fc299fffb56bbc6143df189cc4a6bda2de373"
+    - "ad0cc4a661af37ac8aba38f393fa4f1b671510a1"
+    - "ae2dbf61b4e7fc7ca3c0966d2eeeb9f959b582b8"
+    - "b06d510023cf7d602ab3d17a3997bb2e84fe1169"
+    - "b0d1839003e5b8f2a064057905333fff176ab003"
+    - "b1ce390d2b85c90767eccecd2a5e55347315afaa"
+    - "b1f298f20c5026d53eb420ef9fab26c955642b37"
+    - "b3b95b52743af99e24ab5eb127991c3d0eedd462"
+    - "b58b1059603d1bdca7ee1838a09ab76051302b3d"
+    - "b797ce168208cd4f1d165afbc2e2f99cc1dddd5b"
+    - "b7b21dfe862cde5874201286c6b1c443b6b1f60e"
+    - "b90781d51a27d220961e066609e57e62d6432770"
+    - "ba7cd941df827c8e59a2d34ceb96d260ad693f4d"
+    - "bdf4aeb0c1a6f4480fe308142daaae0361795ca3"
+    - "bf3a5c391c185b76c43b2412a3aeadfafaba0b80"
+    - "c1eb774b3f5bde8558f17f7ae0aaedc7fb9b5f18"
+    - "c6ef4cf27ad8c30faf8c9de0aeb606b28bd6f892"
+    - "ca67f0f4be121603b40ee1d500b9c455406c3387"
+    - "cb638b46658836e26680dccab408d12b3127ba25"
+    - "d0ea119d61f41a412195af3d3b2a3b119c383dc2"
+    - "d31e8670e9b98a6a70c785631ba0d876999541c7"
+    - "d8116c36ac50a6b517c66fcbf86ab095e1523497"
+    - "d86850512d49373b7a6496c5b368c0e278bc829f"
+    - "d91280c8dfe1ab6ef358c40f33acd2b754b1a1e4"
+    - "d950db2df00c565cfb1331a02fd68f00890e06ea"
+    - "da9c958dde1317ece6f79d656d871a33b626f95c"
+    - "dadf34d27603cf1cf9ffc17427cef7f88ac26718"
+    - "dc7692ab64ddaacc27d1c5528c54ad14f7bddb5d"
+    - "ddd2ede9cc2bcc965257c760422a916643c4c7b7"
+    - "e112ad8b48d806b626f1c993e9850a31239abfe2"
+    - "e428339dcf5a128fb2d618dd60c5e00bdba7a68e"
+    - "e53bd1000e1a925648417d263cbc8370b3936214"
+    - "e5a53edc3f85272cf9c16379ff60fab221cbc4f3"
+    - "e7061b2c9d19d4035481f2129456f5cf769ae153"
+    - "e90f1c0f1510cab573958e540848c7e7ff367234"
+    - "eaff63d26277c96e1cd20a5fecb22b22086bc3b3"
+    - "eba3ad273e8f88bb82927f48ddcc37489f790e51"
+    - "f03279a1abe2d6fff3328f6d6a27fd4390783fae"
+    - "f3291b77309cd38e422f4e4c96965943b46ed697"
+    - "f447595d0bacba61d354c8ecc8ac3bf937f02457"
+    - "f4d5af625a36094c39db33fcf4ec4099a1909a70"
+    - "fcc36f0cc135a140e9b6a6a97fed6fb1a5384091"
+    - "fcdd4e6dcc154dad102d8152df9e8147234cd442"
+
+
+unclassified:
+  bitBucketPPRPluginConfig:
+    hookUrl: "bitbucket-webhook"
+  bitbucketEndpointConfiguration:
+    endpoints:
+    - bitbucketServerEndpoint:
+        credentialsId: "d0d6728d-c821-4ad6-a654-6cb0e6a4de3f"
+        displayName: "ULAK"
+        manageHooks: true
+        serverUrl: "https://bitbucket.ulakhaberlesme.com.tr:8443"
+        serverVersion: VERSION_5_10
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  buildMonitorView:
+    permissionToCollectAnonymousUsageStatistics: true
+  buildStepOperation:
+    enabled: false
+  buildTimestamp:
+    enableBuildTimestamp: true
+    pattern: "yyyy-MM-dd HH:mm"
+    timezone: "Europe/Istanbul"
+  config:
+    password: "{AQAAABAAAAAQIm3zRtQ+P2KMs04EvnV3yYA173RyfBAcvMV7jwSbARo=}"
+    pattern: "FOO-,BAR-"
+    timeout: 30
+    verboseLogging: false
+  defaultFolderConfiguration:
+    healthMetrics:
+    - worstChildHealthMetric:
+        recursive: true
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |+
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    mailAccount:
+      credentialsId: "bcb88b13-51c8-483d-81a9-a7ccb50b5014"
+      smtpHost: "smtp.office365.com"
+      smtpPort: "587"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://192.168.13.38:8080/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    globalConfigEmail: "jenkins.user@ulakhaberlesme.com.tr"
+    globalConfigName: "jenkins.user"
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  globalConfigFiles:
+    configs:
+    - json:
+        content: "{\n    \"date\": \"2020-April-08\",\n    \"author\": \"Ozlem Bulur\"\
+          ,\n    \"username\": \"jenkins\",\n    \"password\": \"a1b2c3d4\",\n   \
+          \ \"testSessions\": {\n        \"sto\": [\n            \"SistemTest0\",\n\
+          \            \"SistemTest1\",\n            \"SistemTest2\"\n  \n       \
+          \    \n        ],\n        \"vto\": [\n            \"VTO_SistemTest0\",\n\
+          \            \"VTO_SistemTest1\",\n            \"VTO_SistemTest2\"\n   \
+          \      \n        ],\n        \"kto\": [\n            \"KTO_SistemTest1\"\
+          ,\n            \"KTO_SistemTest2\",\n            \"KTO_SistemTest4\"\n \
+          \         \n        ]\n    },\n    \"stopStartNFs\": [\n        \"amf_1\"\
+          ,\n        \"amf_2\",\n        \"smf_1\",\n        \"smf_2\",\n        \"\
+          upf_1\",\n        \"upf_2\",\n        \"upf_3\",\n        \"udm_1\",\n \
+          \       \"udr_1\",\n        \"ausf_1\",\n        \"pcf_1\",\n        \"\
+          nssf_1\"\n    ],\n    \"SpirentIp\": \"192.168.13.49\",\n    \"SpirentPort\"\
+          : \"8080\"\n}"
+        id: "97a7155d-c3b4-41b1-8772-02f45fea60b0"
+        name: "user_cfg"
+        providerId: "org.jenkinsci.plugins.configfiles.json.JsonConfig"
+  globalLibraries:
+    libraries:
+    - name: "gui_multi_repo"
+      retriever:
+        modernSCM:
+          scm:
+            git:
+              credentialsId: "d0d6728d-c821-4ad6-a654-6cb0e6a4de3f"
+              id: "6de8aae9-91e6-426b-881a-124fff382439"
+              remote: "https://jenkins.servis@bitbucket.ulakhaberlesme.com.tr:8443/scm/cin/jenkins_sharedlib_gui_multirepo.git"
+              traits:
+              - "gitBranchDiscovery"
+    - name: "stage-hooks"
+      retriever:
+        modernSCM:
+          scm:
+            git:
+              credentialsId: "alp.eren_bitbucket"
+              id: "1c03dea3-e549-47d0-9ff0-18c3c70b48b5"
+              remote: "https://alp.eren@bitbucket.ulakhaberlesme.com.tr:8443/scm/~alp.eren/jenkins_shared_library.git"
+              traits:
+              - "gitBranchDiscovery"
+  globalSettings:
+    failOnCorrupt: false
+    noAuthors: false
+    quietMode: false
+  globalTimeOutConfiguration:
+    operations:
+    - "abortOperation"
+  junitTestResultStorage:
+    storage: "file"
+  locale:
+    ignoreAcceptLanguage: true
+    systemLocale: "en_US"
+  location:
+    adminAddress: "jenkins@ulakhaberlesme.com.tr"
+    url: "http://192.168.13.38:8080/"
+  mailer:
+    authentication:
+      password: "{AQAAABAAAAAQGnSvnBXGxh0EIeVrR7ZtFmJL72LMjmoBar1P8y1g7/k=}"
+      username: "jenkins@ulakhaberlesme.com.tr"
+    charset: "UTF-8"
+    defaultSuffix: "@ulakhaberlesme.com.tr"
+    smtpHost: "smtp.office365.com"
+    smtpPort: "587"
+    useSsl: false
+    useTls: false
+  mavenModuleSet:
+    localRepository: "default"
+  pollSCM:
+    pollingThreadCount: 10
+  prismConfiguration:
+    theme: PRISM
+  sshPublisher:
+    commonConfig:
+      disableAllExec: false
+      encryptedPassphrase: "{AQAAABAAAAAQK4tr1aJHY6pqZ9gqXD/nK8FjQ5/L65Vp0ShVwbWonG4=}"
+  stashBuildTrigger:
+    enablePipelineSupport: false
+  subversionSCM:
+    workspaceFormat: 8
+  timestamper:
+    allPipelines: true
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  upstream:
+    globalUpstreamFilterStrategy: UseOldest
+  whitelist:
+    enabled: false
+
+
+tool:
+  ansibleInstallation:
+    installations:
+    - home: "/usr/bin/"
+      name: "ansible_master"
+    - home: "/home/jenkins/.local/bin/"
+      name: "ansible"
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+    - home: "/usr/bin/git"
+      name: "remote git"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
+  pythonInstallation:
+    installations:
+    - home: "/usr/bin/python2.7"
+      name: "System-CPython-2.7"
