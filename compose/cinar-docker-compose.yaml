@@ -15,11 +15,12 @@ networks:
 
 services:
   jenkins:
-    image: cinar/jenkins:csym-1.1
+    image: cinar/jenkins:cinar-1.1
     container_name: jenkins5
     privileged: true
-    user: jenkins
     restart: unless-stopped
+    environment:
+      - CASC_JENKINS_CONFIG=/usr/share/jenkins/casc.yaml
     extra_hosts:
       - "bitbucket.ulakhaberlesme.com.tr:192.168.10.14"
     ports:
@@ -32,7 +33,7 @@ services:
       - cinar-home:/usr/share/jenkins
       - ./volume/cinar/certs/ulakhaberlesme.crt:/usr/local/share/ca-certificates/ulakhaberlesme.crt
       # CASC için ayarla
-      - ./volume/cinar/cascs/casc_ldap.yaml:/usr/share/jenkins/casc.yaml
+      - ./volume/cinar/cascs/cinar-casc.yaml:/usr/share/jenkins/casc.yaml
 
       # Kullanıcılar ve credetials bu bölümde bağlanacak
       - ./volume/cinar/secret/secrets:/usr/share/jenkins/secrets
