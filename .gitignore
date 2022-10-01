@@ -3,3 +3,4 @@
 *.jpi
 *.war
 *.bak
+**/jobs

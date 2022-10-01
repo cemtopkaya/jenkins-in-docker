@@ -14,23 +14,23 @@ networks:
           gateway: "2001:3984:3989::1"
 
 services:
-  jenkins:
+  cinar-v1:
     image: cinar/jenkins:cinar-1.1
-    container_name: jenkins5
+    container_name: cinarv1-jenkins
     privileged: true
     restart: unless-stopped
     environment:
       - CASC_JENKINS_CONFIG=/usr/share/jenkins/casc.yaml
     extra_hosts:
       - "bitbucket.ulakhaberlesme.com.tr:192.168.10.14"
-    ports:
-      - 85:8090
-      - 50005:50000
     networks:
       jenkins-cinar:
         ipv4_address: 172.16.10.2
+    ports:
+      - 85:8090
+      - 50005:50000
     volumes:
-      - cinar-home:/usr/share/jenkins
+      - v1-cinar-home:/usr/share/jenkins
       - ./volume/cinar/certs/ulakhaberlesme.crt:/usr/local/share/ca-certificates/ulakhaberlesme.crt
       # CASC için ayarla
       - ./volume/cinar/cascs/cinar-casc.yaml:/usr/share/jenkins/casc.yaml
@@ -43,6 +43,67 @@ services:
 #      - /var/run/docker.sock:/var/run/docker.sock
 #      - /usr/local/bin/docker:/usr/local/bin/docker
 
+  cinar-v2:
+    image: cinar/jenkins:cinar-1.1
+    container_name: cinarv2-jenkins
+    privileged: true
+    restart: unless-stopped
+    environment:
+      - CASC_JENKINS_CONFIG=/usr/share/jenkins/casc.yaml
+    extra_hosts:
+      - "bitbucket.ulakhaberlesme.com.tr:192.168.10.14"
+    networks:
+      jenkins-cinar:
+        ipv4_address: 172.16.10.3
+    ports:
+      - 86:8090
+      - 50006:50000
+    volumes:
+      - v2-cinar-home:/usr/share/jenkins
+      - ./volume/v2-cinar/certs/ulakhaberlesme.crt:/usr/local/share/ca-certificates/ulakhaberlesme.crt
+      # CASC için ayarla
+      - ./volume/v2-cinar/cascs/cinar-casc.yaml:/usr/share/jenkins/casc.yaml
+
+      # Kullanıcılar ve credetials bu bölümde bağlanacak
+      - ./volume/v2-cinar/secret/secrets:/usr/share/jenkins/secrets
+      - ./volume/v2-cinar/secret/secret.key:/usr/share/jenkins/secret.key
+
+      # Docker istemcisi dışarıdan bağlanacaksa
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - /usr/local/bin/docker:/usr/local/bin/docker
+
+  jenkins-test:
+    image: cinar/jenkins:cinar-1.1
+    container_name: jenkins-test
+    privileged: true
+    restart: unless-stopped
+    environment:
+      - CASC_JENKINS_CONFIG=/usr/share/jenkins/casc.yaml
+    extra_hosts:
+      - "bitbucket.ulakhaberlesme.com.tr:192.168.10.14"
+    networks:
+      jenkins-cinar:
+        ipv4_address: 172.16.10.4
+    ports:
+      - 88:8090
+      - 50008:50000
+    volumes:
+      - jenkins-test-home:/usr/share/jenkins
+      - ./volume/jenkins-test/certs/ulakhaberlesme.crt:/usr/local/share/ca-certificates/ulakhaberlesme.crt
+      # CASC için ayarla
+      - ./volume/jenkins-test/cascs/cinar-casc.yaml:/usr/share/jenkins/casc.yaml
+
+      # Kullanıcılar ve credetials bu bölümde bağlanacak
+      - ./volume/jenkins-test/secret/secrets:/usr/share/jenkins/secrets
+      - ./volume/jenkins-test/secret/secret.key:/usr/share/jenkins/secret.key
+
+      # Docker istemcisi dışarıdan bağlanacaksa
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - /usr/local/bin/docker:/usr/local/bin/docker
 
 volumes:
-  cinar-home:
+  v2-cinar-home:
+
+  v1-cinar-home:
+
+  jenkins-test-home:
