@@ -4,56 +4,57 @@ credentials:
     - credentials:
       - usernamePassword:
           id: "66934009-d55e-43c9-9925-b539e69ec4ce"
-          password: "{AQAAABAAAACABin4QKQ9WC20rejG2CMxVL73PomVvlHejmFSUXamDB59N80chMChSsP2owbU5Ztxt/AeGvv8CHMzQsOQtq12bx2tec0p8ZSM79aOlrB3GpEWqtGelfNav76rBaLY7E7nYqOp/WMIpxOhvjIYluBfaqivvwjsuciZ3232SpZ2RukzaBQHU7f1QxXL3gDSqrJg}"
+          password: "{AQAAABAAAADQ2f5mS4sav/4SRV8Up5p1XoU3N/xHvGAhKY+zoLBG/HVABaTegA9Dn8iRr6tCWGPxYeuPOBy/4aj83O1/oA0ENscL/5Kpq93s7cdsO3T8kBABlPDR5snTV5qcsIl1K5cuXKezdHVKPGYQDQD4lPiiZSyVUUt6mAG2O0VgbwZBDRkmEAQ0skL+ZX5QL1VXZEx93+PaSLkChnwnjwyQNH2M9BmIZI9gW1GB4G8NtNzRDXIbG9yQsglzCItPLQvgXybm6fKwFrjhDHZ+qBVIB8Ga3snHrTi/k6p/kwhLRAHmW38=}"
           scope: GLOBAL
           username: "admin"
           usernameSecret: true
       - usernamePassword:
           id: "9e3f511b-a497-4973-a73e-e15055d1f290"
-          password: "{AQAAABAAAACAm4OPX+/AA4kGjVTe0Hg6OBKM3sI1JusSmuZLAkQNv32qk7oHPOY/KrV8WEVJoyx6MR80Oymf43toyjAVx4KmYfYNiChVpAx/tG+iRs2SjH7M10JWrw2bJsyE4LIqZ2a0VsvNH54L53BlGni07gDiVHPAD1gWUaLqKzm6DuTEysZCzlITk551nmzuluN53vg6}"
+          password: "{AQAAABAAAADQf3wOr2/uoKvg6NzvRsbeBRUrYTELLZBjkEFBE39g7b9Fdc5kNCO/poVJeVpeSRYF5Ezr80FhrkQjL3yMG9TYAZop169l/aMJQvwtBfXmNX2AJaFBYhZzrSQ6CEJqTWTKmllb5Kx1z1lKYYDKZyA17X1A1osEy2tcZ9cWLcDnojN+/WJsKqf5gerZTD2ZIndzAFYa5QrVjDFFjcPBPV6qLjBNCwdNUfwNd6fK59P8B61K0BEG2T1S+pDP7NMgvJbnmNwAqq53ZrVhVFtcYOUYmNDQ2px3mkezZOb+CcuJeog=}"
           scope: GLOBAL
           username: "admin"
           usernameSecret: true
       - usernamePassword:
           id: "e37fb38f-e2d3-4003-bee0-b27a9c53e7b8"
-          password: "{AQAAABAAAACA1sjzJhLDLYpoDrt7HSkHift7hwFKz9xvblHjZo8yDnyBlV2ZZRdM9sBW7ZSNp6wUBtelpwLz+6+c2ZicT42Vl0bARJzkX+XoMeOJcl3j+3TjGNAhB/IV/MaiE1t/V23kabFMxLCxCOiIbBUsKLh89+ybzKPa06Cn2OPVEpEv17R4lQYN9Vqh9a1rbY2vxQon}"
+          password: "{AQAAABAAAADQb5S/8VzWq8QtPL/BPQ73QZM4Wt23fptUg/0il9EUALXFuDoHxZzSretU290BJTUgUr608fSUXsPNoi12cmCDsYZKfNysgKaa+u5fRyflF+HcqYR+igljrpWXegFnAaShBCUiRm8vygxzWZyYi77No9MM8Gr/uuf0f+a974sEOFPejiOIA9Z39S4yeMEyWCgGjv4300APnohutVjFRrHDWOy0/TCDRCPcGtaoNLmjhDn22tlX81ZCbLh7GN7MFf/OVEURrTYuTTwBzJ5FSDODCvysy9SkqoLNB9sNHdml3+U=}"
           scope: GLOBAL
           username: "ali.kirca"
           usernameSecret: true
       - usernamePassword:
           id: "7b9ba9be-db73-4880-a78d-2cc1e27e1c15"
-          password: "{AQAAABAAAACAWC39+BDBDrO3Ubf8ulLtQxh9CJrOjKyfzbRovEQeY1JCpxZA9a3kR4MHmuCLdj+UcwAHd+o2j+07GOFAm2NZ/rtWYW+iX6RMva+ZpOP/bghhcrM3zL82eRM5Wptou//KIx6IcZFUk8tDVtWoT0ZQ6nROC/ltValrDPLHeXVTg8cDl0X01xUoOEDCtxD4NyIk}"
+          password: "{AQAAABAAAADQFJZoBIzQgoq+qFvMXmhY2buGXG4konxiDOBRyboEFmwKLm/tqogwb2Ain+GUaBtMu7AusX4xMoVzHA2TJdRY2wvW1bHZBxl6rTY961KUvps5DeoNP0D+7ckBTdgJ34Lqyv1r7oWMgYCdNkXHfxN5bhwfgCr1ptTFuJlGRSt4xLMrLVC7uS/sCQHYgmp/9RrVoDrW8m/SoOIq+iHT31I6r0/cM1XMp3sEOodZLXej5Pj3K+J+apjqNYLk9+NwE6B8yGeJgBPADX8VRHf6rf7zRl3tHY3PQfsWD5qfuhCufxI=}"
           scope: GLOBAL
           username: "ali.kirca"
           usernameSecret: true
       - usernamePassword:
           description: "git "
           id: "1b01389a-6a5f-4b8f-a8cf-0c05b44163df"
-          password: "{AQAAABAAAACATQmgYgVRQccL2FbHxyoCuGMfKAEB3xrYNEyNBAWyVPuUwMfjnpotKJElBpZUxqpd9boHMYoutvxcJTDwl4yR/dFqmG50DJ8d/cDfn8/Em9d5s5m2E06Ax+SGroqXg5dgs0VqnCkcdIq0o3FQ1rI6+AVVDQnsBFojpP9PrH8AKFZqMHpjPqGcx8zfH5SbJ+31}"
+          password: "{AQAAABAAAADQ4Qs+dle3O1Ji+e03IpFX3zx1zR78xaiHoM+I0sZd0G1xbBorY2pg0LQldE2uTZTAlut4UWJeLQ7Al1P1DE8cnzJzKjZ/LlwWk8OmcyexSLR7DgMzk8dY8N1aW71CfltrKd2q5w/Tq6eEnupPfO6h7CigZ7b37COiekdgfp3KgM9Kc/oGTMJV1loV9JCWYzMtPdDU0HxGdc2tCZ7Yp8WKwTLBzJ+ZTwRvFkb6ogLgyfzzzGt0WO4GiH4V0533+3SMQBDDEpRcZo8IOtUFAR+57ToG9ZeG4emSsrIlPWLRqwA=}"
           scope: GLOBAL
           username: "okan.erman"
           usernameSecret: true
       - usernamePassword:
           id: "7c197764-a9c9-41ae-ac3a-ff270c1f5874"
-          password: "{AQAAABAAAACAb1GzACf/ZzhKJXsmxexvFYQFd/VuXC9scW75+lq2aIYWiqnkg8SFpEEuVpEP4WskVssFwSLmw3iIFGY7P+u7eT44OdxrkeW8Tov2vAbZOZY/ZQuevneRTWBT6wa6dltH6mn3YEUPlXTCVp4Ymffk1Rrh9gQLyC6qInw91AB/y327Gf6rwFMuVT8qmTHk9SQX}"
+          password: "{AQAAABAAAADQ66rvO5v2zyQ3ZToMdnNBj4zPzEPAhplKBfqlKZr8Ozem63B8EWRsCOogcgbOAOUU4EpK1BjS989SNdeMFSV66f9CasvdN1UXj9it5/PchFYQMepnFxH7yiUGOOl/ODc9w1uc9IjSi/W7A1UrZCu8g1rcE1kgPLO6lAUegqOhuPhfPadpoQiKOZagGrDPdUi+3kECjlGgqFHk/BBSYWIYenNKMC1KNHSPJQZK4uf1T2ePjONEn3S7W3gtVbh3Qs4wGHdikfZi+8ArmJvmgJXekW1KLGFPwEYuk49qanxwqT0=}"
           scope: GLOBAL
           username: "mustafa.akocak"
           usernameSecret: true
       - usernamePassword:
           id: "497172c9-c310-40c9-98a0-1bfcdf27f16b"
-          password: "{AQAAABAAAACAR3TNqnC0ZxjvB52rEl9OSOFgPWd2jOcvBD3SuYSvdWgBxgQGm2DFRZA/6Y77PITTGriE/lrkMMFWR2/aKIudM47usl5S8yCSsfXGLf4AVf3RJtJmoCh4EG4tvaWPVlf2FfDr3fJWz3VHnodJ4T5yrOFd6ISMw59e+/N2zNkVIwOXJ7AguVMPjMI+q7P65T4O}"
+          password: "{AQAAABAAAADQV4qtwwO0g3M9vapJg0XAQvCmdxMFNSCB40Keiram/MkBgDRDLuAIsNy8MKtCs6CKFJoiApafT2g5yo3MxkINmfdic0u7aGNFWSHTMwoqjoXmeyCaFzCyglS/qw063PDykH4fQ5Yzc6OA2fGDXW8d+J0Yr4DjSyihfDjQMbc7rx6htbm3/3UNBYLNQztAgnyqXNzR0Tb/12oDsvggeT93mxUo5u1KnW6BnvMjVPwKwz6j4E8xdMghbj9uyidNehR4vtyIL54mUB/CH/op3vMDTuyMonB9q+m8+vzRdPs7K+0=}"
           scope: GLOBAL
           username: "jale.arslan"
           usernameSecret: true
       - usernamePassword:
           id: "96a2f618-506a-4bf7-8e70-3c09adfa850e"
-          password: "{AQAAABAAAACAX6R+VmWg1KKCSh+v9ZIBRAZqjrBhzj2z4LXRWuKGjI4E+uYJCreT3+OgoNr2EKHkkABtloClzC1aVT+NBe01jExljbzDl+sG9vXSdUf4ofPAwgOY0wHrLKHtj1sRhIXgCJbWjFoQwqPQLXjI351XholwO29m3yFqBBoBGIpQIE/o4zuyYhP46yD5i9SaIz42}"
+          password: "{AQAAABAAAADQlfQOcIqbk6bMPNYsEJ9RS+ay4lcU4kN8RGTv/UOO74asRFla2WC9iFfNAxZWhJT06IJTg+h03xwoPD95uJRb7qGZinvc+7iwubeh5N0l6b8u+hhPeaDxZx7OTPxzampfWXYCWl3fdLt+h5QMISDYPwmuOGtH/jKNEIIOXtlOXkNnM1mBkKw+z9m7JsdxuV0QeXq2tzKp/yS8yuwmxN6wZ81OyihgXJZ5+YKooi50DfXGUFkjTdferaehisdSxSPSeqaa7JtjL7jy9njGFUBEVnyWgSx1X+7WT8lTDa1IY04=}"
           scope: GLOBAL
           username: "alparslan.sahin"
           usernameSecret: true
       - usernamePassword:
+          description: "maya-devops-username-pass"
           id: "e6ee85cf-5647-4fa1-9c7f-0bdf03105983"
-          password: "{AQAAABAAAACAgz3R2OOmWScQy9SndBS1dqWCN4K8gTSVDVLm5DkzDrYy2cmGC/CIZ/MZyApIIgpcXKDFg9dvc5Brk8b6LmOslCrmi+5D8On7G6IoKLz+cmPDgXqMSCUKpCBJkd9Yxmm+L3QSc7yXL6RNqzfxGH4fHsJtxnqQnEbM9XyezSwihxp1dafiGDqyuBK/2WJuZyCu}"
+          password: "{AQAAABAAAADQj4E06T30vrRtPrYyajDC56VmK/IPQgMUTnUgy/dij+XSbv8h7+2opmj9nk5Mx6rS4m6/XvLlGKR4RJcoG22xVNTTYQHw8mOmP+KsxsVkOwTFQkRngwy0IM0DQgqNpvYz3Jn9hIVXSBwtplONkOp+PQl3khaU96aUGAiAZZFSYEmDbd2+ismG81BfkMnILC02HoSOu9/8k88PY/CGfcI9Nc2zZK5piL/qWJ65WYacOvRtOp6OxwwrJWLu03ejEgar8dPOoLCpUzLXU8EMtyegV0o8k5Y4o1LTGHZVZmy7+Ok=}"
           scope: GLOBAL
           username: "maya-devops"
           usernameSecret: true
@@ -61,25 +62,25 @@ credentials:
           description: "Migrated SonarQube authentication token"
           id: "b05d63d6-0345-4f2c-9140-de65cbccb89f"
           scope: GLOBAL
-          secret: "{AQAAABAAAADAIX1GP8kDye4QSroIswQtbeqc9gOcOFI/L7NnCS1lpqCw8A6PeGBRG7PLFVHfLqEXIkAeu0w4Ptm3+qvB9zCSfKLNTNGMArQdkOLjx8RvbDqxgvajc88tzoRVVNnhCYg+43xSPzN6t5BwCDB+btmOuvWkjfGGnryoGNg1DWYQn7HBjnFpBbgobD6GTJYLD95dpHbCw81S42bRj+GW1jFPe1yJ1TRLcX7K2CBI3GIspEMF8kq14lHZduA+HjNyr8eCAKhIrDwrSaxr8KzIrzij8A==}"
+          secret: "{AQAAABAAAAEwL4Oa08l65Y/TwvQq/2246+MDby5A1W4b5p0evbdvNQrpO+lTWRalEL8WnnQZhPMR399MmHKvRAT0ZlIeD4GD5bZWplvhYXACGWFc8AvhX6oeMGXAqq2q4Z7dt8WZIa6vx3JLZ75ZClY7QziwEO0uEAWXpZ554M6ajlFSsXm6o2Mq7LWYLGIRGhrFVwItBi6BRxyX5dwwFfbE7SSFJerjZ2ihNhOgoaZ2qwhdChZ9xrt5SeUd6D+lE5gSY8OyBtCvpQH4v6V7MdPDPJVHOKuCoxHsPCqj2FJ8RmpUEg92+QARiNvJDhG5P/tr+ueHrr9s2URKK7gWP+Nwxni6pWLHPDxLb0mCiwX19mjAL2qCyPOZ9xbhB1psEhGfQOjooK/D7lVflt6TeAmOnYALeW+BMfNZOyuZ92mogpL7FlgOUl8=}"
       - usernamePassword:
           id: "3b5dfdb3-98ce-4d9c-869d-e405e624125c"
-          password: "{AQAAABAAAACA7SzU7hzztHPye68yMGylyjj+PQAhVe8VwEIh7fknDUdXbu9CN3NZlGV+3h1mvmDINa2+NEI3HMDXL8Zi327df4dSmkvkDRLIvNkrqPRi7A1HMGoWdIkL7IMWrjqBS3YMRYGp2pm+5q80w7lPdtAem9W5q48fGPemWBH0OCyNo/mqhMfG+tfFknfFu0SGZorT}"
+          password: "{AQAAABAAAADQKyWvh7Is79H1rhCsBejhSgv+Pg0Y29dfaV6Gecw0Kv0h7Pc8Lg3wDPuHuhih0AF8PP3M/s9JV40L3+drxvVH0F0cp+0EzOgmHQl3aGcncSYATdw6vSuvNSs91efohU9qTNrHzU4UIvUR6yF0hobkpYdqddSt1HkTV5wYNKwn/TLfz3CWW/l11aIW5BpluC0nPd8vGVNM8FyuOgSNSsK8kbeHxGN4u3dCpqahkjvor2f6gQ+vRYSWMu+Pw/vsGOPzDaN16dKVCRHLhe8lzKY4N4WI9NmIAmL5p9CkxCAK/yc=}"
           scope: GLOBAL
           username: "alparslan.sahin"
       - usernamePassword:
           id: "db231a67-3e62-447b-a2bb-991c0474b0a8"
-          password: "{AQAAABAAAACAnUuy8A+duftxuksXXrLpDdKnalkxpadJASzRNkrRy/8inqWluEfAw1nfb7mWhKOSb4QnhMM0bzljkXbeLYpiqCUGspepV70tM12SUQG7wyrXHCKK7J7i0jLkDJXhHCAfxFodgglKgPxzE4Z/A3U3VCNpNdC/98MGJncdpFuJX8w66jxnlIYx2QvpVW+BTa4F}"
+          password: "{AQAAABAAAADQTqsRPfO4isUcgb+HDmdeJByt2xlvHImhllitiGCbedXzlC4FxRIldFrSWXWpMu2px9hODwMh8AsD2hpGJyJb0kpNeiUxsSk4GuVel4M4sJ8YBqpuB1EEAxuxaW9ewnPesVyydpzKMNOaTSNXFpQP4l744i8PHrBcQPtbefGVNx+nn5M4gyg/t7qSHTjpCQ70rzlObideZ6D2e1twpzC+CAPqZCG+AyT/+qHncdeCTBNcirhdqfUgjDbdWnZfJK1KusvUV1VKWSh6MVVeLWNxtqZDqSdqxJEHqhmvDvL9zS8=}"
           scope: GLOBAL
           username: "alparslan.sahin"
       - usernamePassword:
           id: "926433de-b9b2-4dd4-9d57-cac29c2bfbfa"
-          password: "{AQAAABAAAACAs7SbnUIvQJ5BNBQE/RJJig54UxCtvx8I+zvvUJHEzeX1eNLs22eLZClymnmccJfgyXYbVhznvgoZvvDJkqZCGBiNWhvFJQVtx3v9fr0gALco9Qw72KhruD1l6gppeH+J4UeQYvmVkwjJ1YypRZyy/c6uHPvwowckr94xD2cKCFIttD6W4uGxUWHIEjxdZney}"
+          password: "{AQAAABAAAADQETl13bjkzU2xvuhHmoQpE8OMC5VwMJsQdAB1MDvYfSly6/d4fXfr5Kl47cSRCt93Asij1BEb9HZt8WHCcXMNoc7Qh1z4reFZtqyFNhmJSjA7StEe8GcbKozIhLvHiL4SZh10/uSG78bABwQErRb7Yp2PrY85e7KXQ75j/y6oSNyQlXc/Iot8jz0H04Edr/5VUK+b/J6bdNZfc/OygnS3yB6ju+FftoXhj8qGCLnzJ0ohobCDlmvV8aehXMBSAXUOVO6+C3DMFsFE7w/Yau+JspgcKlw14VC3vYdqRCgayx4=}"
           scope: GLOBAL
           username: "alparslan.sahin"
       - usernamePassword:
           id: "637d388e-fc3a-4317-a861-4f8b3a1f4fcb"
-          password: "{AQAAABAAAACAuoac5kYsmD4cdlOWqxodgg7Blu4Fq2nNKXuSQdwsF5TJ1ppgZW9WNk+LkMGrPt1TFU4h1bK/2zGu3YrB/Yv0BHApWHfzrl9IWQjVye4mqz+tSQv1xk6IQgr3MXLma3D+h3x5Prkv6RxkAjYMFlRTjN0KcOzN+dBmwn5Ya8iPsIe1dDnjhirhvyC7Hb/29j9R}"
+          password: "{AQAAABAAAADQCL0n50DNyT2LaDRdlO0vkKgv00qGhf1ZxHdnVAziqsp3GM3XZXYYv5V5rMeOSdlXXLRF4lGRQcYPTH7u9t0Jn0nGl4denrxCVszb7TQBKB/ZtAxmY2IHyqnbqklKZg9yZu8gKCGC2KvWPAR/s4MfmJ20HL0qWoOOpBVghZhGNCOOVfl/KsVmIEN/mesYZYNTxa2atD/Lf1F2jh8mqosqw0TeA5+/F/74SPfvYVseXJHcXHSnLGdQOGeQJceAaIjYgGmvPsXDWl/fg3BY16x7uLhIhc5hWlUjZpd4tzY6Eno=}"
           scope: GLOBAL
           username: "alparslan.sahin"
 jenkins:
@@ -89,6 +90,7 @@ jenkins:
   authorizationStrategy:
     globalMatrix:
       permissions:
+      - "GROUP:Overall/Read:Yazilim_Tanimli_Ag_Teknolojileri_Mudurlugu"
       - "USER:Overall/Administer:ali.kirca"
       - "USER:Overall/Administer:alparslan.sahin"
       - "USER:Overall/Administer:anonymous"
@@ -96,7 +98,6 @@ jenkins:
       - "USER:Overall/Administer:doga.aslan"
       - "USER:Overall/Administer:fatih.yuce"
       - "USER:Overall/Administer:yahya.civelek"
-      - "USER:Overall/Read:Yazilim_Tanimli_Ag_Teknolojileri_Mudurlugu"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -125,7 +126,7 @@ jenkins:
         groupSearchFilter: "(& (cn={0}) (objectclass=group) )"
         inhibitInferRootDN: false
         managerDN: "cn=akademi akademi,cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
-        managerPasswordSecret: "{AQAAABAAAAAQnG60j+y4U6suZ4cy+mT8MZfB/xHvwzQ8Wh/HTOhiVQg=}"
+        managerPasswordSecret: "{AQAAABAAAAAQBJSthyHXHFo/Cc4imsxbKOUuJSEl57ztX6Ukpm1pCjU=}"
         rootDN: "cn=Users,dc=ulakhaberlesme,dc=com,dc=tr"
         server: "ulakdc.ulakhaberlesme.com.tr"
         userSearch: "sAMAccountName={0}"
@@ -136,7 +137,7 @@ jenkins:
   slaveAgentPort: 0
   systemMessage: |-
     Merhaba,
-     Yazılım Tanımlı Ağ Teknolojileri Müdürlüğü'nün Jenkins sistemine hoş geldiniz.
+     !Yazılım Tanımlı Ağ Teknolojileri Müdürlüğü'nün Jenkins sistemine hoş geldiniz.
   updateCenter:
     sites:
     - id: "default"

@@ -17,7 +17,6 @@ services:
       - maya-home:/usr/share/jenkins
       - ./volume/maya/certs/ulakhaberlesme.crt:/usr/local/share/ca-certificates/ulakhaberlesme.crt
       - ./volume/maya/cascs/casc-ldap-ittest.yaml:/usr/share/jenkins/casc.yaml
-
       # MAYA secret bilgileri
       - ./volume/maya/secret/secret.key:/usr/share/jenkins/secret.key
       - ./volume/maya/secret/secrets:/usr/share/jenkins/secrets

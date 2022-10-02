@@ -97,7 +97,7 @@ jenkins:
       - "USER:Overall/Administer:doga.aslan"
       - "USER:Overall/Administer:fatih.yuce"
       - "USER:Overall/Administer:yahya.civelek"
-      - "USER:Overall/Read:anonymous"
+      - "USER:Overall/Administer:anonymous"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -137,7 +137,7 @@ jenkins:
   slaveAgentPort: 0
   systemMessage: |-
     Merhaba,
-     Yazılım Tanımlı Ağ Teknolojileri Müdürlüğü'nün Jenkins sistemine hoş geldiniz.
+     !Yazılım Tanımlı Ağ Teknolojileri Müdürlüğü'nün Jenkins sistemine hoş geldiniz.
   updateCenter:
     sites:
     - id: "default"
