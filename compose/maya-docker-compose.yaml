@@ -1,4 +1,17 @@
 version: '3.7'
+networks:
+  jenkins-maya:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.11.0/24
+          gateway: 172.16.11.1
+        - subnet: "2001:3984:3989::/64"
+          gateway: "2001:3984:3989::1"
+
 services:
   maya-jenkins:
     image: cinar/jenkins:maya-1.1
@@ -6,6 +19,9 @@ services:
     restart: unless-stopped
     extra_hosts:
       - "bitbucket.ulakhaberlesme.com.tr:192.168.10.14"
+    networks:
+      jenkins-maya:
+        ipv4_address: 172.16.11.2
     ports:
       - 82:8090
       - 50002:50000

@@ -85,6 +85,23 @@ credentials:
           password: "{AQAAABAAAAAQiRgd6H//uSZ3om1bdmWJV5rzY3GsNb0hXL6W6xBPAks=}"
           tenant: "ozlem-aydin-bb"
           username: "ozlem.aydin"
+      - usernamePassword:
+          description: "jenkins.service"
+          id: "jenkins.service"
+          password: "{AQAAABAAAAAQj2g3ULDBmti6ji361PUNgUjoyVKmyT3W68hVhFznqfI=}"
+          scope: GLOBAL
+          username: "jenkins.service"
+      - usernamePassword:
+          description: "debrepo_credentials"
+          id: "debrepo_credentials"
+          password: "{AQAAABAAAAAQD6lnCpUkyNJVD36ARJsPOYyxtcD9iKmEiQgYl9H4QYg=}"
+          scope: GLOBAL
+          username: "ubuntu"
+      - gitLabApiTokenImpl:
+          apiToken: "{AQAAABAAAAAgH1qERC1oJruHwgFC8PfXNrAl4MsTGxoMv/MVj3d25U+BSoNek+qXrqjIx5LHD7+w}"
+          description: "gitlab_api_token"
+          id: "gitlab_api_token"
+          scope: GLOBAL
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
@@ -95,7 +112,9 @@ jenkins:
       - "GROUP:Overall/Read:Cekirdek_Sebeke_Yazilimlari_Mudurlugu"
       - "USER:Overall/Administer:alp.eren"
       - "USER:Overall/Administer:cem.topkaya"
+      - "USER:Overall/Administer:alp.ture"
       - "USER:Overall/Administer:fatih.dartici"
+      - "USER:Overall/Administer:jenkins.servis"      
       - "USER:Overall/Administer:omer.yilmaz"
       - "USER:Overall/Administer:ozlem.aydin"
       - "USER:Overall/Administer:yasin.caner"
@@ -242,7 +261,7 @@ jenkins:
       labelString: "DockerAnalizci"
       launcher:
         command:
-          command: " docker-compose --host tcp://192.168.13.219:2376 -f /home/jenkins/agents/docker/analizci/docker-compose.yaml\
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/analizci/docker-compose.yaml\
             \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
       mode: EXCLUSIVE
       name: "DockerAnalizci"
@@ -257,7 +276,7 @@ jenkins:
       labelString: "DockerNEF"
       launcher:
         command:
-          command: " docker-compose --host tcp://192.168.13.219:2376 -f /home/jenkins/agents/docker/nef/docker-compose.yaml\
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nef/docker-compose.yaml\
             \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
       mode: EXCLUSIVE
       name: "DockerNEF"
@@ -272,7 +291,7 @@ jenkins:
       labelString: "DockerNRF"
       launcher:
         command:
-          command: " docker-compose --host tcp://192.168.13.219:2376 -f /home/jenkins/agents/docker/nrf/docker-compose.yaml\
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nrf/docker-compose.yaml\
             \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
       mode: EXCLUSIVE
       name: "DockerNRF"
@@ -287,7 +306,7 @@ jenkins:
       labelString: "DockerNSSF"
       launcher:
         command:
-          command: " docker-compose --host tcp://192.168.13.219:2376 -f /home/jenkins/agents/docker/nssf/subscription-service/docker-compose.yaml\
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/subscription-service/docker-compose.yaml\
             \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
       mode: EXCLUSIVE
       name: "DockerNSSF"
@@ -302,7 +321,7 @@ jenkins:
       labelString: "DockerNSSF_Availability"
       launcher:
         command:
-          command: " docker-compose --host tcp://192.168.13.219:2376 -f /home/jenkins/agents/docker/nssf/availability-service/docker-compose.yaml\
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/availability-service/docker-compose.yaml\
             \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
       mode: EXCLUSIVE
       name: "DockerNSSF_Availability"
@@ -317,7 +336,7 @@ jenkins:
       labelString: "DockerNSSF_Configuration"
       launcher:
         command:
-          command: " docker-compose --host tcp://192.168.13.219:2376 -f /home/jenkins/agents/docker/nssf/configuration-service/docker-compose.yaml\
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/configuration-service/docker-compose.yaml\
             \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
       mode: EXCLUSIVE
       name: "DockerNSSF_Configuration"
@@ -332,7 +351,7 @@ jenkins:
       labelString: "DockerNSSF_NRFClientmanager"
       launcher:
         command:
-          command: " docker-compose --host tcp://192.168.13.219:2376 -f /home/jenkins/agents/docker/nssf/nrfclientmanager-service/docker-compose.yaml\
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/nrfclientmanager-service/docker-compose.yaml\
             \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
       mode: EXCLUSIVE
       name: "DockerNSSF_NRFClientmanager"
@@ -347,7 +366,7 @@ jenkins:
       labelString: "DockerNSSF_Selection"
       launcher:
         command:
-          command: " docker-compose --host tcp://192.168.13.219:2376 -f /home/jenkins/agents/docker/nssf/selection-service/docker-compose.yaml\
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/selection-service/docker-compose.yaml\
             \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
       mode: EXCLUSIVE
       name: "DockerNSSF_Selection"
@@ -362,7 +381,7 @@ jenkins:
       labelString: "DockerNSSF_Subscription"
       launcher:
         command:
-          command: " docker-compose --host tcp://192.168.13.219:2376 -f /home/jenkins/agents/docker/nssf/subscription-service/docker-compose.yaml\
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/nssf/subscription-service/docker-compose.yaml\
             \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
       mode: EXCLUSIVE
       name: "DockerNSSF_Subscription"
@@ -480,6 +499,141 @@ jenkins:
         demand:
           idleDelay: 1
           inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_Common"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/common/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_Common"
+      nodeDescription: "DockerPCF_Common"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_CS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/cs/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_CS"
+      nodeDescription: "DockerPCF_CS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_AMS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/ams/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_AMS"
+      nodeDescription: "DockerPCF_AMS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_IWS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/iws/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_IWS"
+      nodeDescription: "DockerPCF_IWS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_OMS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/oms/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_OMS"
+      nodeDescription: "DockerPCF_OMS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_PES"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/pes/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_PES"
+      nodeDescription: "DockerPCF_PES"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_SMS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/sms/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_SMS"
+      nodeDescription: "DockerPCF_SMS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_NFRS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/nfrs/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_NFRS"
+      nodeDescription: "DockerPCF_NFRS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerTracing"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/cinar/tracing/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerTracing"
+      nodeDescription: "DockerTracing"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
   numExecutors: 2
   primaryView:
     all:
@@ -585,11 +739,14 @@ unclassified:
     hookUrl: "http://192.168.57.58:85/github-webhook/"
   gitLabConnectionConfig:
     connections:
-    - clientBuilderId: "autodetect"
+    - apiTokenId: "gitlab_api_token"
+      clientBuilderId: "autodetect"
       connectionTimeout: 10
       ignoreCertificateErrors: false
+      name: "gitlab"
       readTimeout: 10
-    useAuthenticatedEndpoint: true
+      url: "http://gitlab.ulakhaberlesme.com.tr/"
+    useAuthenticatedEndpoint: true 
   gitSCM:
     addGitTagAction: false
     allowSecondFetch: false

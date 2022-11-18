@@ -40,8 +40,8 @@ services:
       - ./volume/cinar/secret/secret.key:/usr/share/jenkins/secret.key
 
       # Docker istemcisi dışarıdan bağlanacaksa
-#      - /var/run/docker.sock:/var/run/docker.sock
-#      - /usr/local/bin/docker:/usr/local/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
 
   cinar-v2:
     image: cinar/jenkins:cinar-1.1
@@ -69,8 +69,8 @@ services:
       - ./volume/v2-cinar/secret/secret.key:/usr/share/jenkins/secret.key
 
       # Docker istemcisi dışarıdan bağlanacaksa
-#      - /var/run/docker.sock:/var/run/docker.sock
-#      - /usr/local/bin/docker:/usr/local/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
 
   jenkins-test:
     image: cinar/jenkins:cinar-1.1
@@ -98,8 +98,8 @@ services:
       - ./volume/jenkins-test/secret/secret.key:/usr/share/jenkins/secret.key
 
       # Docker istemcisi dışarıdan bağlanacaksa
-#      - /var/run/docker.sock:/var/run/docker.sock
-#      - /usr/local/bin/docker:/usr/local/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
 
 volumes:
   v2-cinar-home:

@@ -480,6 +480,141 @@ jenkins:
         demand:
           idleDelay: 1
           inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_Common"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/common/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_Common"
+      nodeDescription: "DockerPCF_Common"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_CS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/cs/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_CS"
+      nodeDescription: "DockerPCF_CS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_AMS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/ams/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_AMS"
+      nodeDescription: "DockerPCF_AMS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_IWS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/iws/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_IWS"
+      nodeDescription: "DockerPCF_IWS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_OMS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/oms/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_OMS"
+      nodeDescription: "DockerPCF_OMS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_PES"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/pes/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_PES"
+      nodeDescription: "DockerPCF_PES"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_SMS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/sms/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_SMS"
+      nodeDescription: "DockerPCF_SMS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerPCF_NFRS"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/pcf/nfrs/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerPCF_NFRS"
+      nodeDescription: "DockerPCF_NFRS"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
+  - permanent:
+      labelString: "DockerTracing"
+      launcher:
+        command:
+          command: " docker-compose --host tcp://192.168.13.219:2376 -f /usr/share/jenkins/agents/docker/cinar/tracing/docker-compose.yaml\
+            \ run --rm jenkins-node  java -jar /usr/share/jenkins/agent.jar"
+      mode: EXCLUSIVE
+      name: "DockerTracing"
+      nodeDescription: "DockerTracing"
+      numExecutors: 2
+      remoteFS: "/home/jenkins"
+      retentionStrategy:
+        demand:
+          idleDelay: 1
+          inDemandDelay: 0
   numExecutors: 2
   primaryView:
     all:
